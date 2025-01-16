@@ -48,6 +48,23 @@ public class ChitChatBot {
                 System.out.println(indentation + "OK, I've marked this task as not done yet:");
                 System.out.println(indentation + "  " + targetedTask);
                 System.out.println(indentation + line);
+            } else if (inputArr[0].equals("todo")) {
+                String task = "";
+                for (int i = 1; i < inputArr.length; i++) {
+                    if (inputArr[i].equals("/by")) {
+                        break;
+                    }
+                    task += inputArr[i];
+                    task += " ";
+                }
+                Task newTask = new Todo(task);
+                Tasks.add(newTask);
+                System.out.println(indentation + line);
+                System.out.println(indentation + "Got it. I've added this task:");
+                System.out.println(indentation + "  " + newTask);
+                int noOfTasks = Task.getNoOfActivity();
+                System.out.println(indentation + "Now you have " + noOfTasks + " tasks in the list.");
+                System.out.println(indentation + line);
             } else {
                 String add = "added: ";
                 Task newTask = new Task(input);
@@ -57,5 +74,12 @@ public class ChitChatBot {
                 System.out.println(indentation + line);
             }
         }
+    }
+
+    private static String printChat(String message) {
+        String line = "_____________________________________________________\n";
+        String indentation = "    ";
+        String toPrint = String.format(indentation + line %s + indentation + line, message);
+        return toPrint;
     }
 }
