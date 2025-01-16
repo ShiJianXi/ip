@@ -1,10 +1,10 @@
-public class Activity {
+public class Task {
     private String name;
     private boolean isDone;
     private int index;
     private static int noOfActivity = 0;
 
-    public Activity(String name) {
+    public Task(String name) {
         this.name = name;
         this.isDone = false;
         noOfActivity++;

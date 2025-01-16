@@ -7,7 +7,7 @@ public class ChitChatBot {
         String name = "ChitChatBot";
         String line = "_____________________________________________________";
         String indentation = "    ";
-        ArrayList<Activity> activities = new ArrayList<>();
+        ArrayList<Task> Tasks = new ArrayList<>();
 
         //Greet the user
         System.out.println(indentation + line);
@@ -26,32 +26,32 @@ public class ChitChatBot {
                 break;
             } else if (inputArr[0].equals("list")){
                 System.out.println(indentation + line);
-                for (int i = 0; i < Activity.getNoOfActivity(); i++) {
+                for (int i = 0; i < Task.getNoOfActivity(); i++) {
                     int index = i + 1;
                     System.out.println(indentation + index + "."
-                            + activities.get(i).toString());
+                            + Tasks.get(i).toString());
                 }
                 System.out.println(indentation + line);
             } else if (inputArr[0].equals("mark")){
                 int index = Integer.parseInt(inputArr[1]) - 1;
-                Activity targetedActivity = activities.get(index);
-                targetedActivity.markAsDone();
+                Task targetedTask = Tasks.get(index);
+                targetedTask.markAsDone();
                 System.out.println(indentation + line);
                 System.out.println(indentation + "Nice! I've marked this task as done");
-                System.out.println(indentation + "  " + targetedActivity);
+                System.out.println(indentation + "  " + targetedTask);
                 System.out.println(indentation + line);
             } else if (inputArr[0].equals("unmark")){
                 int index = Integer.parseInt(inputArr[1]) - 1;
-                Activity targetedActivity = activities.get(index);
-                targetedActivity.markAsNotDone();
+                Task targetedTask = Tasks.get(index);
+                targetedTask.markAsNotDone();
                 System.out.println(indentation + line);
                 System.out.println(indentation + "OK, I've marked this task as not done yet:");
-                System.out.println(indentation + "  " + targetedActivity);
+                System.out.println(indentation + "  " + targetedTask);
                 System.out.println(indentation + line);
             } else {
                 String add = "added: ";
-                Activity newActivity = new Activity(input);
-                activities.add(newActivity);
+                Task newTask = new Task(input);
+                Tasks.add(newTask);
                 System.out.println(indentation + line);
                 System.out.println(indentation + add + input);
                 System.out.println(indentation + line);
