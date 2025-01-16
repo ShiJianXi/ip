@@ -5,49 +5,46 @@ public class ChitChatBot {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String name = "ChitChatBot";
-        String line = "_____________________________________________________";
         String indentation = "    ";
         ArrayList<Task> Tasks = new ArrayList<>();
 
         //Greet the user
-        System.out.println(indentation + line);
-        System.out.println(indentation + "Hello! I'm " + name);
-        System.out.println(indentation + "What can I do for you?");
-        System.out.println(indentation + line);
+        System.out.println(printChat(indentation + "Hello! I'm " + name + "\n"
+                + indentation + "What can i do for you?" + "\n"));
 
         //Takes in user input
         while (sc.hasNext()) {
             String input = sc.nextLine();
             String[] inputArr = input.split(" ");
             if (inputArr[0].equals("bye")) {
-                System.out.println(indentation + line);
-                System.out.println(indentation + "Bye. Hope to see you again soon!");
-                System.out.println(indentation + line);
+
+                System.out.println(printChat(indentation + "Bye. Hope to see you again soon!\n"));
                 break;
-            } else if (inputArr[0].equals("list")){
-                System.out.println(indentation + line);
+
+            } else if (inputArr[0].equals("list")) {
+
+                String toPrint = "";
                 for (int i = 0; i < Task.getNoOfActivity(); i++) {
                     int index = i + 1;
-                    System.out.println(indentation + index + "."
-                            + Tasks.get(i).toString());
+                    toPrint += indentation + index + "." + Tasks.get(i).toString() + "\n";
                 }
-                System.out.println(indentation + line);
-            } else if (inputArr[0].equals("mark")){
+                System.out.println(printChat(toPrint));
+
+            } else if (inputArr[0].equals("mark")) {
                 int index = Integer.parseInt(inputArr[1]) - 1;
                 Task targetedTask = Tasks.get(index);
                 targetedTask.markAsDone();
-                System.out.println(indentation + line);
-                System.out.println(indentation + "Nice! I've marked this task as done");
-                System.out.println(indentation + "  " + targetedTask);
-                System.out.println(indentation + line);
-            } else if (inputArr[0].equals("unmark")){
+
+                System.out.println(printChat(indentation + "Nice! I've marked this task as done:\n"
+                        + indentation + "  " + targetedTask + "\n"));
+            } else if (inputArr[0].equals("unmark")) {
                 int index = Integer.parseInt(inputArr[1]) - 1;
                 Task targetedTask = Tasks.get(index);
                 targetedTask.markAsNotDone();
-                System.out.println(indentation + line);
-                System.out.println(indentation + "OK, I've marked this task as not done yet:");
-                System.out.println(indentation + "  " + targetedTask);
-                System.out.println(indentation + line);
+
+                System.out.println(printChat(indentation + "OK, I've marked this task as not done yet:\n"
+                        + indentation + "  " + targetedTask + "\n"));
+
             } else if (inputArr[0].equals("todo")) {
                 String task = "";
                 for (int i = 1; i < inputArr.length; i++) {
@@ -59,27 +56,24 @@ public class ChitChatBot {
                 }
                 Task newTask = new Todo(task);
                 Tasks.add(newTask);
-                System.out.println(indentation + line);
-                System.out.println(indentation + "Got it. I've added this task:");
-                System.out.println(indentation + "  " + newTask);
+
                 int noOfTasks = Task.getNoOfActivity();
-                System.out.println(indentation + "Now you have " + noOfTasks + " tasks in the list.");
-                System.out.println(indentation + line);
+                System.out.println(printChat(indentation + "Got it. I've added this task:\n"
+                        + indentation + "  " + newTask + "\n"
+                        + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
             } else {
                 String add = "added: ";
                 Task newTask = new Task(input);
                 Tasks.add(newTask);
-                System.out.println(indentation + line);
-                System.out.println(indentation + add + input);
-                System.out.println(indentation + line);
+                System.out.println(printChat(indentation + add + input + "\n"));
             }
         }
     }
 
     private static String printChat(String message) {
-        String line = "_____________________________________________________\n";
+        String line = "_____________________________________________________";
         String indentation = "    ";
-        String toPrint = String.format(indentation + line %s + indentation + line, message);
+        String toPrint = String.format(indentation + line + "\n" + "%s" + indentation + line, message);
         return toPrint;
     }
 }
