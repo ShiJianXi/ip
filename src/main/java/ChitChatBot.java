@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 public class ChitChatBot {
     public static void main(String[] args) {
@@ -63,21 +64,60 @@ public class ChitChatBot {
                         + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
             } else if (inputArr[0].equals("deadline")) {
                 String task = "";
-                String by = "";
+                int byIndex = 0;
+                StringJoiner by = new StringJoiner(" ");
                 for (int i = 1; i < inputArr.length; i++) {
                     if (inputArr[i].equals("/by")) {
-                        by = inputArr[i + 1];
+                        byIndex = i;
                         break;
                     }
                     task += inputArr[i];
                     task += " ";
                 }
-                Task newTask = new Deadline(task, by);
+                for (int i = byIndex + 1; i < inputArr.length; i++) {
+                    by.add(inputArr[i]);
+                }
+
+                Task newTask = new Deadline(task, by.toString());
                 Tasks.add(newTask);
                 int noOfTasks = Task.getNoOfActivity();
                 System.out.println(printChat(indentation + "Got it. I've added this task:\n"
                         + indentation + "  " + newTask + "\n"
                         + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
+            } else if (inputArr[0].equals("event")) {
+                String task = "";
+                int fromIndex = 0;
+                int toIndex = 0;
+                StringJoiner from = new StringJoiner(" ");
+                StringJoiner to = new StringJoiner(" ");
+                for (int i = 1; i < inputArr.length; i++) {
+                    if (inputArr[i].equals("/from")) {
+                        fromIndex = i;
+                        toIndex = i + 3;
+                        break;
+                    }
+
+                    task += inputArr[i];
+                    task += " ";
+                }
+                for (int i = fromIndex + 1; i < inputArr.length; i++) {
+                    if (inputArr[i].equals("/to")) {
+                        break;
+                    }
+                    from.add(inputArr[i]);
+                }
+
+                for (int i = toIndex + 1; i < inputArr.length; i++) {
+                    to.add(inputArr[i]);
+                }
+
+                Task newTask = new Event(task, from.toString(), to.toString());
+                Tasks.add(newTask);
+                int noOfTasks = Task.getNoOfActivity();
+                System.out.println(printChat(indentation + "Got it. I've added this task:\n"
+                        + indentation + "  " + newTask + "\n"
+                        + indentation + "Now you have "
+                        + noOfTasks + " tasks in the list.\n"));
             } else {
                 String add = "added: ";
                 Task newTask = new Task(input);
