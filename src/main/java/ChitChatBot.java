@@ -85,6 +85,7 @@ public class ChitChatBot {
                 System.out.println(printChat(indentation + "Got it. I've added this task:\n"
                         + indentation + "  " + newTask + "\n"
                         + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
+
             } else if (inputArr[0].equals("event")) {
                 String task = "";
                 int fromIndex = 0;
@@ -111,6 +112,7 @@ public class ChitChatBot {
                 for (int i = toIndex + 1; i < inputArr.length; i++) {
                     to.add(inputArr[i]);
                 }
+
                 Task newTask = new Event(task, from.toString(), to.toString());
                 Tasks.add(newTask);
                 int noOfTasks = Task.getNoOfActivity();
@@ -130,7 +132,6 @@ public class ChitChatBot {
     private static String printChat(String message) {
         String line = "_____________________________________________________";
         String indentation = "    ";
-        String toPrint = String.format(indentation + line + "\n" + "%s" + indentation + line, message);
-        return toPrint;
+        return String.format(indentation + line + "\n" + "%s" + indentation + line, message);
     }
 }
