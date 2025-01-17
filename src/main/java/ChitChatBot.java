@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
@@ -93,7 +94,6 @@ public class ChitChatBot {
                 for (int i = 1; i < inputArr.length; i++) {
                     if (inputArr[i].equals("/from")) {
                         fromIndex = i;
-                        toIndex = i + 3;
                         break;
                     }
 
@@ -102,6 +102,7 @@ public class ChitChatBot {
                 }
                 for (int i = fromIndex + 1; i < inputArr.length; i++) {
                     if (inputArr[i].equals("/to")) {
+                        toIndex = i;
                         break;
                     }
                     from.add(inputArr[i]);
@@ -110,7 +111,6 @@ public class ChitChatBot {
                 for (int i = toIndex + 1; i < inputArr.length; i++) {
                     to.add(inputArr[i]);
                 }
-
                 Task newTask = new Event(task, from.toString(), to.toString());
                 Tasks.add(newTask);
                 int noOfTasks = Task.getNoOfActivity();
