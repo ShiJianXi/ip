@@ -137,3 +137,6 @@
     ERROR: Missing parameters
     Please ensure the correct format is used: unmark <Task Number>
     _____________________________________________________
+    _____________________________________________________
+    ERROR: This task is already marked as done
+    _____________________________________________________
