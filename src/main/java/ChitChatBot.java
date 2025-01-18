@@ -52,6 +52,8 @@ public class ChitChatBot {
                     System.out.println(printChat(indentation + "ERROR: Please enter the number of the task that you want to mark\n"));
                 } catch (EmptyParameterException e) {
                     System.out.println(printChat(e.getMessage()));
+                } catch (AlreadyMarkedException e) {
+                    System.out.println(printChat(e.getMessage()));
                 }
 
             } else if (inputArr[0].equals("unmark")) {

@@ -15,7 +15,10 @@ public class Task {
         return noOfActivity;
     }
 
-    public void markAsDone() {
+    public void markAsDone() throws AlreadyMarkedException {
+        if (this.isDone) {
+            throw new AlreadyMarkedException("    ERROR: This task is already marked as done\n");
+        }
         this.isDone = true;
     }
 
