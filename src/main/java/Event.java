@@ -39,6 +39,7 @@ public class Event extends Task{
         Event newTask = new Event(task, from.toString(), to.toString());
         return newTask;
     }
+
     @Override
     public String toString() {
         return String.format("[E]" + super.toString() + "(from: %s to: %s)", from, to);

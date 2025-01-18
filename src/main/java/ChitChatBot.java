@@ -57,22 +57,8 @@ public class ChitChatBot {
                         + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
 
             } else if (inputArr[0].equals("deadline")) {
-                String task = "";
-                int byIndex = 0;
-                StringJoiner by = new StringJoiner(" ");
-                for (int i = 1; i < inputArr.length; i++) {
-                    if (inputArr[i].equals("/by")) {
-                        byIndex = i;
-                        break;
-                    }
-                    task += inputArr[i];
-                    task += " ";
-                }
-                for (int i = byIndex + 1; i < inputArr.length; i++) {
-                    by.add(inputArr[i]);
-                }
 
-                Task newTask = new Deadline(task, by.toString());
+                Task newTask = Deadline.createDeadline(inputArr);
                 Tasks.add(newTask);
                 int noOfTasks = Task.getNoOfActivity();
                 System.out.println(printChat(indentation + "Got it. I've added this task:\n"
@@ -88,7 +74,7 @@ public class ChitChatBot {
                         + indentation + "  " + newTask + "\n"
                         + indentation + "Now you have "
                         + noOfTasks + " tasks in the list.\n"));
-                
+
             } else {
 //                String add = "added: ";
 //                Task newTask = new Task(input);
