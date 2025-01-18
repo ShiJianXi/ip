@@ -3,9 +3,15 @@
     What can i do for you?
     _____________________________________________________
     _____________________________________________________
+    Unable to mark, no task in the list, please add task first
+    _____________________________________________________
+    _____________________________________________________
     Got it. I've added this task:
       [T][ ] read book 
     Now you have 1 tasks in the list.
+    _____________________________________________________
+    _____________________________________________________
+    This task doesn't exist, only 1 task in the list
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
@@ -63,4 +69,45 @@
     deadline <description> /by <Date/Time>
     event <description> /from <Date/Time> /to <Date/Time>
     or list to show all the task
+    _____________________________________________________
+    _____________________________________________________
+    This task doesn't exist, please pick a task from 1 to 7
+    _____________________________________________________
+    _____________________________________________________
+    Nice! I've marked this task as done:
+      [D][X] return book (by: June 6th)
+    _____________________________________________________
+    _____________________________________________________
+    Nice! I've marked this task as done:
+      [E][X] project meeting (from: Aug 6th 2pm to: 4pm)
+    _____________________________________________________
+    _____________________________________________________
+    1.[T][X] read book 
+    2.[D][X] return book (by: June 6th)
+    3.[E][X] project meeting (from: Aug 6th 2pm to: 4pm)
+    4.[T][X] join sports club 
+    5.[T][ ] borrow book 
+    6.[D][ ] return book (by: Sunday)
+    7.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+    _____________________________________________________
+    _____________________________________________________
+    OK, I've marked this task as not done yet:
+      [T][ ] read book 
+    _____________________________________________________
+    _____________________________________________________
+    OK, I've marked this task as not done yet:
+      [D][ ] return book (by: June 6th)
+    _____________________________________________________
+    _____________________________________________________
+    OK, I've marked this task as not done yet:
+      [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    _____________________________________________________
+    _____________________________________________________
+    1.[T][ ] read book 
+    2.[D][ ] return book (by: June 6th)
+    3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    4.[T][X] join sports club 
+    5.[T][ ] borrow book 
+    6.[D][ ] return book (by: Sunday)
+    7.[E][ ] project meeting (from: Mon 2pm to: 4pm)
     _____________________________________________________
