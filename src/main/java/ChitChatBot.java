@@ -96,11 +96,14 @@ public class ChitChatBot {
                 }
 
             } else if (inputArr[0].equals("deadline")) {
-
-                Task newTask = Deadline.createDeadline(inputArr);
-                Tasks.add(newTask);
-                int noOfTasks = Task.getNoOfActivity();
-                System.out.println(printChat(indentation + "Got it. I've added this task:\n" + indentation + "  " + newTask + "\n" + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
+                try {
+                    Task newTask = Deadline.createDeadline(inputArr);
+                    Tasks.add(newTask);
+                    int noOfTasks = Task.getNoOfActivity();
+                    System.out.println(printChat(indentation + "Got it. I've added this task:\n" + indentation + "  " + newTask + "\n" + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
+                } catch (MissingParameterException e) {
+                    System.out.println(printChat(e.getMessage()));
+                }
 
             } else if (inputArr[0].equals("event")) {
 

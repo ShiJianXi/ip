@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class Deadline extends Task{
@@ -9,7 +10,12 @@ public class Deadline extends Task{
         this.by = by;
     }
 
-    public static Deadline createDeadline(String[] arr) {
+    public static Deadline createDeadline(String[] arr) throws MissingParameterException {
+        if (arr.length < 2 || !Arrays.asList(arr).contains("/by")) {
+            throw new MissingParameterException("    ERROR: There is missing parameters, " +
+                    "please ensure the correct format is used:\n" +
+                    "    deadline <Description> /by <Date/Time>\n");
+        }
         String task = "";
         int byIndex = 0;
         StringJoiner by = new StringJoiner(" ");
