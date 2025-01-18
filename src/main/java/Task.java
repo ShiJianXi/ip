@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Task {
     private String name;
     private boolean isDone;
@@ -31,6 +33,16 @@ public class Task {
 
     public void toggleIsDone() {
         this.isDone = !isDone;
+    }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public static ArrayList<Task> deleteTask(ArrayList<Task> taskArr, int index) {
+        taskArr.remove(index);
+        noOfActivity--;
+        return taskArr;
     }
 
     @Override

@@ -138,6 +138,14 @@ public class ChitChatBot {
                 } catch (MissingParameterException e) {
                     System.out.println(printChat(e.getMessage()));
                 }
+            } else if (inputArr[0].equals("delete")) {
+                int index = Integer.parseInt(inputArr[1]) - 1;
+                Task toRemove = Tasks.get(index);
+                Task.deleteTask(Tasks, index);
+                System.out.println(printChat(indentation + "Noted. I've removed this task:\n" +
+                        indentation + "  " + toRemove + "\n"
+                        + indentation + "Now you have " + Task.getNoOfActivity()
+                        + " tasks in the list.\n"));
             } else {
 
                 System.out.println(printChat(indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
