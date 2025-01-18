@@ -53,7 +53,7 @@ public class ChitChatBot {
                     }
                 } catch (NumberFormatException e) {
                     System.out.println(printChat(indentation
-                            + "Please enter the number of the task that you want to mark\n"));
+                            + "ERROR: Please enter the number of the task that you want to mark\n"));
                 }
 
             } else if (inputArr[0].equals("unmark")) {
