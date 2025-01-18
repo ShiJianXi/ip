@@ -147,3 +147,16 @@
     _____________________________________________________
     ERROR: This task is not yet marked as done
     _____________________________________________________
+    _____________________________________________________
+    ERROR: There is missing parameters, please ensure the correct format is used:
+    deadline <Description> /by <Date/Time>
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: There is missing parameters, please ensure the correct format is used:
+    deadline <Description> /by <Date/Time>
+    _____________________________________________________
+    _____________________________________________________
+    Got it. I've added this task:
+      [D][ ] read book (by: 4pm)
+    Now you have 8 tasks in the list.
+    _____________________________________________________
