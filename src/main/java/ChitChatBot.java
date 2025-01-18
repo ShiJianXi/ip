@@ -51,7 +51,11 @@ public class ChitChatBot {
                                 + "This task doesn't exist, please pick a task from 1 to "
                                 + Task.getNoOfActivity() + "\n"));
                     }
+                } catch (NumberFormatException e) {
+                    System.out.println(printChat(indentation
+                            + "Please enter the number of the task that you want to mark\n"));
                 }
+
             } else if (inputArr[0].equals("unmark")) {
                 int index = Integer.parseInt(inputArr[1]) - 1;
                 Task targetedTask = Tasks.get(index);
