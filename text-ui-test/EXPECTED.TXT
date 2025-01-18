@@ -56,3 +56,11 @@
     ERROR: The description of todo cannot be empty
     Please ensure the correct format is used: todo <Description>
     _____________________________________________________
+    _____________________________________________________
+    OOPS!!! I'm sorry, but I don't know what that means :-(
+    Please use the correct queries:
+    todo <description>
+    deadline <description> /by <Date/Time>
+    event <description> /from <Date/Time> /to <Date/Time>
+    or list to show all the task
+    _____________________________________________________
