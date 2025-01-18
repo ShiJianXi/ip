@@ -31,12 +31,27 @@ public class ChitChatBot {
                 System.out.println(printChat(toPrint));
 
             } else if (inputArr[0].equals("mark")) {
-                int index = Integer.parseInt(inputArr[1]) - 1;
-                Task targetedTask = Tasks.get(index);
-                targetedTask.markAsDone();
+                try {
+                    int index = Integer.parseInt(inputArr[1]) - 1;
+                    Task targetedTask = Tasks.get(index);
+                    targetedTask.markAsDone();
 
-                System.out.println(printChat(indentation + "Nice! I've marked this task as done:\n"
-                        + indentation + "  " + targetedTask + "\n"));
+                    System.out.println(printChat(indentation + "Nice! I've marked this task as done:\n"
+                            + indentation + "  " + targetedTask + "\n"));
+                } catch (IndexOutOfBoundsException e) {
+                    int index = Integer.parseInt(inputArr[1]) - 1;
+                    if (Task.getNoOfActivity() == 0) {
+                        System.out.println(printChat(indentation
+                                + "Unable to mark, no task in the list, please add task first\n"));
+                    } else if (Task.getNoOfActivity() == 1) {
+                        System.out.println(printChat(indentation
+                                + "This task doesn't exist, only 1 task in the list\n"));
+                    } else {
+                        System.out.println(printChat(indentation
+                                + "This task doesn't exist, please pick a task from 1 to "
+                                + Task.getNoOfActivity() + "\n"));
+                    }
+                }
             } else if (inputArr[0].equals("unmark")) {
                 int index = Integer.parseInt(inputArr[1]) - 1;
                 Task targetedTask = Tasks.get(index);
@@ -80,10 +95,7 @@ public class ChitChatBot {
                         + noOfTasks + " tasks in the list.\n"));
 
             } else {
-//                String add = "added: ";
-//                Task newTask = new Task(input);
-//                Tasks.add(newTask);
-//                System.out.println(printChat(indentation + add + input + "\n"));
+
                 System.out.println(printChat(indentation
                         + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
                         + indentation + "Please use the correct queries:\n"
