@@ -31,7 +31,10 @@ public class ChitChatBot {
 
             } else if (inputArr[0].equals("mark")) {
                 try {
-
+                    if (inputArr.length < 2) {
+                        throw new EmptyParameterException(indentation + "ERROR: Missing parameters\n"
+                                + indentation + "Please ensure the correct format is used: mark <Task Number>\n");
+                    }
                     int index = Integer.parseInt(inputArr[1]) - 1;
                     Task targetedTask = Tasks.get(index);
                     targetedTask.markAsDone();
@@ -47,11 +50,17 @@ public class ChitChatBot {
                     }
                 } catch (NumberFormatException e) {
                     System.out.println(printChat(indentation + "ERROR: Please enter the number of the task that you want to mark\n"));
+                } catch (EmptyParameterException e) {
+                    System.out.println(printChat(e.getMessage()));
                 }
 
             } else if (inputArr[0].equals("unmark")) {
 
                 try {
+                    if (inputArr.length < 2) {
+                        throw new EmptyParameterException(indentation + "ERROR: Missing parameters\n"
+                                + indentation + "Please ensure the correct format is used: unmark <Task Number>\n");
+                    }
                     int index = Integer.parseInt(inputArr[1]) - 1;
                     Task targetedTask = Tasks.get(index);
                     targetedTask.markAsNotDone();
@@ -67,6 +76,8 @@ public class ChitChatBot {
                     }
                 } catch (NumberFormatException e) {
                     System.out.println(printChat(indentation + "ERROR: Please enter the number of the task that you want to unmark\n"));
+                } catch (EmptyParameterException e){
+                    System.out.println(printChat(e.getMessage()));
                 }
             } else if (inputArr[0].equals("todo")) {
 
