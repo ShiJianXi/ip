@@ -48,6 +48,13 @@ event go meeting /from Today
 event go meeting /to Tomorrow
 event go meeting /from Today /to Tomorrow
 list
+delete 1
+delete 8
+list
+mark 1
+delete 1
+list
+
 
 
 

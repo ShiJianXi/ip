@@ -224,3 +224,39 @@
     8.[D][ ] do homework (by: 4pm)
     9.[E][ ] go meeting (from: Today to: Tomorrow)
     _____________________________________________________
+    _____________________________________________________
+    Noted. I've removed this task:
+      [T][ ] read book 
+    Now you have 8 tasks in the list.
+    _____________________________________________________
+    _____________________________________________________
+    Noted. I've removed this task:
+      [E][ ] go meeting (from: Today to: Tomorrow)
+    Now you have 7 tasks in the list.
+    _____________________________________________________
+    _____________________________________________________
+    1.[D][ ] return book (by: June 6th)
+    2.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    3.[T][ ] join sports club 
+    4.[T][ ] borrow book 
+    5.[D][ ] return book (by: Sunday)
+    6.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+    7.[D][ ] do homework (by: 4pm)
+    _____________________________________________________
+    _____________________________________________________
+    Nice! I've marked this task as done:
+      [D][X] return book (by: June 6th)
+    _____________________________________________________
+    _____________________________________________________
+    Noted. I've removed this task:
+      [D][X] return book (by: June 6th)
+    Now you have 6 tasks in the list.
+    _____________________________________________________
+    _____________________________________________________
+    1.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    2.[T][ ] join sports club 
+    3.[T][ ] borrow book 
+    4.[D][ ] return book (by: Sunday)
+    5.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+    6.[D][ ] do homework (by: 4pm)
+    _____________________________________________________
