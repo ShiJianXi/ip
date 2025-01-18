@@ -11,7 +11,7 @@ public class Deadline extends Task{
     }
 
     public static Deadline createDeadline(String[] arr) throws MissingParameterException {
-        if (arr.length < 2 || !Arrays.asList(arr).contains("/by")) {
+        if (arr.length < 2 || !Arrays.asList(arr).contains("/by") || arr[1].equals("/by")) {
             throw new MissingParameterException("    ERROR: There is missing parameters, " +
                     "please ensure the correct format is used:\n" +
                     "    deadline <Description> /by <Date/Time>\n");
