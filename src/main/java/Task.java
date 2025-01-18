@@ -22,7 +22,10 @@ public class Task {
         this.isDone = true;
     }
 
-    public void markAsNotDone() {
+    public void markAsNotDone() throws AlreadyMarkedException{
+        if (this.isDone == false) {
+            throw new AlreadyMarkedException("    ERROR: This task is not yet marked as done\n");
+        }
         this.isDone = false;
     }
 
