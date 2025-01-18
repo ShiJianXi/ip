@@ -106,12 +106,14 @@ public class ChitChatBot {
                 }
 
             } else if (inputArr[0].equals("event")) {
-
-                Task newTask = Event.createEvent(inputArr);
-                Tasks.add(newTask);
-                int noOfTasks = Task.getNoOfActivity();
-                System.out.println(printChat(indentation + "Got it. I've added this task:\n" + indentation + "  " + newTask + "\n" + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
-
+                try {
+                    Task newTask = Event.createEvent(inputArr);
+                    Tasks.add(newTask);
+                    int noOfTasks = Task.getNoOfActivity();
+                    System.out.println(printChat(indentation + "Got it. I've added this task:\n" + indentation + "  " + newTask + "\n" + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
+                } catch (MissingParameterException e) {
+                    System.out.println(printChat(e.getMessage()));
+                }
             } else {
 
                 System.out.println(printChat(indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n" + indentation + "Please use the correct queries:\n" + indentation + "todo <description>\n" + indentation + "deadline <description> /by <Date/Time>\n" + indentation + "event <description> /from <Date/Time> /to <Date/Time>\n" + indentation + "or list to show all the task\n"));

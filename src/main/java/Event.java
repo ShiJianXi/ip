@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class Event extends Task{
@@ -10,7 +11,15 @@ public class Event extends Task{
         this.to = to;
     }
 
-    public static Event createEvent(String[] arr) {
+    public static Event createEvent(String[] arr) throws MissingParameterException{
+        if (arr.length < 2 || !Arrays.asList(arr).contains("/from")
+                || !Arrays.asList(arr).contains("/to")
+                || arr[1].equals("/from") || arr[1].equals("/to")
+                || Arrays.asList(arr).indexOf("/from") > Arrays.asList(arr).indexOf("/to")) {
+            throw new MissingParameterException("    ERROR: Missing parameters\n" +
+                    "    Please ensure the correct format is used: " +
+                    "deadline <Description> /from <Date/Time> /to <Date/Time>\n");
+        }
         String task = "";
         int fromIndex = 0;
         int toIndex = 0;
