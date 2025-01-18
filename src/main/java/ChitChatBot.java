@@ -1,10 +1,8 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.StringJoiner;
 
 public class ChitChatBot {
-    public static void main(String[] args) throws BotException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String name = "ChitChatBot";
         String indentation = "    ";
@@ -48,13 +46,26 @@ public class ChitChatBot {
                         + indentation + "  " + targetedTask + "\n"));
 
             } else if (inputArr[0].equals("todo")) {
-                Task newTask = Todo.createToDo(inputArr);
-                Tasks.add(newTask);
 
-                int noOfTasks = Task.getNoOfActivity();
-                System.out.println(printChat(indentation + "Got it. I've added this task:\n"
-                        + indentation + "  " + newTask + "\n"
-                        + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
+                try {
+                    Task newTask = Todo.createToDo(inputArr);
+                    Tasks.add(newTask);
+                    Tasks.add(newTask);
+
+                    int noOfTasks = Task.getNoOfActivity();
+                    System.out.println(printChat(indentation + "Got it. I've added this task:\n"
+                            + indentation + "  " + newTask + "\n"
+                            + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
+                } catch (EmptyParameterException e) {
+                    System.out.println(printChat(indentation +
+                            e.getMessage()));
+                }
+//                Tasks.add(newTask);
+//
+//                int noOfTasks = Task.getNoOfActivity();
+//                System.out.println(printChat(indentation + "Got it. I've added this task:\n"
+//                        + indentation + "  " + newTask + "\n"
+//                        + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
 
             } else if (inputArr[0].equals("deadline")) {
 
