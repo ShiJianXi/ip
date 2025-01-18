@@ -111,3 +111,6 @@
     6.[D][ ] return book (by: Sunday)
     7.[E][ ] project meeting (from: Mon 2pm to: 4pm)
     _____________________________________________________
+    _____________________________________________________
+    ERROR: Please enter the number of the task that you want to mark
+    _____________________________________________________
