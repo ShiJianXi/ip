@@ -32,10 +32,22 @@ mark 4
 unmark 4
 unmark 4
 deadline
-deadline read book
-deadline read book by 4pm
-deadline read book /by 4pm
+deadline do homework
+deadline do homework by 4pm
+deadline do homework /by 4pm
 deadline /by 4pm
+event
+event /from
+event /from Today
+event /from /to
+event /from Today /to Tomorrow
+event go meeting
+event go meeting /from
+event go meeting /to
+event go meeting /from Today
+event go meeting /to Tomorrow
+event go meeting /from Today /to Tomorrow
+list
 
 
 
