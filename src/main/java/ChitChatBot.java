@@ -41,16 +41,16 @@ public class ChitChatBot {
                     if (Task.getNoOfActivity() == 0) {
                         System.out.println(printChat(indentation + "Unable to mark, no task in the list, please add task first\n"));
                     } else if (Task.getNoOfActivity() == 1) {
-                        System.out.println(printChat(indentation + "This task doesn't exist, only 1 task in the list\n"));
+                        System.out.println(printChat(indentation + "Unable to mark, this task doesn't exist, only 1 task in the list\n"));
                     } else {
-                        System.out.println(printChat(indentation + "This task doesn't exist, please pick a task from 1 to " + Task.getNoOfActivity() + "\n"));
+                        System.out.println(printChat(indentation + "Unable to mark, this task doesn't exist, please pick a task from 1 to " + Task.getNoOfActivity() + " to mark.\n"));
                     }
                 } catch (NumberFormatException e) {
                     System.out.println(printChat(indentation + "ERROR: Please enter the number of the task that you want to mark\n"));
                 }
 
             } else if (inputArr[0].equals("unmark")) {
-                
+
                 try {
                     int index = Integer.parseInt(inputArr[1]) - 1;
                     Task targetedTask = Tasks.get(index);
@@ -61,12 +61,12 @@ public class ChitChatBot {
                     if (Task.getNoOfActivity() == 0) {
                         System.out.println(printChat(indentation + "Unable to unmark, no task in the list, please add and mark task first\n"));
                     } else if (Task.getNoOfActivity() == 1) {
-                        System.out.println(printChat(indentation + "This task doesn't exist, only 1 task in the list\n"));
+                        System.out.println(printChat(indentation + "Unable to unmark, This task doesn't exist, only 1 task in the list\n"));
                     } else {
-                        System.out.println(printChat(indentation + "This task doesn't exist, please pick a task from 1 to " + Task.getNoOfActivity() + "\n"));
+                        System.out.println(printChat(indentation + "Unable to unmark, This task doesn't exist, please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.\n"));
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println(printChat(indentation + "ERROR: Please enter the number of the task that you want to mark\n"));
+                    System.out.println(printChat(indentation + "ERROR: Please enter the number of the task that you want to unmark\n"));
                 }
             } else if (inputArr[0].equals("todo")) {
 
