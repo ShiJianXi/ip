@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.StringJoiner;
 
 public class ChitChatBot {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws BotException {
         Scanner sc = new Scanner(System.in);
         String name = "ChitChatBot";
         String indentation = "    ";
@@ -48,21 +48,14 @@ public class ChitChatBot {
                         + indentation + "  " + targetedTask + "\n"));
 
             } else if (inputArr[0].equals("todo")) {
-                String task = "";
-                for (int i = 1; i < inputArr.length; i++) {
-                    if (inputArr[i].equals("/by")) {
-                        break;
-                    }
-                    task += inputArr[i];
-                    task += " ";
-                }
-                Task newTask = new Todo(task);
+                Task newTask = Todo.createToDo(inputArr);
                 Tasks.add(newTask);
 
                 int noOfTasks = Task.getNoOfActivity();
                 System.out.println(printChat(indentation + "Got it. I've added this task:\n"
                         + indentation + "  " + newTask + "\n"
                         + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
+
             } else if (inputArr[0].equals("deadline")) {
                 String task = "";
                 int byIndex = 0;
@@ -121,10 +114,12 @@ public class ChitChatBot {
                         + indentation + "Now you have "
                         + noOfTasks + " tasks in the list.\n"));
             } else {
-                String add = "added: ";
-                Task newTask = new Task(input);
-                Tasks.add(newTask);
-                System.out.println(printChat(indentation + add + input + "\n"));
+//                String add = "added: ";
+//                Task newTask = new Task(input);
+//                Tasks.add(newTask);
+//                System.out.println(printChat(indentation + add + input + "\n"));
+                System.out.println(printChat(indentation
+                        + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
             }
         }
     }
