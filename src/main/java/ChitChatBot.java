@@ -50,7 +50,6 @@ public class ChitChatBot {
                 try {
                     Task newTask = Todo.createToDo(inputArr);
                     Tasks.add(newTask);
-                    Tasks.add(newTask);
 
                     int noOfTasks = Task.getNoOfActivity();
                     System.out.println(printChat(indentation + "Got it. I've added this task:\n"
