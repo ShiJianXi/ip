@@ -6,9 +6,9 @@ public class Todo extends Task{
 
     String status = "T";
 
-    public static Todo createToDo(String[] arr) throws EmptyParameterException{
+    public static Todo createToDo(String[] arr) throws MissingParameterException {
         if (arr.length < 2) {
-            throw new EmptyParameterException("ERROR: The description of todo cannot be empty\n" +
+            throw new MissingParameterException("ERROR: The description of todo cannot be empty\n" +
                     "    Please ensure the correct format is used: todo <Description>\n");
         }
 

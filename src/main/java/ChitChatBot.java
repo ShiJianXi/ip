@@ -32,7 +32,7 @@ public class ChitChatBot {
             } else if (inputArr[0].equals("mark")) {
                 try {
                     if (inputArr.length < 2) {
-                        throw new EmptyParameterException(indentation + "ERROR: Missing parameters\n"
+                        throw new MissingParameterException(indentation + "ERROR: Missing parameters\n"
                                 + indentation + "Please ensure the correct format is used: mark <Task Number>\n");
                     }
                     int index = Integer.parseInt(inputArr[1]) - 1;
@@ -50,7 +50,7 @@ public class ChitChatBot {
                     }
                 } catch (NumberFormatException e) {
                     System.out.println(printChat(indentation + "ERROR: Please enter the number of the task that you want to mark\n"));
-                } catch (EmptyParameterException e) {
+                } catch (MissingParameterException e) {
                     System.out.println(printChat(e.getMessage()));
                 } catch (AlreadyMarkedException e) {
                     System.out.println(printChat(e.getMessage()));
@@ -60,7 +60,7 @@ public class ChitChatBot {
 
                 try {
                     if (inputArr.length < 2) {
-                        throw new EmptyParameterException(indentation + "ERROR: Missing parameters\n"
+                        throw new MissingParameterException(indentation + "ERROR: Missing parameters\n"
                                 + indentation + "Please ensure the correct format is used: unmark <Task Number>\n");
                     }
                     int index = Integer.parseInt(inputArr[1]) - 1;
@@ -78,7 +78,7 @@ public class ChitChatBot {
                     }
                 } catch (NumberFormatException e) {
                     System.out.println(printChat(indentation + "ERROR: Please enter the number of the task that you want to unmark\n"));
-                } catch (EmptyParameterException e){
+                } catch (MissingParameterException e){
                     System.out.println(printChat(e.getMessage()));
                 } catch (AlreadyMarkedException e) {
                     System.out.println(printChat(e.getMessage()));
@@ -91,7 +91,7 @@ public class ChitChatBot {
 
                     int noOfTasks = Task.getNoOfActivity();
                     System.out.println(printChat(indentation + "Got it. I've added this task:\n" + indentation + "  " + newTask + "\n" + indentation + "Now you have " + noOfTasks + " tasks in the list.\n"));
-                } catch (EmptyParameterException e) {
+                } catch (MissingParameterException e) {
                     System.out.println(printChat(indentation + e.getMessage()));
                 }
 
