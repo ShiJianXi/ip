@@ -6,17 +6,29 @@
     Unable to mark, no task in the list, please add task first
     _____________________________________________________
     _____________________________________________________
+    Unable to unmark, no task in the list, please add and mark task first
+    _____________________________________________________
+    _____________________________________________________
     Got it. I've added this task:
       [T][ ] read book 
     Now you have 1 tasks in the list.
     _____________________________________________________
     _____________________________________________________
-    This task doesn't exist, only 1 task in the list
+    Unable to mark, this task doesn't exist, only 1 task in the list
+    _____________________________________________________
+    _____________________________________________________
+    Unable to unmark, This task doesn't exist, only 1 task in the list
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
       [D][ ] return book (by: June 6th)
     Now you have 2 tasks in the list.
+    _____________________________________________________
+    _____________________________________________________
+    Unable to mark, this task doesn't exist, please pick a task from 1 to 2 to mark.
+    _____________________________________________________
+    _____________________________________________________
+    Unable to unmark, This task doesn't exist, please pick a task from 1 to 2 to unmark.
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
@@ -71,7 +83,7 @@
     or list to show all the task
     _____________________________________________________
     _____________________________________________________
-    This task doesn't exist, please pick a task from 1 to 7
+    Unable to mark, this task doesn't exist, please pick a task from 1 to 7 to mark.
     _____________________________________________________
     _____________________________________________________
     Nice! I've marked this task as done:
@@ -113,4 +125,15 @@
     _____________________________________________________
     _____________________________________________________
     ERROR: Please enter the number of the task that you want to mark
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: Please enter the number of the task that you want to unmark
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: Missing parameters
+    Please ensure the correct format is used: mark <Task Number>
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: Missing parameters
+    Please ensure the correct format is used: unmark <Task Number>
     _____________________________________________________

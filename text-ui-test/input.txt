@@ -26,4 +26,7 @@ unmark 3
 list
 mark a
 unmark a
+mark
+unmark
+
 
