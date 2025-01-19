@@ -17,13 +17,26 @@ public class ChitChatBot {
         while (sc.hasNext()) {
             String input = sc.nextLine();
             String[] inputArr = input.split(" ");
-            if (inputArr[0].equals("bye")) {
+            Action action = null;
+
+            try {
+                action = Action.valueOf(inputArr[0]);
+            } catch (IllegalArgumentException e){
+                System.out.println(printChat(indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+                        + indentation + "Please use the correct queries:\n"
+                        + indentation + "todo <description>\n"
+                        + indentation + "deadline <description> /by <Date/Time>\n"
+                        + indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
+                        + indentation + "or list to show all the task\n"));
+            }
+            
+            if (action == Action.bye) {
 
                 System.out.println(printChat(indentation
                         + "Bye. Hope to see you again soon!\n"));
                 break;
 
-            } else if (inputArr[0].equals("list")) {
+            } else if (action == Action.list) {
 
                 String toPrint = "";
                 for (int i = 0; i < Task.getNoOfActivity(); i++) {
@@ -32,7 +45,7 @@ public class ChitChatBot {
                 }
                 System.out.println(printChat(toPrint));
 
-            } else if (inputArr[0].equals("mark")) {
+            } else if (action == Action.mark) {
                 try {
                     if (inputArr.length < 2) {
                         throw new MissingParameterException(indentation + "ERROR: Missing parameters\n"
@@ -65,7 +78,7 @@ public class ChitChatBot {
                     System.out.println(printChat(e.getMessage()));
                 }
 
-            } else if (inputArr[0].equals("unmark")) {
+            } else if (action == Action.unmark) {
 
                 try {
                     if (inputArr.length < 2) {
@@ -98,7 +111,7 @@ public class ChitChatBot {
                 } catch (AlreadyMarkedException e) {
                     System.out.println(printChat(e.getMessage()));
                 }
-            } else if (inputArr[0].equals("todo")) {
+            } else if (action == Action.todo) {
 
                 try {
                     Task newTask = Todo.createToDo(inputArr);
@@ -113,7 +126,7 @@ public class ChitChatBot {
                     System.out.println(printChat(indentation + e.getMessage()));
                 }
 
-            } else if (inputArr[0].equals("deadline")) {
+            } else if (action == Action.deadline) {
                 try {
                     Task newTask = Deadline.createDeadline(inputArr);
                     Tasks.add(newTask);
@@ -126,7 +139,7 @@ public class ChitChatBot {
                     System.out.println(printChat(e.getMessage()));
                 }
 
-            } else if (inputArr[0].equals("event")) {
+            } else if (action == Action.event) {
                 try {
                     Task newTask = Event.createEvent(inputArr);
                     Tasks.add(newTask);
@@ -138,7 +151,7 @@ public class ChitChatBot {
                 } catch (MissingParameterException e) {
                     System.out.println(printChat(e.getMessage()));
                 }
-            } else if (inputArr[0].equals("delete")) {
+            } else if (action == Action.delete) {
 
                 try {
                     if (inputArr.length > 2) {
@@ -166,14 +179,6 @@ public class ChitChatBot {
                     System.out.println(e.getMessage());
                 }
 
-            } else {
-
-                System.out.println(printChat(indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                        + indentation + "Please use the correct queries:\n"
-                        + indentation + "todo <description>\n"
-                        + indentation + "deadline <description> /by <Date/Time>\n"
-                        + indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
-                        + indentation + "or list to show all the task\n"));
             }
         }
     }
