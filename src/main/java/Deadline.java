@@ -10,7 +10,10 @@ public class Deadline extends Task{
         this.by = by;
     }
 
+    //A method to create a new deadline task
     public static Deadline createDeadline(String[] arr) throws MissingParameterException {
+        //Check for the various exception due to incorrect format for deadline queries
+        //Throw exceptions when necessary
         if (arr.length < 2 || !Arrays.asList(arr).contains("/by") || arr[1].equals("/by")) {
             throw new MissingParameterException("    ERROR: There is missing parameters, " +
                     "please ensure the correct format is used:\n" +

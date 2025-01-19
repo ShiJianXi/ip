@@ -19,6 +19,7 @@ public class ChitChatBot {
             String[] inputArr = input.split(" ");
             Action action = null;
 
+            //Handle the case where the user entered invalid inputs
             try {
                 action = Action.valueOf(inputArr[0]);
             } catch (IllegalArgumentException e){
@@ -29,7 +30,7 @@ public class ChitChatBot {
                         + indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
                         + indentation + "or list to show all the task\n"));
             }
-            
+
             if (action == Action.bye) {
 
                 System.out.println(printChat(indentation
@@ -47,6 +48,7 @@ public class ChitChatBot {
 
             } else if (action == Action.mark) {
                 try {
+                    //Handle the case whereby the user did not enter a task number to mark
                     if (inputArr.length < 2) {
                         throw new MissingParameterException(indentation + "ERROR: Missing parameters\n"
                                 + indentation + "Please ensure the correct format is used: mark <Task Number>\n");
@@ -81,6 +83,7 @@ public class ChitChatBot {
             } else if (action == Action.unmark) {
 
                 try {
+                    //Handle the case whereby the user did not enter a task number to unmark
                     if (inputArr.length < 2) {
                         throw new MissingParameterException(indentation + "ERROR: Missing parameters\n"
                                 + indentation + "Please ensure the correct format is used: " +
@@ -183,6 +186,7 @@ public class ChitChatBot {
         }
     }
 
+    //Format for printing of message
     private static String printChat(String message) {
         String line = "_____________________________________________________";
         String indentation = "    ";

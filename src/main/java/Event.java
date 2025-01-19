@@ -11,7 +11,9 @@ public class Event extends Task{
         this.to = to;
     }
 
+    //A method to create a event task
     public static Event createEvent(String[] arr) throws MissingParameterException{
+        //Check for the various exceptions and  throw an exception when required
         if (arr.length < 2 || !Arrays.asList(arr).contains("/from")
                 || !Arrays.asList(arr).contains("/to")
                 || arr[1].equals("/from") || arr[1].equals("/to")

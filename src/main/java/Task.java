@@ -39,6 +39,7 @@ public class Task {
         return this.index;
     }
 
+    //A method to delete a task from the task array
     public static ArrayList<Task> deleteTask(ArrayList<Task> taskArr, int index) {
         taskArr.remove(index);
         noOfActivity--;
