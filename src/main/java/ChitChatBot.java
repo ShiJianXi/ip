@@ -139,7 +139,13 @@ public class ChitChatBot {
                     System.out.println(printChat(e.getMessage()));
                 }
             } else if (inputArr[0].equals("delete")) {
+
                 try {
+                    if (inputArr.length > 2) {
+                        throw new MissingParameterException(printChat(indentation
+                                + "ERROR: Incorrect format for delete queries:\n"
+                                + indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+                    }
                     int index = Integer.parseInt(inputArr[1]) - 1;
                     Task toRemove = Tasks.get(index);
                     Task.deleteTask(Tasks, index);
@@ -156,6 +162,8 @@ public class ChitChatBot {
                 } catch (NumberFormatException e) {
                     System.out.println(printChat(indentation + "ERROR: Wrong parameters\n"
                             + indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+                } catch (MissingParameterException e){
+                    System.out.println(e.getMessage());
                 }
 
             } else {
