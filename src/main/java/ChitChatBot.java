@@ -1,3 +1,9 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,6 +13,26 @@ public class ChitChatBot {
         String name = "ChitChatBot";
         String indentation = "    ";
         ArrayList<Task> Tasks = new ArrayList<>();
+
+        Path path = Paths.get("src","main","java","data","chat.txt");
+        boolean fileExist = Files.exists(path);
+
+        if (!fileExist) {
+            File newFile = new File(String.valueOf(path));
+            try {
+                newFile.createNewFile();
+            } catch (IOException e) {
+                System.out.println("An Error occurred");
+            }
+        }
+
+//        try {
+//            System.out.println(newFile.createNewFile());
+//            newFile.createNewFile();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+
 
         //Greet the user
         System.out.println(printChat(indentation + "Hello! I'm "
