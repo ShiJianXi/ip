@@ -253,8 +253,17 @@ public class ChitChatBot {
             int index = 0;
             while (scanner.hasNext()) {
                 index++;
-                String string = "    " + index + "." + scanner.nextLine();
-                toPrint.add(string);
+                int stringStart = 0;
+                String text = scanner.nextLine();
+                for (int i = 0; i < text.length(); i++) {
+                    if (text.charAt(i) == '[') {
+                        stringStart = i;
+                        break;
+                    }
+                }
+                text = text.substring(stringStart, text.length());
+                text = "    " + index + "." + text;
+                toPrint.add(text);
             }
 
             System.out.println(printChat(toPrint + "\n"));
