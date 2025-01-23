@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,10 +16,13 @@ public class ChitChatBot {
         String indentation = "    ";
         ArrayList<Task> Tasks = new ArrayList<>();
 
+        //Get the path to create where the chat.txt supposed to be
         Path path = Paths.get("data","chat.txt");
         boolean fileExist = Files.exists(path);
 
         File chatFile = new File(String.valueOf(path));
+
+        //If chat.txt does not exist, create the file
         if (!chatFile.exists()) {
             try {
                 Files.createDirectories(path.getParent());
@@ -135,6 +139,7 @@ public class ChitChatBot {
                 } catch (AlreadyMarkedException e) {
                     System.out.println(printChat(e.getMessage()));
                 }
+
             } else if (action == Action.todo) {
 
                 try {
@@ -146,6 +151,10 @@ public class ChitChatBot {
                             + indentation + "  " + newTask + "\n"
                             + indentation + "Now you have "
                             + noOfTasks + " tasks in the list.\n"));
+
+                    //Append to chat.txt
+                    appendToFile(newTask.toString(), chatFile);
+
                 } catch (MissingParameterException e) {
                     System.out.println(printChat(indentation + e.getMessage()));
                 }
@@ -159,9 +168,13 @@ public class ChitChatBot {
                             + indentation + "  " + newTask
                             + "\n" + indentation + "Now you have "
                             + noOfTasks + " tasks in the list.\n"));
+
+                    //Append deadline task to chat.txt
+                    appendToFile(newTask.toString(), chatFile);
                 } catch (MissingParameterException e) {
                     System.out.println(printChat(e.getMessage()));
                 }
+
 
             } else if (action == Action.event) {
                 try {
@@ -172,6 +185,10 @@ public class ChitChatBot {
                             + indentation + "  " + newTask + "\n"
                             + indentation + "Now you have "
                             + noOfTasks + " tasks in the list.\n"));
+
+                    //Append event task to chat.txt
+                    appendToFile(newTask.toString(), chatFile);
+
                 } catch (MissingParameterException e) {
                     System.out.println(printChat(e.getMessage()));
                 }
@@ -212,5 +229,16 @@ public class ChitChatBot {
         String line = "_____________________________________________________";
         String indentation = "    ";
         return String.format(indentation + line + "\n" + "%s" + indentation + line, message);
+    }
+
+    //An method to append to a file
+    private static void appendToFile(String message, File file) {
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            fw.write(message + "\n");
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("An Error occurred, unable to write");
+        }
     }
 }
