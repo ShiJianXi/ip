@@ -14,24 +14,20 @@ public class ChitChatBot {
         String indentation = "    ";
         ArrayList<Task> Tasks = new ArrayList<>();
 
-        Path path = Paths.get("src","main","java","data","chat.txt");
+        //The path to add the chat.txt to
+        Path path = Paths.get("data","chat.txt");
         boolean fileExist = Files.exists(path);
 
+        File chatFile = new File(String.valueOf(path));
+
+        //Check if the file exist, if it doesnt exist, create the file in the path
         if (!fileExist) {
-            File newFile = new File(String.valueOf(path));
             try {
-                newFile.createNewFile();
+                chatFile.createNewFile();
             } catch (IOException e) {
                 System.out.println("An Error occurred");
             }
         }
-
-//        try {
-//            System.out.println(newFile.createNewFile());
-//            newFile.createNewFile();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
 
 
         //Greet the user
