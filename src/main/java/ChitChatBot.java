@@ -9,23 +9,22 @@ import java.util.Scanner;
 
 public class ChitChatBot {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         String name = "ChitChatBot";
         String indentation = "    ";
         ArrayList<Task> Tasks = new ArrayList<>();
 
-        //The path to add the chat.txt to
         Path path = Paths.get("data","chat.txt");
         boolean fileExist = Files.exists(path);
 
         File chatFile = new File(String.valueOf(path));
-
-        //Check if the file exist, if it doesnt exist, create the file in the path
-        if (!fileExist) {
+        if (!chatFile.exists()) {
             try {
+                Files.createDirectories(path.getParent());
                 chatFile.createNewFile();
             } catch (IOException e) {
-                System.out.println("An Error occurred");
+                System.out.println("An error occurred, unable to create file");
             }
         }
 
