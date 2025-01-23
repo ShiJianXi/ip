@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 public class ChitChatBot {
     public static void main(String[] args) {
@@ -64,12 +66,13 @@ public class ChitChatBot {
 
             } else if (action == Action.list) {
 
-                String toPrint = "";
-                for (int i = 0; i < Task.getNoOfActivity(); i++) {
-                    int index = i + 1;
-                    toPrint += indentation + index + "." + Tasks.get(i).toString() + "\n";
-                }
-                System.out.println(printChat(toPrint));
+//                String toPrint = "";
+//                for (int i = 0; i < Task.getNoOfActivity(); i++) {
+//                    int index = i + 1;
+//                    toPrint += indentation + index + "." + Tasks.get(i).toString() + "\n";
+//                }
+//                System.out.println(printChat(toPrint));
+                listTask(chatFile);
 
             } else if (action == Action.mark) {
                 try {
@@ -231,7 +234,7 @@ public class ChitChatBot {
         return String.format(indentation + line + "\n" + "%s" + indentation + line, message);
     }
 
-    //An method to append to a file
+    //A method to append to a file
     private static void appendToFile(String message, File file) {
         try {
             FileWriter fw = new FileWriter(file, true);
@@ -239,6 +242,23 @@ public class ChitChatBot {
             fw.close();
         } catch (IOException e) {
             System.out.println("An Error occurred, unable to write");
+        }
+    }
+
+    private static void listTask(File file) {
+        try {
+            Scanner scanner = new Scanner(file);
+            StringJoiner toPrint = new StringJoiner("\n");
+            int index = 0;
+            while (scanner.hasNext()) {
+                index++;
+                String string = "    " + index + "." + scanner.nextLine();
+                toPrint.add(string);
+            }
+
+            System.out.println(printChat(toPrint + "\n"));
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: File not found");
         }
     }
 }
