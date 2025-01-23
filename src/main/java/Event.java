@@ -20,7 +20,7 @@ public class Event extends Task{
                 || Arrays.asList(arr).indexOf("/from") > Arrays.asList(arr).indexOf("/to")) {
             throw new MissingParameterException("    ERROR: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
-                    "deadline <Description> /from <Date/Time> /to <Date/Time>\n");
+                    "event <Description> /from <Date/Time> /to <Date/Time>\n");
         }
         String task = "";
         int fromIndex = 0;
