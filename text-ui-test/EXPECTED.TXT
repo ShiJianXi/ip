@@ -170,43 +170,43 @@
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: deadline <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
