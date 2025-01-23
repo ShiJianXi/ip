@@ -35,6 +35,7 @@ public class ChitChatBot {
         }
 
 
+
         //Greet the user
         System.out.println(printChat(indentation + "Hello! I'm "
                 + name + "\n"
@@ -156,7 +157,7 @@ public class ChitChatBot {
                             + noOfTasks + " tasks in the list.\n"));
 
                     //Append to chat.txt
-                    appendToFile(newTask.toString(), chatFile);
+                    appendToFile(newTask.getIndex() + newTask.toString(), chatFile);
 
                 } catch (MissingParameterException e) {
                     System.out.println(printChat(indentation + e.getMessage()));
@@ -173,7 +174,7 @@ public class ChitChatBot {
                             + noOfTasks + " tasks in the list.\n"));
 
                     //Append deadline task to chat.txt
-                    appendToFile(newTask.toString(), chatFile);
+                    appendToFile(newTask.getIndex() + newTask.toString(), chatFile);
                 } catch (MissingParameterException e) {
                     System.out.println(printChat(e.getMessage()));
                 }
@@ -190,7 +191,7 @@ public class ChitChatBot {
                             + noOfTasks + " tasks in the list.\n"));
 
                     //Append event task to chat.txt
-                    appendToFile(newTask.toString(), chatFile);
+                    appendToFile(newTask.getIndex() + newTask.toString(), chatFile);
 
                 } catch (MissingParameterException e) {
                     System.out.println(printChat(e.getMessage()));

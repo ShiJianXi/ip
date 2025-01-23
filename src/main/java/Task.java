@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Task {
@@ -6,9 +10,22 @@ public class Task {
     private int index;
     private static int noOfActivity = 0;
 
+    Path path = Paths.get("data","chat.txt");
+    boolean fileExist = Files.exists(path);
+
+
     public Task(String name) {
         this.name = name;
         this.isDone = false;
+
+        if (fileExist) {
+            try {
+                noOfActivity = Files.readAllLines(path).size();
+            } catch (IOException e) {
+                System.out.println("ERROR: Unable to read file");;
+            }
+        }
+
         noOfActivity++;
         this.index = noOfActivity;
     }
