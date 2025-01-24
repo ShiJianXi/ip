@@ -10,7 +10,7 @@ import java.util.*;
 
 
 public class ChitChatBot {
-    private static String indentation = "    ";
+    public static String indentation = "    ";
 
     public static void main(String[] args) {
 
@@ -88,7 +88,7 @@ public class ChitChatBot {
                     }
 
                     int index = Integer.parseInt(inputArr[1]) - 1;
-                    markTask(path, chatFile, index);
+                    Task.markAsDone(path, chatFile, index);
 
                 } catch (IndexOutOfBoundsException e) {
                     if (Task.getNoOfActivity() == 0) {
@@ -119,7 +119,7 @@ public class ChitChatBot {
                                 "unmark <Task Number>\n");
                     }
                     int index = Integer.parseInt(inputArr[1]) - 1;
-                    unmarkTask(path, chatFile, index);
+                    Task.markAsNotDone(path, chatFile, index);
 
                 } catch (IndexOutOfBoundsException e) {
                     if (Task.getNoOfActivity() == 0) {
@@ -224,7 +224,7 @@ public class ChitChatBot {
     }
 
     //Format for printing of message
-    private static String printChat(String message) {
+    public static String printChat(String message) {
         String line = "_____________________________________________________";
         String indentation = "    ";
         return String.format(indentation + line + "\n" + "%s" + indentation + line, message);
@@ -259,65 +259,35 @@ public class ChitChatBot {
         }
     }
 
-    private static void markTask(Path path, File file, int index) {
-        try {
-            Scanner sc = new Scanner(file);
-            String text = Files.readAllLines(path).get(index);
 
-            char[] charArr = text.toCharArray();
-            if (charArr[4] == 'X') {
-                throw new AlreadyMarkedException("    ERROR: This task is already marked as done\n");
-            } else {
-                charArr[4] = 'X';
-            }
-            String newString = String.valueOf(charArr);
-
-            List<String> lines = Files.readAllLines(path);
-
-            lines.set(index, newString);
-
-            Files.write(path, lines);
-
-            System.out.println(printChat(indentation + "Nice! I've marked this task as done:\n"
-                            + indentation + "  " + newString + "\n"));
-
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR: File not found");
-        } catch (IOException e) {
-            System.out.println("ERROR: Unable to read file");
-        } catch (AlreadyMarkedException e) {
-            System.out.println(printChat(e.getMessage()));
-        }
-    }
-
-    private static void unmarkTask(Path path, File file, int index) {
-        try {
-            Scanner sc = new Scanner(file);
-            String text = Files.readAllLines(path).get(index);
-
-            char[] charArr = text.toCharArray();
-            if (charArr[4] == ' ') {
-                throw new AlreadyMarkedException("    ERROR: This task is not yet marked as done\n");
-            } else {
-                charArr[4] = ' ';
-            }
-            String newString = String.valueOf(charArr);
-
-            List<String> lines = Files.readAllLines(path);
-
-            lines.set(index, newString);
-
-            Files.write(path, lines);
-
-            System.out.println(printChat(indentation + "Nice! I've marked this task as not done yet:\n"
-                    + indentation + "  " + newString + "\n"));
-
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR: File not found");
-        } catch (IOException e) {
-            System.out.println("ERROR: Unable to read file");
-        } catch (AlreadyMarkedException e) {
-            System.out.println(printChat(e.getMessage()));
-        }
-    }
+//    private static void unmarkTask(Path path, File file, int index) {
+//        try {
+//            Scanner sc = new Scanner(file);
+//            String text = Files.readAllLines(path).get(index);
+//
+//            char[] charArr = text.toCharArray();
+//            if (charArr[4] == ' ') {
+//                throw new AlreadyMarkedException("    ERROR: This task is not yet marked as done\n");
+//            } else {
+//                charArr[4] = ' ';
+//            }
+//            String newString = String.valueOf(charArr);
+//
+//            List<String> lines = Files.readAllLines(path);
+//
+//            lines.set(index, newString);
+//
+//            Files.write(path, lines);
+//
+//            System.out.println(printChat(indentation + "Nice! I've marked this task as not done yet:\n"
+//                    + indentation + "  " + newString + "\n"));
+//
+//        } catch (FileNotFoundException e) {
+//            System.out.println("ERROR: File not found");
+//        } catch (IOException e) {
+//            System.out.println("ERROR: Unable to read file");
+//        } catch (AlreadyMarkedException e) {
+//            System.out.println(printChat(e.getMessage()));
+//        }
+//    }
 }
