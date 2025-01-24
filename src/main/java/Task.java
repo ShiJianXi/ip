@@ -149,14 +149,17 @@ public class Task {
         return this.index;
     }
 
-    //A method to delete a task from the task array
-//    public static ArrayList<Task> deleteTask(ArrayList<Task> taskArr, int index) {
-//        taskArr.remove(index);
-//        noOfActivity--;
-//        return taskArr;
-//    }
-    public static void deleteTask(Path path, File file, int index) {
+    //A method to delete a task from the file
+    public static void deleteTask(Path path, File file, String[] inputArr) {
         try {
+            if (inputArr.length > 2) {
+                throw new MissingParameterException(ChitChatBot.printChat(ChitChatBot.indentation
+                        + "ERROR: Incorrect format for delete queries:\n"
+                        + ChitChatBot.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+            }
+
+            int index = Integer.parseInt(inputArr[1]) - 1;
+
             Scanner sc = new Scanner(file);
             List<String> lines = Files.readAllLines(path);
             String toRemove = lines.get(index);
@@ -172,6 +175,17 @@ public class Task {
             System.out.println("ERROR: File not found");
         } catch (IOException e) {
             System.out.println("ERROR: Unable to read file");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "ERROR: Missing parameters\n"
+                    + ChitChatBot.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "ERROR: This task doesn't exist\n"
+                    + ChitChatBot.indentation + "You can only delete an existing task\n"));
+        } catch (NumberFormatException e) {
+            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "ERROR: Wrong parameters\n"
+                    + ChitChatBot.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+        } catch (MissingParameterException e) {
+            System.out.println(e.getMessage());
         }
     }
 

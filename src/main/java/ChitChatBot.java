@@ -98,28 +98,8 @@ public class ChitChatBot {
 
             } else if (action == Action.delete) {
 
-                try {
-                    if (inputArr.length > 2) {
-                        throw new MissingParameterException(printChat(indentation
-                                + "ERROR: Incorrect format for delete queries:\n"
-                                + indentation + "Please ensure the correct format is used: delete <Task number>\n"));
-                    }
+                Task.deleteTask(path, chatFile, inputArr);
 
-                    int index = Integer.parseInt(inputArr[1]) - 1;
-                    Task.deleteTask(path, chatFile, index);
-
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println(printChat(indentation + "ERROR: Missing parameters\n"
-                            + indentation + "Please ensure the correct format is used: delete <Task number>\n"));
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println(printChat(indentation + "ERROR: This task doesn't exist\n"
-                            + indentation + "You can only delete an existing task\n"));
-                } catch (NumberFormatException e) {
-                    System.out.println(printChat(indentation + "ERROR: Wrong parameters\n"
-                            + indentation + "Please ensure the correct format is used: delete <Task number>\n"));
-                } catch (MissingParameterException e) {
-                    System.out.println(e.getMessage());
-                }
 
             }
         }
