@@ -37,7 +37,6 @@ public class ChitChatBot {
             try {
                 int noOfActivity = Files.readAllLines(path).size();
                 Task.setNoOfActivity(noOfActivity);
-                System.out.println(Task.getNoOfActivity());
             } catch (IOException e) {
                 System.out.println("An error occurred, unable to read file");;
             }
@@ -202,7 +201,7 @@ public class ChitChatBot {
 
                     int index = Integer.parseInt(inputArr[1]) - 1;
                     Task.deleteTask(path, chatFile, index);
-                    
+
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println(printChat(indentation + "ERROR: Missing parameters\n"
                             + indentation + "Please ensure the correct format is used: delete <Task number>\n"));

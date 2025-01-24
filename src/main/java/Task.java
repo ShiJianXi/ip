@@ -82,7 +82,7 @@ public class Task {
 
             Files.write(path, lines);
 
-            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Nice! I've marked this task as not done yet:\n"
+            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "OK, I've marked this task as not done yet:\n"
                     + ChitChatBot.indentation + "  " + newString + "\n"));
 
         } catch (FileNotFoundException e) {
