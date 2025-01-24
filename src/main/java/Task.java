@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -103,10 +104,29 @@ public class Task {
     }
 
     //A method to delete a task from the task array
-    public static ArrayList<Task> deleteTask(ArrayList<Task> taskArr, int index) {
-        taskArr.remove(index);
-        noOfActivity--;
-        return taskArr;
+//    public static ArrayList<Task> deleteTask(ArrayList<Task> taskArr, int index) {
+//        taskArr.remove(index);
+//        noOfActivity--;
+//        return taskArr;
+//    }
+    public static void deleteTask(Path path, File file, int index) {
+        try {
+            Scanner sc = new Scanner(file);
+            List<String> lines = Files.readAllLines(path);
+            String toRemove = lines.get(index);
+            lines.remove(index);
+            Files.write(path, lines);
+            noOfActivity--;
+            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Noted. I've removed this task:\n" +
+                    ChitChatBot.indentation + "  " + toRemove + "\n"
+                    + ChitChatBot.indentation + "Now you have " + Task.getNoOfActivity()
+                    + " tasks in the list.\n"));
+
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: File not found");
+        } catch (IOException e) {
+            System.out.println("ERROR: Unable to read file");
+        }
     }
 
     @Override

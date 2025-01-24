@@ -199,13 +199,10 @@ public class ChitChatBot {
                                 + "ERROR: Incorrect format for delete queries:\n"
                                 + indentation + "Please ensure the correct format is used: delete <Task number>\n"));
                     }
+
                     int index = Integer.parseInt(inputArr[1]) - 1;
-                    Task toRemove = Tasks.get(index);
-                    Task.deleteTask(Tasks, index);
-                    System.out.println(printChat(indentation + "Noted. I've removed this task:\n" +
-                            indentation + "  " + toRemove + "\n"
-                            + indentation + "Now you have " + Task.getNoOfActivity()
-                            + " tasks in the list.\n"));
+                    Task.deleteTask(path, chatFile, index);
+                    
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println(printChat(indentation + "ERROR: Missing parameters\n"
                             + indentation + "Please ensure the correct format is used: delete <Task number>\n"));
@@ -259,35 +256,4 @@ public class ChitChatBot {
         }
     }
 
-
-//    private static void unmarkTask(Path path, File file, int index) {
-//        try {
-//            Scanner sc = new Scanner(file);
-//            String text = Files.readAllLines(path).get(index);
-//
-//            char[] charArr = text.toCharArray();
-//            if (charArr[4] == ' ') {
-//                throw new AlreadyMarkedException("    ERROR: This task is not yet marked as done\n");
-//            } else {
-//                charArr[4] = ' ';
-//            }
-//            String newString = String.valueOf(charArr);
-//
-//            List<String> lines = Files.readAllLines(path);
-//
-//            lines.set(index, newString);
-//
-//            Files.write(path, lines);
-//
-//            System.out.println(printChat(indentation + "Nice! I've marked this task as not done yet:\n"
-//                    + indentation + "  " + newString + "\n"));
-//
-//        } catch (FileNotFoundException e) {
-//            System.out.println("ERROR: File not found");
-//        } catch (IOException e) {
-//            System.out.println("ERROR: Unable to read file");
-//        } catch (AlreadyMarkedException e) {
-//            System.out.println(printChat(e.getMessage()));
-//        }
-//    }
 }
