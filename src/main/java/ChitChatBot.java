@@ -82,33 +82,7 @@ public class ChitChatBot {
 
             } else if (action == Action.unmark) {
 
-                try {
-                    //Handle the case whereby the user did not enter a task number to unmark
-                    if (inputArr.length < 2) {
-                        throw new MissingParameterException(indentation + "ERROR: Missing parameters\n"
-                                + indentation + "Please ensure the correct format is used: " +
-                                "unmark <Task Number>\n");
-                    }
-                    int index = Integer.parseInt(inputArr[1]) - 1;
-                    Task.markAsNotDone(path, chatFile, index);
-
-                } catch (IndexOutOfBoundsException e) {
-                    if (Task.getNoOfActivity() == 0) {
-                        System.out.println(printChat(indentation + "Unable to unmark, no task in the list, " +
-                                "please add and mark task first\n"));
-                    } else if (Task.getNoOfActivity() == 1) {
-                        System.out.println(printChat(indentation + "Unable to unmark, This task doesn't exist, " +
-                                "only 1 task in the list\n"));
-                    } else {
-                        System.out.println(printChat(indentation + "Unable to unmark, This task doesn't exist, " +
-                                "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.\n"));
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println(printChat(indentation + "ERROR: " +
-                            "Please enter the number of the task that you want to unmark\n"));
-                } catch (MissingParameterException e) {
-                    System.out.println(printChat(e.getMessage()));
-                }
+                Task.markAsNotDone(path, chatFile, inputArr);
 
             } else if (action == Action.todo) {
 
