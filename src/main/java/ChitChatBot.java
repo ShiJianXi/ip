@@ -20,8 +20,7 @@ public class ChitChatBot {
         ArrayList<Task> Tasks = new ArrayList<>();
 
         //Get the path to create where the chat.txt supposed to be
-        Path path = Paths.get("data","chat.txt");
-        boolean fileExist = Files.exists(path);
+        Path path = Paths.get("data", "chat.txt");
 
         File chatFile = new File(String.valueOf(path));
 
@@ -38,11 +37,10 @@ public class ChitChatBot {
                 int noOfActivity = Files.readAllLines(path).size();
                 Task.setNoOfActivity(noOfActivity);
             } catch (IOException e) {
-                System.out.println("An error occurred, unable to read file");;
+                System.out.println("An error occurred, unable to read file");
+                ;
             }
         }
-
-
 
 
         //Greet the user
@@ -59,7 +57,7 @@ public class ChitChatBot {
             //Handle the case where the user entered invalid inputs
             try {
                 action = Action.valueOf(inputArr[0]);
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(printChat(indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
                         + indentation + "Please use the correct queries:\n"
                         + indentation + "todo <description>\n"
@@ -79,34 +77,8 @@ public class ChitChatBot {
                 listTask(chatFile);
 
             } else if (action == Action.mark) {
-                try {
-                    //Handle the case whereby the user did not enter a task number to mark
-                    if (inputArr.length < 2) {
-                        throw new MissingParameterException(indentation + "ERROR: Missing parameters\n"
-                                + indentation + "Please ensure the correct format is used: mark <Task Number>\n");
-                    }
 
-                    int index = Integer.parseInt(inputArr[1]) - 1;
-                    Task.markAsDone(path, chatFile, index);
-
-                } catch (IndexOutOfBoundsException e) {
-                    if (Task.getNoOfActivity() == 0) {
-                        System.out.println(printChat(indentation + "Unable to mark, no task in the list, " +
-                                "please add task first\n"));
-                    } else if (Task.getNoOfActivity() == 1) {
-                        System.out.println(printChat(indentation + "Unable to mark, this task doesn't exist, " +
-                                "only 1 task in the list\n"));
-                    } else {
-                        System.out.println(printChat(indentation + "Unable to mark, this task doesn't exist, " +
-                                "please pick a task from 1 to "
-                                + Task.getNoOfActivity() + " to mark.\n"));
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println(printChat(indentation + "ERROR: " +
-                            "Please enter the number of the task that you want to mark\n"));
-                } catch (MissingParameterException e) {
-                    System.out.println(printChat(e.getMessage()));
-                }
+                Task.markAsDone(path, chatFile, inputArr);
 
             } else if (action == Action.unmark) {
 
@@ -211,7 +183,7 @@ public class ChitChatBot {
                 } catch (NumberFormatException e) {
                     System.out.println(printChat(indentation + "ERROR: Wrong parameters\n"
                             + indentation + "Please ensure the correct format is used: delete <Task number>\n"));
-                } catch (MissingParameterException e){
+                } catch (MissingParameterException e) {
                     System.out.println(e.getMessage());
                 }
 

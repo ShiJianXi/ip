@@ -32,8 +32,14 @@ public class Task {
     }
 
 
-    public static void markAsDone(Path path, File file, int index) {
+    public static void markAsDone(Path path, File file, String[] inputArr) {
+
         try {
+            if (inputArr.length < 2) {
+                throw new MissingParameterException(ChitChatBot.indentation + "ERROR: Missing parameters\n"
+                        + ChitChatBot.indentation + "Please ensure the correct format is used: mark <Task Number>\n");
+            }
+            int index = Integer.parseInt(inputArr[1]) - 1;
             Scanner sc = new Scanner(file);
             String text = Files.readAllLines(path).get(index);
 
@@ -59,6 +65,23 @@ public class Task {
         } catch (IOException e) {
             System.out.println("ERROR: Unable to read file");
         } catch (AlreadyMarkedException e) {
+            System.out.println(ChitChatBot.printChat(e.getMessage()));
+        } catch (IndexOutOfBoundsException e) {
+            if (noOfActivity == 0) {
+                System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Unable to mark, no task in the list, " +
+                        "please add task first\n"));
+            } else if (noOfActivity == 1) {
+                System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Unable to mark, this task doesn't exist, " +
+                        "only 1 task in the list\n"));
+            } else {
+                System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Unable to mark, this task doesn't exist, " +
+                        "please pick a task from 1 to "
+                        + Task.getNoOfActivity() + " to mark.\n"));
+            }
+        } catch (NumberFormatException e) {
+            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "ERROR: " +
+                    "Please enter the number of the task that you want to mark\n"));
+        } catch (MissingParameterException e) {
             System.out.println(ChitChatBot.printChat(e.getMessage()));
         }
     }
