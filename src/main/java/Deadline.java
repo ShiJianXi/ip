@@ -12,7 +12,7 @@ public class Deadline extends Task {
     }
 
     //A method to create a new deadline task
-    public static void createDeadline(String[] inputArr, File file) throws MissingParameterException {
+    public static void createDeadline(String[] inputArr, File file) {
         //Check for the various exception due to incorrect format for deadline queries
         //Throw exceptions when necessary
         try {

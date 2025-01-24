@@ -1,13 +1,8 @@
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Task {
     private String name;
@@ -32,7 +27,7 @@ public class Task {
     }
 
 
-    public static void markAsDone(Path path, File file, String[] inputArr) {
+    public static void markAsDone(Path path, String[] inputArr) {
 
         try {
             if (inputArr.length < 2) {
@@ -40,7 +35,7 @@ public class Task {
                         + ChitChatBot.indentation + "Please ensure the correct format is used: mark <Task Number>\n");
             }
             int index = Integer.parseInt(inputArr[1]) - 1;
-            Scanner sc = new Scanner(file);
+
             String text = Files.readAllLines(path).get(index);
 
             char[] charArr = text.toCharArray();
@@ -86,7 +81,7 @@ public class Task {
         }
     }
 
-    public static void markAsNotDone(Path path, File file, String[] inputArr) {
+    public static void markAsNotDone(Path path, String[] inputArr) {
         try {
             if (inputArr.length < 2) {
                 throw new MissingParameterException(ChitChatBot.indentation + "ERROR: Missing parameters\n"
@@ -95,7 +90,6 @@ public class Task {
             }
             int index = Integer.parseInt(inputArr[1]) - 1;
 
-            Scanner sc = new Scanner(file);
             String text = Files.readAllLines(path).get(index);
 
             char[] charArr = text.toCharArray();
@@ -150,7 +144,7 @@ public class Task {
     }
 
     //A method to delete a task from the file
-    public static void deleteTask(Path path, File file, String[] inputArr) {
+    public static void deleteTask(Path path, String[] inputArr) {
         try {
             if (inputArr.length > 2) {
                 throw new MissingParameterException(ChitChatBot.printChat(ChitChatBot.indentation
@@ -160,7 +154,6 @@ public class Task {
 
             int index = Integer.parseInt(inputArr[1]) - 1;
 
-            Scanner sc = new Scanner(file);
             List<String> lines = Files.readAllLines(path);
             String toRemove = lines.get(index);
             lines.remove(index);
@@ -192,7 +185,6 @@ public class Task {
     @Override
     public String toString() {
         String string = "[%s] %s";
-        String toReturn = String.format(string, isDone == true ? "X" : " ", this.name);
-        return toReturn;
+        return String.format(string, isDone ? "X" : " ", this.name);
     }
 }

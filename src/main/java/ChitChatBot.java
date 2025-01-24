@@ -17,8 +17,6 @@ public class ChitChatBot {
         Scanner sc = new Scanner(System.in);
         String name = "ChitChatBot";
 
-        ArrayList<Task> Tasks = new ArrayList<>();
-
         //Get the path to create where the chat.txt supposed to be
         Path path = Paths.get("data", "chat.txt");
 
@@ -38,7 +36,6 @@ public class ChitChatBot {
                 Task.setNoOfActivity(noOfActivity);
             } catch (IOException e) {
                 System.out.println("An error occurred, unable to read file");
-                ;
             }
         }
 
@@ -78,11 +75,11 @@ public class ChitChatBot {
 
             } else if (action == Action.mark) {
 
-                Task.markAsDone(path, chatFile, inputArr);
+                Task.markAsDone(path, inputArr);
 
             } else if (action == Action.unmark) {
 
-                Task.markAsNotDone(path, chatFile, inputArr);
+                Task.markAsNotDone(path, inputArr);
 
             } else if (action == Action.todo) {
 
@@ -98,7 +95,7 @@ public class ChitChatBot {
 
             } else if (action == Action.delete) {
 
-                Task.deleteTask(path, chatFile, inputArr);
+                Task.deleteTask(path, inputArr);
 
 
             }

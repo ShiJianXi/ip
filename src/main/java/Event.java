@@ -12,8 +12,8 @@ public class Event extends Task {
         this.to = to;
     }
 
-    //A method to create a event task
-    public static void createEvent(String[] inputArr, File file) throws MissingParameterException {
+    //A method to create an event task
+    public static void createEvent(String[] inputArr, File file) {
         //Check for the various exceptions and  throw an exception when required
         try {
             if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/from")
