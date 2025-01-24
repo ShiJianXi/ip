@@ -12,7 +12,7 @@ import java.util.*;
 public class ChitChatBot {
     public static String indentation = "    ";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MissingParameterException {
 
         Scanner sc = new Scanner(System.in);
         String name = "ChitChatBot";
@@ -86,22 +86,7 @@ public class ChitChatBot {
 
             } else if (action == Action.todo) {
 
-                try {
-                    Task newTask = Todo.createToDo(inputArr);
-                    Tasks.add(newTask);
-
-                    int noOfTasks = Task.getNoOfActivity();
-                    System.out.println(printChat(indentation + "Got it. I've added this task:\n"
-                            + indentation + "  " + newTask + "\n"
-                            + indentation + "Now you have "
-                            + noOfTasks + " tasks in the list.\n"));
-
-                    //Append to chat.txt
-                    appendToFile(newTask.toString(), chatFile);
-
-                } catch (MissingParameterException e) {
-                    System.out.println(printChat(indentation + e.getMessage()));
-                }
+                Todo.createToDo(inputArr, chatFile);
 
             } else if (action == Action.deadline) {
                 try {
@@ -173,7 +158,7 @@ public class ChitChatBot {
     }
 
     //A method to append to a file
-    private static void appendToFile(String message, File file) {
+    public static void appendToFile(String message, File file) {
         try {
             FileWriter fw = new FileWriter(file, true);
             fw.write(message + "\n");
