@@ -1,7 +1,8 @@
+import java.io.File;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
 
     protected String by;
 
@@ -11,31 +12,42 @@ public class Deadline extends Task{
     }
 
     //A method to create a new deadline task
-    public static Deadline createDeadline(String[] arr) throws MissingParameterException {
+    public static void createDeadline(String[] inputArr, File file) throws MissingParameterException {
         //Check for the various exception due to incorrect format for deadline queries
         //Throw exceptions when necessary
-        if (arr.length < 2 || !Arrays.asList(arr).contains("/by") || arr[1].equals("/by")) {
-            throw new MissingParameterException("    ERROR: There is missing parameters, " +
-                    "please ensure the correct format is used:\n" +
-                    "    deadline <Description> /by <Date/Time>\n");
-        }
-        String task = "";
-        int byIndex = 0;
-        StringJoiner by = new StringJoiner(" ");
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i].equals("/by")) {
-                byIndex = i;
-                break;
+        try {
+            if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/by") || inputArr[1].equals("/by")) {
+                throw new MissingParameterException("    ERROR: There is missing parameters, " +
+                        "please ensure the correct format is used:\n" +
+                        "    deadline <Description> /by <Date/Time>\n");
             }
-            task += arr[i];
-            task += " ";
-        }
-        for (int i = byIndex + 1; i < arr.length; i++) {
-            by.add(arr[i]);
+
+            String task = "";
+            int byIndex = 0;
+            StringJoiner by = new StringJoiner(" ");
+            for (int i = 1; i < inputArr.length; i++) {
+                if (inputArr[i].equals("/by")) {
+                    byIndex = i;
+                    break;
+                }
+                task += inputArr[i];
+                task += " ";
+            }
+            for (int i = byIndex + 1; i < inputArr.length; i++) {
+                by.add(inputArr[i]);
+            }
+
+            Deadline newTask = new Deadline(task, by.toString());
+            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Got it. I've added this task:\n"
+                    + ChitChatBot.indentation + "  " + newTask
+                    + "\n" + ChitChatBot.indentation + "Now you have "
+                    + Task.getNoOfActivity() + " tasks in the list.\n"));
+
+            ChitChatBot.appendToFile(newTask.toString(), file);
+        } catch (MissingParameterException e) {
+            System.out.println(ChitChatBot.printChat(e.getMessage()));
         }
 
-        Deadline newTask = new Deadline(task, by.toString());
-        return newTask;
     }
 
     @Override

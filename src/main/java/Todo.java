@@ -32,7 +32,7 @@ public class Todo extends Task {
                     + ChitChatBot.indentation + "  " + newTask + "\n"
                     + ChitChatBot.indentation + "Now you have "
                     + Task.getNoOfActivity() + " tasks in the list.\n"));
-            //return newTask;
+
             ChitChatBot.appendToFile(newTask.toString(), file);
         } catch (MissingParameterException e) {
             System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + e.getMessage()));

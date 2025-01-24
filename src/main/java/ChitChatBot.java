@@ -89,21 +89,8 @@ public class ChitChatBot {
                 Todo.createToDo(inputArr, chatFile);
 
             } else if (action == Action.deadline) {
-                try {
-                    Task newTask = Deadline.createDeadline(inputArr);
-                    Tasks.add(newTask);
-                    int noOfTasks = Task.getNoOfActivity();
-                    System.out.println(printChat(indentation + "Got it. I've added this task:\n"
-                            + indentation + "  " + newTask
-                            + "\n" + indentation + "Now you have "
-                            + noOfTasks + " tasks in the list.\n"));
 
-                    //Append deadline task to chat.txt
-                    appendToFile(newTask.toString(), chatFile);
-                } catch (MissingParameterException e) {
-                    System.out.println(printChat(e.getMessage()));
-                }
-
+                Deadline.createDeadline(inputArr, chatFile);
 
             } else if (action == Action.event) {
                 try {
