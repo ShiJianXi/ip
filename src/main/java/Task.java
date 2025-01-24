@@ -10,21 +10,21 @@ public class Task {
     private int index;
     private static int noOfActivity = 0;
 
-    Path path = Paths.get("data","chat.txt");
-    boolean fileExist = Files.exists(path);
+//    Path path = Paths.get("data","chat.txt");
+//    boolean fileExist = Files.exists(path);
 
 
     public Task(String name) {
         this.name = name;
         this.isDone = false;
 
-        if (fileExist) {
-            try {
-                noOfActivity = Files.readAllLines(path).size();
-            } catch (IOException e) {
-                System.out.println("ERROR: Unable to read file");;
-            }
-        }
+//        if (fileExist) {
+//            try {
+//                noOfActivity = Files.readAllLines(path).size();
+//            } catch (IOException e) {
+//                System.out.println("ERROR: Unable to read file");;
+//            }
+//        }
 
         noOfActivity++;
         this.index = noOfActivity;
@@ -32,6 +32,10 @@ public class Task {
 
     public static int getNoOfActivity() {
         return noOfActivity;
+    }
+
+    public static void setNoOfActivity(int value) {
+        noOfActivity = value;
     }
 
     public void markAsDone() throws AlreadyMarkedException {
