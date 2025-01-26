@@ -1,11 +1,8 @@
 import java.io.File;
-import java.io.PrintStream;
 import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Arrays;
-import java.util.StringJoiner;
 import java.time.LocalDate;
 
 public class Deadline extends Task {
@@ -14,18 +11,15 @@ public class Deadline extends Task {
     protected LocalTime time;
     private boolean containTime = false;
 
-    public Deadline(String name, String by) {
+    public Deadline(String name, LocalDate by) {
         super(name);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        this.by = LocalDate.parse(by, formatter);
+        this.by = by;
     }
 
-    public Deadline(String name, String by, String time) {
+    public Deadline(String name, LocalDate by, LocalTime time) {
         super(name);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
-        this.by = LocalDate.parse(by, formatter);
-        this.time = LocalTime.parse(time, timeFormatter);
+        this.by = by;
+        this.time = time;
         this.containTime = true;
     }
 
@@ -45,8 +39,7 @@ public class Deadline extends Task {
 
             String task = "";
             int byIndex = 0;
-            String date = "";
-            String time = "";
+
             for (int i = 1; i < inputArr.length; i++) {
                 if (inputArr[i].equals("/by")) {
                     byIndex = i;
@@ -57,8 +50,10 @@ public class Deadline extends Task {
             }
 
             if (inputArr.length > byIndex + 2) { //Contains time
-                date = inputArr[byIndex + 1];
-                time = inputArr[byIndex + 2];
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
+                LocalDate date = LocalDate.parse(inputArr[byIndex + 1], formatter);
+                LocalTime time = LocalTime.parse(inputArr[byIndex + 2], timeFormatter);
                 Deadline newTask = new Deadline(task, date, time);
                 System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Got it. I've added this task:\n"
                         + ChitChatBot.indentation + "  " + newTask
@@ -66,8 +61,10 @@ public class Deadline extends Task {
                         + Task.getNoOfActivity() + " tasks in the list.\n"));
                 ChitChatBot.appendToFile(newTask.toString(), file);
             } else {
-                date = inputArr[byIndex + 1];
-                Deadline newTask = new Deadline(task, date);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                LocalDate by = LocalDate.parse(inputArr[byIndex + 1], formatter);
+
+                Deadline newTask = new Deadline(task, by);
                 System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Got it. I've added this task:\n"
                         + ChitChatBot.indentation + "  " + newTask
                         + "\n" + ChitChatBot.indentation + "Now you have "

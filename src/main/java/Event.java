@@ -12,15 +12,13 @@ public class Event extends Task {
     private LocalDate toDate;
     private LocalTime toTime;
 
-    public Event(String name, String fromDate, String fromTime, String toDate, String toTime) {
+    public Event(String name, LocalDate fromDate, LocalTime fromTime, LocalDate toDate, LocalTime toTime) {
         super(name);
 
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
-        this.fromDate = LocalDate.parse(fromDate, dateFormatter);
-        this.fromTime = LocalTime.parse(fromTime, timeFormatter);
-        this.toDate = LocalDate.parse(toDate, dateFormatter);
-        this.toTime = LocalTime.parse(toTime, timeFormatter);
+        this.fromDate = fromDate;
+        this.fromTime = fromTime;
+        this.toDate = toDate;
+        this.toTime = toTime;
 
     }
 
@@ -41,10 +39,7 @@ public class Event extends Task {
             int fromIndex = Arrays.asList(inputArr).indexOf("/from");
             int toIndex = Arrays.asList(inputArr).indexOf("/to");
 
-            String fromDate = "";
-            String fromTime = "";
-            String toDate = "";
-            String toTime = "";
+
             for (int i = 1; i < inputArr.length; i++) {
                 if (inputArr[i].equals("/from")) {
                     break;
@@ -54,10 +49,13 @@ public class Event extends Task {
                 task += " ";
             }
 
-            fromDate = inputArr[fromIndex + 1];
-            fromTime = inputArr[fromIndex + 2];
-            toDate = inputArr[toIndex + 1];
-            toTime = inputArr[toIndex + 2];
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
+            LocalDate fromDate = LocalDate.parse(inputArr[fromIndex + 1], dateFormatter);
+            LocalTime fromTime = LocalTime.parse(inputArr[fromIndex + 2], timeFormatter);
+            LocalDate toDate = LocalDate.parse(inputArr[toIndex + 1], dateFormatter);
+            LocalTime toTime = LocalTime.parse(inputArr[toIndex + 2], timeFormatter);
+
 
             Event newTask = new Event(task, fromDate, fromTime, toDate, toTime);
 
@@ -65,7 +63,9 @@ public class Event extends Task {
                     + ChitChatBot.indentation + "  " + newTask + "\n"
                     + ChitChatBot.indentation + "Now you have "
                     + Task.getNoOfActivity() + " tasks in the list.\n"));
+
             ChitChatBot.appendToFile(newTask.toString(), file);
+
         } catch (MissingParameterException e) {
             System.out.println(ChitChatBot.printChat(e.getMessage()));
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
