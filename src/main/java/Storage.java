@@ -68,4 +68,8 @@ public class Storage {
         return this.chatFile;
     }
 
+    public Path getPath() {
+        return this.path;
+    }
+
 }
