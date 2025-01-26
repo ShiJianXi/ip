@@ -23,7 +23,7 @@ public class Event extends Task {
     }
 
     //A method to create an event task
-    public static void createEvent(String[] inputArr, File file) {
+    public static void createEvent(String[] inputArr, Storage storage) {
         //Check for the various exceptions and  throw an exception when required
         try {
             if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/from")
@@ -59,17 +59,18 @@ public class Event extends Task {
 
             Event newTask = new Event(task, fromDate, fromTime, toDate, toTime);
 
-            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Got it. I've added this task:\n"
-                    + ChitChatBot.indentation + "  " + newTask + "\n"
-                    + ChitChatBot.indentation + "Now you have "
+            System.out.println(Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
+                    + Ui.indentation + "  " + newTask + "\n"
+                    + Ui.indentation + "Now you have "
                     + Task.getNoOfActivity() + " tasks in the list.\n"));
 
-            ChitChatBot.appendToFile(newTask.toString(), file);
+            //ChitChatBot.appendToFile(newTask.toString(), file);
+            storage.appendToFile(newTask.toString());
 
         } catch (MissingParameterException e) {
-            System.out.println(ChitChatBot.printChat(e.getMessage()));
+            System.out.println(Ui.printChat(e.getMessage()));
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
-            System.out.println(ChitChatBot.printChat("    ERROR: Incorrect format\n" +
+            System.out.println(Ui.printChat("    ERROR: Incorrect format\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n"));
         }

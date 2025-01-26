@@ -9,7 +9,7 @@ public class Todo extends Task {
     String status = "T";
 
     //A method to create a todo task
-    public static void createToDo(String[] inputArr, File file) {
+    public static void createToDo(String[] inputArr, Storage storage) {
         //Check if the user missed out the description of the test
         //Throw exception when required
         try {
@@ -28,14 +28,15 @@ public class Todo extends Task {
             }
 
             Todo newTask = new Todo(task);
-            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Got it. I've added this task:\n"
-                    + ChitChatBot.indentation + "  " + newTask + "\n"
-                    + ChitChatBot.indentation + "Now you have "
+            System.out.println(Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
+                    + Ui.indentation + "  " + newTask + "\n"
+                    + Ui.indentation + "Now you have "
                     + Task.getNoOfActivity() + " tasks in the list.\n"));
 
-            ChitChatBot.appendToFile(newTask.toString(), file);
+            storage.appendToFile(newTask.toString());
+            //ChitChatBot.appendToFile(newTask.toString(), file);
         } catch (MissingParameterException e) {
-            System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + e.getMessage()));
+            System.out.println(Ui.printChat(Ui.indentation + e.getMessage()));
         }
     }
 
