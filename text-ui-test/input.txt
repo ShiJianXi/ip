@@ -3,7 +3,7 @@ unmark 1
 todo read book
 mark 2
 unmark 2
-deadline return book /by June 6th
+deadline return book /by 06/06/2025
 mark 3
 unmark 3
 event project meeting /from Aug 6th 2pm /to 4pm
@@ -12,7 +12,7 @@ mark 1
 mark 4
 todo borrow book
 list
-deadline return book /by Sunday
+deadline return book /by 07/06/2025 1800
 event project meeting /from Mon 2pm /to 4pm
 todo
 blah
@@ -33,9 +33,12 @@ unmark 4
 unmark 4
 deadline
 deadline do homework
-deadline do homework by 4pm
-deadline do homework /by 4pm
-deadline /by 4pm
+deadline do homework by
+deadline do homework /by
+deadline do homework /by 1800
+deadline do homework /by 33/12/2025
+deadline /by 12/12/2025
+deadline do homework /by 12/12/2025 1800
 event
 event /from
 event /from Today
