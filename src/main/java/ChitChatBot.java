@@ -19,26 +19,9 @@ public class ChitChatBot {
 
         //Get the path to create where the chat.txt supposed to be
         Path path = Paths.get("data", "chat.txt");
+        Storage storage = new Storage(path);
 
-        File chatFile = new File(String.valueOf(path));
-
-        //If chat.txt does not exist, create the file
-        if (!chatFile.exists()) {
-            try {
-                Files.createDirectories(path.getParent());
-                chatFile.createNewFile();
-            } catch (IOException e) {
-                System.out.println("An error occurred, unable to create file");
-            }
-        } else {
-            try {
-                int noOfActivity = Files.readAllLines(path).size();
-                Task.setNoOfActivity(noOfActivity);
-            } catch (IOException e) {
-                System.out.println("An error occurred, unable to read file");
-            }
-        }
-
+        storage.initStorage();
 
         //Greet the user
         System.out.println(printChat(indentation + "Hello! I'm "
@@ -71,7 +54,7 @@ public class ChitChatBot {
 
             } else if (action == Action.list) {
 
-                listTask(chatFile);
+                storage.listTask();
 
             } else if (action == Action.mark) {
 
@@ -83,20 +66,19 @@ public class ChitChatBot {
 
             } else if (action == Action.todo) {
 
-                Todo.createToDo(inputArr, chatFile);
+                Todo.createToDo(inputArr, storage);
 
             } else if (action == Action.deadline) {
 
-                Deadline.createDeadline(inputArr, chatFile);
+                Deadline.createDeadline(inputArr, storage);
 
             } else if (action == Action.event) {
 
-                Event.createEvent(inputArr, chatFile);
+                Event.createEvent(inputArr, storage);
 
             } else if (action == Action.delete) {
 
                 Task.deleteTask(path, inputArr);
-
 
             }
         }
@@ -107,35 +89,6 @@ public class ChitChatBot {
         String line = "_____________________________________________________";
         String indentation = "    ";
         return String.format(indentation + line + "\n" + "%s" + indentation + line, message);
-    }
-
-    //A method to append to a file
-    public static void appendToFile(String message, File file) {
-        try {
-            FileWriter fw = new FileWriter(file, true);
-            fw.write(message + "\n");
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("An Error occurred, unable to write");
-        }
-    }
-
-    private static void listTask(File file) {
-        try {
-            Scanner scanner = new Scanner(file);
-            StringJoiner toPrint = new StringJoiner("\n");
-            int index = 0;
-            while (scanner.hasNext()) {
-                index++;
-                String text = scanner.nextLine();
-                text = "    " + index + "." + text;
-                toPrint.add(text);
-            }
-
-            System.out.println(printChat(toPrint + "\n"));
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR: File not found");
-        }
     }
 
 }

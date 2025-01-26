@@ -23,7 +23,7 @@ public class Event extends Task {
     }
 
     //A method to create an event task
-    public static void createEvent(String[] inputArr, File file) {
+    public static void createEvent(String[] inputArr, Storage storage) {
         //Check for the various exceptions and  throw an exception when required
         try {
             if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/from")
@@ -64,7 +64,8 @@ public class Event extends Task {
                     + ChitChatBot.indentation + "Now you have "
                     + Task.getNoOfActivity() + " tasks in the list.\n"));
 
-            ChitChatBot.appendToFile(newTask.toString(), file);
+            //ChitChatBot.appendToFile(newTask.toString(), file);
+            storage.appendToFile(newTask.toString());
 
         } catch (MissingParameterException e) {
             System.out.println(ChitChatBot.printChat(e.getMessage()));

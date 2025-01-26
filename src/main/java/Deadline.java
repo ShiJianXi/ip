@@ -24,7 +24,7 @@ public class Deadline extends Task {
     }
 
     //A method to create a new deadline task
-    public static void createDeadline(String[] inputArr, File file) {
+    public static void createDeadline(String[] inputArr, Storage storage) {
         //Check for the various exception due to incorrect format for deadline queries
         //Throw exceptions when necessary
         try {
@@ -59,7 +59,8 @@ public class Deadline extends Task {
                         + ChitChatBot.indentation + "  " + newTask
                         + "\n" + ChitChatBot.indentation + "Now you have "
                         + Task.getNoOfActivity() + " tasks in the list.\n"));
-                ChitChatBot.appendToFile(newTask.toString(), file);
+                storage.appendToFile(newTask.toString());
+                //ChitChatBot.appendToFile(newTask.toString(), file);
             } else {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
                 LocalDate by = LocalDate.parse(inputArr[byIndex + 1], formatter);
@@ -69,7 +70,8 @@ public class Deadline extends Task {
                         + ChitChatBot.indentation + "  " + newTask
                         + "\n" + ChitChatBot.indentation + "Now you have "
                         + Task.getNoOfActivity() + " tasks in the list.\n"));
-                ChitChatBot.appendToFile(newTask.toString(), file);
+                storage.appendToFile(newTask.toString());
+                //ChitChatBot.appendToFile(newTask.toString(), file);
             }
 
         } catch (MissingParameterException e) {
