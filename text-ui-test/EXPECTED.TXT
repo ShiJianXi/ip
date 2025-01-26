@@ -21,7 +21,7 @@
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
-      [D][ ] return book (by: June 6th)
+      [D][ ] return book (by: Jun 6 2025)
     Now you have 2 tasks in the list.
     _____________________________________________________
     _____________________________________________________
@@ -32,7 +32,7 @@
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
-      [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+      [E][ ] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     Now you have 3 tasks in the list.
     _____________________________________________________
     _____________________________________________________
@@ -55,19 +55,19 @@
     _____________________________________________________
     _____________________________________________________
     1.[T][X] read book 
-    2.[D][ ] return book (by: June 6th)
-    3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    2.[D][ ] return book (by: Jun 6 2025)
+    3.[E][ ] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     4.[T][X] join sports club 
     5.[T][ ] borrow book 
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
-      [D][ ] return book (by: Sunday)
+      [D][ ] return book (by: Jun 7 2025 18:00)
     Now you have 6 tasks in the list.
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
-      [E][ ] project meeting (from: Mon 2pm to: 4pm)
+      [E][ ] project meeting (from: Aug 8 2025 06:00 to: Aug 8 2025 09:00)
     Now you have 7 tasks in the list.
     _____________________________________________________
     _____________________________________________________
@@ -87,20 +87,20 @@
     _____________________________________________________
     _____________________________________________________
     Nice! I've marked this task as done:
-      [D][X] return book (by: June 6th)
+      [D][X] return book (by: Jun 6 2025)
     _____________________________________________________
     _____________________________________________________
     Nice! I've marked this task as done:
-      [E][X] project meeting (from: Aug 6th 2pm to: 4pm)
+      [E][X] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     _____________________________________________________
     _____________________________________________________
     1.[T][X] read book 
-    2.[D][X] return book (by: June 6th)
-    3.[E][X] project meeting (from: Aug 6th 2pm to: 4pm)
+    2.[D][X] return book (by: Jun 6 2025)
+    3.[E][X] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     4.[T][X] join sports club 
     5.[T][ ] borrow book 
-    6.[D][ ] return book (by: Sunday)
-    7.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+    6.[D][ ] return book (by: Jun 7 2025 18:00)
+    7.[E][ ] project meeting (from: Aug 8 2025 06:00 to: Aug 8 2025 09:00)
     _____________________________________________________
     _____________________________________________________
     OK, I've marked this task as not done yet:
@@ -108,20 +108,20 @@
     _____________________________________________________
     _____________________________________________________
     OK, I've marked this task as not done yet:
-      [D][ ] return book (by: June 6th)
+      [D][ ] return book (by: Jun 6 2025)
     _____________________________________________________
     _____________________________________________________
     OK, I've marked this task as not done yet:
-      [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+      [E][ ] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     _____________________________________________________
     _____________________________________________________
     1.[T][ ] read book 
-    2.[D][ ] return book (by: June 6th)
-    3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    2.[D][ ] return book (by: Jun 6 2025)
+    3.[E][ ] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     4.[T][X] join sports club 
     5.[T][ ] borrow book 
-    6.[D][ ] return book (by: Sunday)
-    7.[E][ ] project meeting (from: Mon 2pm to: 4pm)
+    6.[D][ ] return book (by: Jun 7 2025 18:00)
+    7.[E][ ] project meeting (from: Aug 8 2025 06:00 to: Aug 8 2025 09:00)
     _____________________________________________________
     _____________________________________________________
     ERROR: Please enter the number of the task that you want to mark
@@ -149,80 +149,107 @@
     _____________________________________________________
     _____________________________________________________
     ERROR: There is missing parameters, please ensure the correct format is used:
-    deadline <Description> /by <Date/Time>
+    deadline <Description> /by dd/mm/yyyy
+    OR deadline <Description /by dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: There is missing parameters, please ensure the correct format is used:
-    deadline <Description> /by <Date/Time>
+    deadline <Description> /by dd/mm/yyyy
+    OR deadline <Description /by dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: There is missing parameters, please ensure the correct format is used:
-    deadline <Description> /by <Date/Time>
+    deadline <Description> /by dd/mm/yyyy
+    OR deadline <Description /by dd/mm/yyyy HHmm
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: There is missing parameters, please ensure the correct format is used:
+    deadline <Description> /by dd/mm/yyyy
+    OR deadline <Description /by dd/mm/yyyy HHmm
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: Incorrect format, please ensure the correct format is used:
+    deadline <Description> /by dd/mm/yyyy
+    OR deadline <Description /by dd/mm/yyyy HHmm
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: Incorrect format, please ensure the correct format is used:
+    deadline <Description> /by dd/mm/yyyy
+    OR deadline <Description /by dd/mm/yyyy HHmm
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: There is missing parameters, please ensure the correct format is used:
+    deadline <Description> /by dd/mm/yyyy
+    OR deadline <Description /by dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
-      [D][ ] do homework (by: 4pm)
+      [D][ ] do homework (by: Dec 12 2025 18:00)
     Now you have 8 tasks in the list.
     _____________________________________________________
     _____________________________________________________
-    ERROR: There is missing parameters, please ensure the correct format is used:
-    deadline <Description> /by <Date/Time>
+    ERROR: Missing parameters
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
-    ERROR: Missing parameters
-    Please ensure the correct format is used: event <Description> /from <Date/Time> /to <Date/Time>
+    ERROR: Incorrect format
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
+    _____________________________________________________
+    _____________________________________________________
+    ERROR: Incorrect format
+    Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
     _____________________________________________________
     Got it. I've added this task:
-      [E][ ] go meeting (from: Today to: Tomorrow)
+      [E][ ] go meeting (from: Dec 12 2025 08:00 to: Dec 13 2025 09:00)
     Now you have 9 tasks in the list.
     _____________________________________________________
     _____________________________________________________
     1.[T][ ] read book 
-    2.[D][ ] return book (by: June 6th)
-    3.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    2.[D][ ] return book (by: Jun 6 2025)
+    3.[E][ ] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     4.[T][ ] join sports club 
     5.[T][ ] borrow book 
-    6.[D][ ] return book (by: Sunday)
-    7.[E][ ] project meeting (from: Mon 2pm to: 4pm)
-    8.[D][ ] do homework (by: 4pm)
-    9.[E][ ] go meeting (from: Today to: Tomorrow)
+    6.[D][ ] return book (by: Jun 7 2025 18:00)
+    7.[E][ ] project meeting (from: Aug 8 2025 06:00 to: Aug 8 2025 09:00)
+    8.[D][ ] do homework (by: Dec 12 2025 18:00)
+    9.[E][ ] go meeting (from: Dec 12 2025 08:00 to: Dec 13 2025 09:00)
     _____________________________________________________
     _____________________________________________________
     Noted. I've removed this task:
@@ -231,34 +258,34 @@
     _____________________________________________________
     _____________________________________________________
     Noted. I've removed this task:
-      [E][ ] go meeting (from: Today to: Tomorrow)
+      [E][ ] go meeting (from: Dec 12 2025 08:00 to: Dec 13 2025 09:00)
     Now you have 7 tasks in the list.
     _____________________________________________________
     _____________________________________________________
-    1.[D][ ] return book (by: June 6th)
-    2.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    1.[D][ ] return book (by: Jun 6 2025)
+    2.[E][ ] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     3.[T][ ] join sports club 
     4.[T][ ] borrow book 
-    5.[D][ ] return book (by: Sunday)
-    6.[E][ ] project meeting (from: Mon 2pm to: 4pm)
-    7.[D][ ] do homework (by: 4pm)
+    5.[D][ ] return book (by: Jun 7 2025 18:00)
+    6.[E][ ] project meeting (from: Aug 8 2025 06:00 to: Aug 8 2025 09:00)
+    7.[D][ ] do homework (by: Dec 12 2025 18:00)
     _____________________________________________________
     _____________________________________________________
     Nice! I've marked this task as done:
-      [D][X] return book (by: June 6th)
+      [D][X] return book (by: Jun 6 2025)
     _____________________________________________________
     _____________________________________________________
     Noted. I've removed this task:
-      [D][X] return book (by: June 6th)
+      [D][X] return book (by: Jun 6 2025)
     Now you have 6 tasks in the list.
     _____________________________________________________
     _____________________________________________________
-    1.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+    1.[E][ ] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     2.[T][ ] join sports club 
     3.[T][ ] borrow book 
-    4.[D][ ] return book (by: Sunday)
-    5.[E][ ] project meeting (from: Mon 2pm to: 4pm)
-    6.[D][ ] do homework (by: 4pm)
+    4.[D][ ] return book (by: Jun 7 2025 18:00)
+    5.[E][ ] project meeting (from: Aug 8 2025 06:00 to: Aug 8 2025 09:00)
+    6.[D][ ] do homework (by: Dec 12 2025 18:00)
     _____________________________________________________
     _____________________________________________________
     ERROR: Missing parameters
@@ -282,13 +309,13 @@
     _____________________________________________________
     _____________________________________________________
     Noted. I've removed this task:
-      [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+      [E][ ] project meeting (from: Aug 6 2025 14:00 to: Aug 6 2025 19:00)
     Now you have 5 tasks in the list.
     _____________________________________________________
     _____________________________________________________
     1.[T][ ] join sports club 
     2.[T][ ] borrow book 
-    3.[D][ ] return book (by: Sunday)
-    4.[E][ ] project meeting (from: Mon 2pm to: 4pm)
-    5.[D][ ] do homework (by: 4pm)
+    3.[D][ ] return book (by: Jun 7 2025 18:00)
+    4.[E][ ] project meeting (from: Aug 8 2025 06:00 to: Aug 8 2025 09:00)
+    5.[D][ ] do homework (by: Dec 12 2025 18:00)
     _____________________________________________________

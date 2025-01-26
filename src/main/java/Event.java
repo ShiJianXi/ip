@@ -1,15 +1,25 @@
 import java.io.File;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
-import java.util.StringJoiner;
+
 
 public class Event extends Task {
-    private String from;
-    private String to;
+    private LocalDate fromDate;
+    private LocalTime fromTime;
+    private LocalDate toDate;
+    private LocalTime toTime;
 
-    public Event(String name, String from, String to) {
+    public Event(String name, LocalDate fromDate, LocalTime fromTime, LocalDate toDate, LocalTime toTime) {
         super(name);
-        this.from = from;
-        this.to = to;
+
+        this.fromDate = fromDate;
+        this.fromTime = fromTime;
+        this.toDate = toDate;
+        this.toTime = toTime;
+
     }
 
     //A method to create an event task
@@ -22,46 +32,54 @@ public class Event extends Task {
                     || Arrays.asList(inputArr).indexOf("/from") > Arrays.asList(inputArr).indexOf("/to")) {
                 throw new MissingParameterException("    ERROR: Missing parameters\n" +
                         "    Please ensure the correct format is used: " +
-                        "event <Description> /from <Date/Time> /to <Date/Time>\n");
+                        "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n");
             }
+
             String task = "";
-            int fromIndex = 0;
-            int toIndex = 0;
-            StringJoiner from = new StringJoiner(" ");
-            StringJoiner to = new StringJoiner(" ");
+            int fromIndex = Arrays.asList(inputArr).indexOf("/from");
+            int toIndex = Arrays.asList(inputArr).indexOf("/to");
+
+
             for (int i = 1; i < inputArr.length; i++) {
                 if (inputArr[i].equals("/from")) {
-                    fromIndex = i;
                     break;
                 }
 
                 task += inputArr[i];
                 task += " ";
             }
-            for (int i = fromIndex + 1; i < inputArr.length; i++) {
-                if (inputArr[i].equals("/to")) {
-                    toIndex = i;
-                    break;
-                }
-                from.add(inputArr[i]);
-            }
-            for (int i = toIndex + 1; i < inputArr.length; i++) {
-                to.add(inputArr[i]);
-            }
 
-            Event newTask = new Event(task, from.toString(), to.toString());
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
+            LocalDate fromDate = LocalDate.parse(inputArr[fromIndex + 1], dateFormatter);
+            LocalTime fromTime = LocalTime.parse(inputArr[fromIndex + 2], timeFormatter);
+            LocalDate toDate = LocalDate.parse(inputArr[toIndex + 1], dateFormatter);
+            LocalTime toTime = LocalTime.parse(inputArr[toIndex + 2], timeFormatter);
+
+
+            Event newTask = new Event(task, fromDate, fromTime, toDate, toTime);
+
             System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Got it. I've added this task:\n"
                     + ChitChatBot.indentation + "  " + newTask + "\n"
                     + ChitChatBot.indentation + "Now you have "
                     + Task.getNoOfActivity() + " tasks in the list.\n"));
+
             ChitChatBot.appendToFile(newTask.toString(), file);
+
         } catch (MissingParameterException e) {
             System.out.println(ChitChatBot.printChat(e.getMessage()));
+        } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+            System.out.println(ChitChatBot.printChat("    ERROR: Incorrect format\n" +
+                    "    Please ensure the correct format is used: " +
+                    "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n"));
         }
     }
 
     @Override
     public String toString() {
-        return String.format("[E]" + super.toString() + "(from: %s to: %s)", from, to);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MMM d yyyy");
+        return String.format("[E]" + super.toString() + "(from: %s %s to: %s %s)",
+                this.fromDate.format(dateFormat), this.fromTime,
+                this.toDate.format(dateFormat), this.toTime);
     }
 }
