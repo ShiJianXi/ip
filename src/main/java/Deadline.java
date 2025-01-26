@@ -1,7 +1,9 @@
 import java.io.File;
 import java.io.PrintStream;
+import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.StringJoiner;
 import java.time.LocalDate;
@@ -75,6 +77,11 @@ public class Deadline extends Task {
 
         } catch (MissingParameterException e) {
             System.out.println(ChitChatBot.printChat(e.getMessage()));
+        } catch (DateTimeException e1) {
+            System.out.println(ChitChatBot.printChat("    ERROR: Incorrect format, " +
+                    "please ensure the correct format is used:\n" +
+                    "    deadline <Description> /by dd/mm/yyyy\n" +
+                    "    OR deadline <Description /by dd/mm/yyyy HHmm\n"));
         }
     }
 
