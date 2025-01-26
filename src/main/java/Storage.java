@@ -58,7 +58,7 @@ public class Storage {
                 toPrint.add(text);
             }
 
-            System.out.println(ChitChatBot.printChat(toPrint + "\n"));
+            System.out.println(Ui.printChat(toPrint + "\n"));
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: File not found");
         }

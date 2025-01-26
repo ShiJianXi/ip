@@ -55,9 +55,9 @@ public class Deadline extends Task {
                 LocalDate date = LocalDate.parse(inputArr[byIndex + 1], formatter);
                 LocalTime time = LocalTime.parse(inputArr[byIndex + 2], timeFormatter);
                 Deadline newTask = new Deadline(task, date, time);
-                System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Got it. I've added this task:\n"
-                        + ChitChatBot.indentation + "  " + newTask
-                        + "\n" + ChitChatBot.indentation + "Now you have "
+                System.out.println(Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
+                        + Ui.indentation + "  " + newTask
+                        + "\n" + Ui.indentation + "Now you have "
                         + Task.getNoOfActivity() + " tasks in the list.\n"));
                 storage.appendToFile(newTask.toString());
                 //ChitChatBot.appendToFile(newTask.toString(), file);
@@ -66,18 +66,18 @@ public class Deadline extends Task {
                 LocalDate by = LocalDate.parse(inputArr[byIndex + 1], formatter);
 
                 Deadline newTask = new Deadline(task, by);
-                System.out.println(ChitChatBot.printChat(ChitChatBot.indentation + "Got it. I've added this task:\n"
-                        + ChitChatBot.indentation + "  " + newTask
-                        + "\n" + ChitChatBot.indentation + "Now you have "
+                System.out.println(Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
+                        + Ui.indentation + "  " + newTask
+                        + "\n" + Ui.indentation + "Now you have "
                         + Task.getNoOfActivity() + " tasks in the list.\n"));
                 storage.appendToFile(newTask.toString());
                 //ChitChatBot.appendToFile(newTask.toString(), file);
             }
 
         } catch (MissingParameterException e) {
-            System.out.println(ChitChatBot.printChat(e.getMessage()));
+            System.out.println(Ui.printChat(e.getMessage()));
         } catch (DateTimeException e1) {
-            System.out.println(ChitChatBot.printChat("    ERROR: Incorrect format, " +
+            System.out.println(Ui.printChat("    ERROR: Incorrect format, " +
                     "please ensure the correct format is used:\n" +
                     "    deadline <Description> /by dd/mm/yyyy\n" +
                     "    OR deadline <Description /by dd/mm/yyyy HHmm\n"));

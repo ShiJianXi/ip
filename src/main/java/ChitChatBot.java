@@ -10,7 +10,7 @@ import java.util.*;
 
 
 public class ChitChatBot {
-    public static String indentation = "    ";
+//    public static String indentation = "    ";
 
     public static void main(String[] args) throws MissingParameterException {
 
@@ -24,9 +24,9 @@ public class ChitChatBot {
         storage.initStorage();
 
         //Greet the user
-        System.out.println(printChat(indentation + "Hello! I'm "
+        System.out.println(Ui.printChat(Ui.indentation + "Hello! I'm "
                 + name + "\n"
-                + indentation + "What can i do for you?" + "\n"));
+                + Ui.indentation + "What can i do for you?" + "\n"));
 
         //Takes in user input
         while (sc.hasNext()) {
@@ -38,17 +38,17 @@ public class ChitChatBot {
             try {
                 action = Action.valueOf(inputArr[0]);
             } catch (IllegalArgumentException e) {
-                System.out.println(printChat(indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                        + indentation + "Please use the correct queries:\n"
-                        + indentation + "todo <description>\n"
-                        + indentation + "deadline <description> /by <Date/Time>\n"
-                        + indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
-                        + indentation + "or list to show all the task\n"));
+                System.out.println(Ui.printChat(Ui.indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+                        + Ui.indentation + "Please use the correct queries:\n"
+                        + Ui.indentation + "todo <description>\n"
+                        + Ui.indentation + "deadline <description> /by <Date/Time>\n"
+                        + Ui.indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
+                        + Ui.indentation + "or list to show all the task\n"));
             }
 
             if (action == Action.bye) {
 
-                System.out.println(printChat(indentation
+                System.out.println(Ui.printChat(Ui.indentation
                         + "Bye. Hope to see you again soon!\n"));
                 break;
 
@@ -84,11 +84,12 @@ public class ChitChatBot {
         }
     }
 
-    //Format for printing of message
-    public static String printChat(String message) {
-        String line = "_____________________________________________________";
-        String indentation = "    ";
-        return String.format(indentation + line + "\n" + "%s" + indentation + line, message);
-    }
+
+//    //Format for printing of message
+//    public static String printChat(String message) {
+//        String line = "_____________________________________________________";
+//        String indentation = "    ";
+//        return String.format(indentation + line + "\n" + "%s" + indentation + line, message);
+//    }
 
 }
