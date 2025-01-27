@@ -1,3 +1,13 @@
+package chitchatbot.command;
+
+import chitchatbot.Action;
+import chitchatbot.storage.Storage;
+import chitchatbot.task.Deadline;
+import chitchatbot.task.Event;
+import chitchatbot.task.Task;
+import chitchatbot.task.Todo;
+import chitchatbot.ui.Ui;
+
 public class Parser {
     private Action action;
     private String[] inputArr;

@@ -1,4 +1,4 @@
-# ChitChatBot User Guide
+# chitchatbot.ChitChatBot User Guide
 
 // Update the title above to match the actual product name
 

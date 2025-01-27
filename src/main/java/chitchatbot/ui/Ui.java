@@ -1,3 +1,5 @@
+package chitchatbot.ui;
+
 public class Ui {
 
     //Format for printing of message
@@ -11,7 +13,7 @@ public class Ui {
 
     public static void greetUser() {
         System.out.println(Ui.printChat(Ui.indentation + "Hello! I'm "
-                + "ChitChatBot" + "\n"
+                + "chitchatbot.ChitChatBot" + "\n"
                 + Ui.indentation + "What can i do for you?" + "\n"));
     }
 }

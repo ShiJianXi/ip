@@ -1,4 +1,9 @@
-import java.io.File;
+package chitchatbot.task;
+
+import chitchatbot.exception.MissingParameterException;
+import chitchatbot.storage.Storage;
+import chitchatbot.ui.Ui;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -64,7 +69,7 @@ public class Event extends Task {
                     + Ui.indentation + "Now you have "
                     + Task.getNoOfActivity() + " tasks in the list.\n"));
 
-            //ChitChatBot.appendToFile(newTask.toString(), file);
+            //chitchatbot.ChitChatBot.appendToFile(newTask.toString(), file);
             storage.appendToFile(newTask.toString());
 
         } catch (MissingParameterException e) {

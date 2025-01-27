@@ -1,8 +1,13 @@
+package chitchatbot.task;
+
+import chitchatbot.exception.AlreadyMarkedException;
+import chitchatbot.exception.MissingParameterException;
+import chitchatbot.ui.Ui;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class Task {
@@ -35,7 +40,7 @@ public class Task {
         try {
             if (inputArr.length < 2) {
                 throw new MissingParameterException(Ui.indentation + "ERROR: Missing parameters\n"
-                        + Ui.indentation + "Please ensure the correct format is used: mark <Task Number>\n");
+                        + Ui.indentation + "Please ensure the correct format is used: mark <chitchatbot.task.Task Number>\n");
             }
             int index = Integer.parseInt(inputArr[1]) - 1;
 
@@ -89,7 +94,7 @@ public class Task {
             if (inputArr.length < 2) {
                 throw new MissingParameterException(Ui.indentation + "ERROR: Missing parameters\n"
                         + Ui.indentation + "Please ensure the correct format is used: " +
-                        "unmark <Task Number>\n");
+                        "unmark <chitchatbot.task.Task Number>\n");
             }
             int index = Integer.parseInt(inputArr[1]) - 1;
 
@@ -152,7 +157,7 @@ public class Task {
             if (inputArr.length > 2) {
                 throw new MissingParameterException(Ui.printChat(Ui.indentation
                         + "ERROR: Incorrect format for delete queries:\n"
-                        + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+                        + Ui.indentation + "Please ensure the correct format is used: delete <chitchatbot.task.Task number>\n"));
             }
 
             int index = Integer.parseInt(inputArr[1]) - 1;
@@ -173,13 +178,13 @@ public class Task {
             System.out.println("ERROR: Unable to read file");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(Ui.printChat(Ui.indentation + "ERROR: Missing parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+                    + Ui.indentation + "Please ensure the correct format is used: delete <chitchatbot.task.Task number>\n"));
         } catch (IndexOutOfBoundsException e) {
             System.out.println(Ui.printChat(Ui.indentation + "ERROR: This task doesn't exist\n"
                     + Ui.indentation + "You can only delete an existing task\n"));
         } catch (NumberFormatException e) {
             System.out.println(Ui.printChat(Ui.indentation + "ERROR: Wrong parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+                    + Ui.indentation + "Please ensure the correct format is used: delete <chitchatbot.task.Task number>\n"));
         } catch (MissingParameterException e) {
             System.out.println(e.getMessage());
         }

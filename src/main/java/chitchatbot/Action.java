@@ -1,3 +1,5 @@
+package chitchatbot;
+
 public enum Action {
     bye,
     list,
