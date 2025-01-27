@@ -1,3 +1,10 @@
+package chitchatbot;
+
+import chitchatbot.command.Parser;
+import chitchatbot.exception.MissingParameterException;
+import chitchatbot.storage.Storage;
+import chitchatbot.ui.Ui;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;

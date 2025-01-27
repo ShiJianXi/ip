@@ -1,4 +1,8 @@
-import java.io.File;
+package chitchatbot.task;
+
+import chitchatbot.exception.MissingParameterException;
+import chitchatbot.storage.Storage;
+import chitchatbot.ui.Ui;
 
 public class Todo extends Task {
 
@@ -34,7 +38,7 @@ public class Todo extends Task {
                     + Task.getNoOfActivity() + " tasks in the list.\n"));
 
             storage.appendToFile(newTask.toString());
-            //ChitChatBot.appendToFile(newTask.toString(), file);
+            //chitchatbot.ChitChatBot.appendToFile(newTask.toString(), file);
         } catch (MissingParameterException e) {
             System.out.println(Ui.printChat(Ui.indentation + e.getMessage()));
         }

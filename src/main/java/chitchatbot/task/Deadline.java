@@ -1,4 +1,9 @@
-import java.io.File;
+package chitchatbot.task;
+
+import chitchatbot.exception.MissingParameterException;
+import chitchatbot.storage.Storage;
+import chitchatbot.ui.Ui;
+
 import java.time.DateTimeException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -60,7 +65,7 @@ public class Deadline extends Task {
                         + "\n" + Ui.indentation + "Now you have "
                         + Task.getNoOfActivity() + " tasks in the list.\n"));
                 storage.appendToFile(newTask.toString());
-                //ChitChatBot.appendToFile(newTask.toString(), file);
+                //chitchatbot.ChitChatBot.appendToFile(newTask.toString(), file);
             } else {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
                 LocalDate by = LocalDate.parse(inputArr[byIndex + 1], formatter);
@@ -71,7 +76,7 @@ public class Deadline extends Task {
                         + "\n" + Ui.indentation + "Now you have "
                         + Task.getNoOfActivity() + " tasks in the list.\n"));
                 storage.appendToFile(newTask.toString());
-                //ChitChatBot.appendToFile(newTask.toString(), file);
+                //chitchatbot.ChitChatBot.appendToFile(newTask.toString(), file);
             }
 
         } catch (MissingParameterException e) {
