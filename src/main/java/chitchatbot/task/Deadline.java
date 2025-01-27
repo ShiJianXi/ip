@@ -66,6 +66,7 @@ public class Deadline extends Task {
                         + Ui.indentation + "  " + newTask
                         + "\n" + Ui.indentation + "Now you have "
                         + Task.getNoOfActivity() + " tasks in the list.\n");
+                storage.appendToFile(newTask.toString());
                 return result;
             } else {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");

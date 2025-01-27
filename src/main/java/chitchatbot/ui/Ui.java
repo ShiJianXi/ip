@@ -13,7 +13,7 @@ public class Ui {
 
     public static void greetUser() {
         System.out.println(Ui.printChat(Ui.indentation + "Hello! I'm "
-                + "chitchatbot.ChitChatBot" + "\n"
+                + "ChitChatBot" + "\n"
                 + Ui.indentation + "What can i do for you?" + "\n"));
     }
 }

@@ -55,8 +55,15 @@ public class Parser {
 
         } else if (this.action == Action.todo) {
 
-            String result = Todo.createToDo(this.inputArr, this.storage);
-            System.out.println(result);
+            String result = "";
+            try {
+                result = Todo.createToDo(this.inputArr, this.storage);
+                System.out.println(result);
+            } catch (MissingParameterException e) {
+                //System.out.println("test");
+                //System.out.println(e.getMessage());
+                System.out.println(Ui.printChat(Ui.indentation + e.getMessage()));
+            }
 
         } else if (this.action == Action.deadline) {
 
