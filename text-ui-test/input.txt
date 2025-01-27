@@ -67,6 +67,3 @@ delete 7
 delete 1
 list
 
-
-
-
