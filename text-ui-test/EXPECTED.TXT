@@ -205,52 +205,42 @@
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Missing parameters
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
     _____________________________________________________
-
     _____________________________________________________
     ERROR: Incorrect format
     Please ensure the correct format is used: event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm
