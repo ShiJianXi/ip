@@ -28,8 +28,9 @@ public class Event extends Task {
     }
 
     //A method to create an event task
-    public static void createEvent(String[] inputArr, Storage storage) {
+    public static String createEvent(String[] inputArr, Storage storage) {
         //Check for the various exceptions and  throw an exception when required
+        String result = "";
         try {
             if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/from")
                     || !Arrays.asList(inputArr).contains("/to")
@@ -64,13 +65,18 @@ public class Event extends Task {
 
             Event newTask = new Event(task, fromDate, fromTime, toDate, toTime);
 
-            System.out.println(Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                    + Ui.indentation + "  " + newTask + "\n"
-                    + Ui.indentation + "Now you have "
-                    + Task.getNoOfActivity() + " tasks in the list.\n"));
+//            System.out.println(Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
+//                    + Ui.indentation + "  " + newTask + "\n"
+//                    + Ui.indentation + "Now you have "
+//                    + Task.getNoOfActivity() + " tasks in the list.\n"));
 
             //chitchatbot.ChitChatBot.appendToFile(newTask.toString(), file);
             storage.appendToFile(newTask.toString());
+            result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
+                    + Ui.indentation + "  " + newTask + "\n"
+                    + Ui.indentation + "Now you have "
+                    + Task.getNoOfActivity() + " tasks in the list.\n");
+            return result;
 
         } catch (MissingParameterException e) {
             System.out.println(Ui.printChat(e.getMessage()));
@@ -79,6 +85,7 @@ public class Event extends Task {
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n"));
         }
+        return result;
     }
 
     @Override

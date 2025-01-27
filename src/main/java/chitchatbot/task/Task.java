@@ -35,8 +35,8 @@ public class Task {
     }
 
 
-    public static void markAsDone(Path path, String[] inputArr) {
-
+    public static String markAsDone(Path path, String[] inputArr) {
+        String result = "";
         try {
             if (inputArr.length < 2) {
                 throw new MissingParameterException(Ui.indentation + "ERROR: Missing parameters\n"
@@ -60,8 +60,11 @@ public class Task {
 
             Files.write(path, lines);
 
-            System.out.println(Ui.printChat(Ui.indentation + "Nice! I've marked this task as done:\n"
-                    + Ui.indentation + "  " + newString + "\n"));
+//            System.out.println(Ui.printChat(Ui.indentation + "Nice! I've marked this task as done:\n"
+//                    + Ui.indentation + "  " + newString + "\n"));
+            result = Ui.printChat(Ui.indentation + "Nice! I've marked this task as done:\n"
+                    + Ui.indentation + "  " + newString + "\n");
+            return result;
 
         } catch (FileNotFoundException e) {
             System.out.println("ERROR: File not found");
@@ -87,6 +90,7 @@ public class Task {
         } catch (MissingParameterException e) {
             System.out.println(Ui.printChat(e.getMessage()));
         }
+        return result;
     }
 
     public static void markAsNotDone(Path path, String[] inputArr) {
