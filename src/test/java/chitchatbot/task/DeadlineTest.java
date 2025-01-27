@@ -35,6 +35,21 @@ public class DeadlineTest {
     }
 
     @Test
+    public void createDeadline_withoutTime_success() throws MissingParameterException {
+        String[] inputArr = new String[] {"deadline", "test without time", "/by", "27/01/2025"};
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
+        Deadline newTask = new Deadline("test without time ", LocalDate.parse("27/01/2025", dateFormatter));
+
+        String expected = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
+                + Ui.indentation + "  " + newTask
+                + "\n" + Ui.indentation + "Now you have "
+                + (Task.getNoOfActivity() + 1) + " tasks in the list.\n");
+
+        assertEquals(expected, Deadline.createDeadline(inputArr, storage));
+    }
+
+    @Test
     public void createDeadline_missingDescription_exceptionThrown() {
         try {
             String[] inputArr = new String[] {"deadline"};

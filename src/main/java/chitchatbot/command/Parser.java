@@ -79,8 +79,14 @@ public class Parser {
 
         } else if (this.action == Action.event) {
 
-            String result = Event.createEvent(this.inputArr, this.storage);
-            System.out.println(result);
+            String result = "";
+            try {
+                result = Event.createEvent(this.inputArr, this.storage);
+                System.out.println(result);
+            } catch (MissingParameterException e) {
+                System.out.println(Ui.printChat(e.getMessage()));
+            }
+
 
         } else if (this.action == Action.delete) {
 

@@ -38,6 +38,5 @@ public class TodoTest {
                     "    Please ensure the correct format is used: todo <Description>\n";
             assertEquals(expected, e.getMessage());
         }
-        
     }
 }
