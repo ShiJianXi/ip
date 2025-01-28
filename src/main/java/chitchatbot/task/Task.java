@@ -39,7 +39,7 @@ public class Task {
 
         String result = "";
         if (inputArr.length < 2) {
-            throw new MissingParameterException(Ui.indentation + "ERROR: Missing parameters\n"
+            throw new MissingParameterException(Ui.indentation + "Missing parameters error: Missing parameters\n"
                     + Ui.indentation + "Please ensure the correct format is used: mark <Task Number>\n");
         }
 
@@ -69,9 +69,9 @@ public class Task {
             return result;
 
         } catch (FileNotFoundException e) {
-            System.out.println("ERROR: File not found");
+            System.out.println("File error: File not found");
         } catch (IOException e) {
-            System.out.println("ERROR: Unable to read file");
+            System.out.println("Input error: Unable to read file");
         } catch (AlreadyMarkedException e) {
             System.out.println(Ui.printChat(e.getMessage()));
         } catch (IndexOutOfBoundsException e) {
@@ -96,7 +96,7 @@ public class Task {
     public static String markAsNotDone(Path path, String[] inputArr) throws MissingParameterException {
 
         if (inputArr.length != 2) {
-            throw new MissingParameterException(Ui.indentation + "ERROR: Missing parameters\n"
+            throw new MissingParameterException(Ui.indentation + "Missing parameters error: Missing parameters\n"
                     + Ui.indentation + "Please ensure the correct format is used: " +
                     "unmark <Task Number>\n");
         }
@@ -129,9 +129,9 @@ public class Task {
             return result;
 
         } catch (FileNotFoundException e) {
-            System.out.println("ERROR: File not found");
+            System.out.println("File error: File not found");
         } catch (IOException e) {
-            System.out.println("ERROR: Unable to read file");
+            System.out.println("Input error: Unable to read file");
         } catch (AlreadyMarkedException e) {
             System.out.println(Ui.printChat(e.getMessage()));
         } catch (IndexOutOfBoundsException e) {
@@ -189,17 +189,17 @@ public class Task {
             return result;
 
         } catch (FileNotFoundException e) {
-            System.out.println("ERROR: File not found");
+            System.out.println("File error: File not found");
         } catch (IOException e) {
-            System.out.println("ERROR: Unable to read file");
+            System.out.println("Input error: Unable to read file");
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "ERROR: Missing parameters\n"
+            System.out.println(Ui.printChat(Ui.indentation + "Missing parameters error: Missing parameters\n"
                     + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "ERROR: This task doesn't exist\n"
+            System.out.println(Ui.printChat(Ui.indentation + "Missing parameters error: This task doesn't exist\n"
                     + Ui.indentation + "You can only delete an existing task\n"));
         } catch (NumberFormatException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "ERROR: Wrong parameters\n"
+            System.out.println(Ui.printChat(Ui.indentation + "Missing parameters error: Wrong parameters\n"
                     + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
         }
         return result;

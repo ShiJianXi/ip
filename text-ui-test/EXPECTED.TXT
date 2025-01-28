@@ -139,11 +139,11 @@
     _____________________________________________________
 
     _____________________________________________________
-    ERROR: Missing parameters
+    Missing parameters error: Missing parameters
     Please ensure the correct format is used: mark <Task Number>
     _____________________________________________________
     _____________________________________________________
-    ERROR: Missing parameters
+    Missing parameters error: Missing parameters
     Please ensure the correct format is used: unmark <Task Number>
     _____________________________________________________
     _____________________________________________________
@@ -316,17 +316,17 @@
     Please ensure the correct format is used: delete <Task number>
     _____________________________________________________
     _____________________________________________________
-    ERROR: Wrong parameters
+    Missing parameters error: Wrong parameters
     Please ensure the correct format is used: delete <Task number>
     _____________________________________________________
 
     _____________________________________________________
-    ERROR: This task doesn't exist
+    Missing parameters error: This task doesn't exist
     You can only delete an existing task
     _____________________________________________________
 
     _____________________________________________________
-    ERROR: This task doesn't exist
+    Missing parameters error: This task doesn't exist
     You can only delete an existing task
     _____________________________________________________
 
