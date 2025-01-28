@@ -76,19 +76,19 @@ public class Task {
             System.out.println(Ui.printChat(e.getMessage()));
         } catch (IndexOutOfBoundsException e) {
             if (noOfActivity == 0) {
-                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, no task in the list, " +
-                        "please add task first\n"));
+                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, no task in the list, "
+                        + "please add task first\n"));
             } else if (noOfActivity == 1) {
-                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, " +
-                        "only 1 task in the list\n"));
+                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
+                        + "only 1 task in the list\n"));
             } else {
-                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, " +
-                        "please pick a task from 1 to "
+                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
+                        + "please pick a task from 1 to "
                         + Task.getNoOfActivity() + " to mark.\n"));
             }
         } catch (NumberFormatException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "Number Format error: " +
-                    "Please enter the number of the task that you want to mark\n"));
+            System.out.println(Ui.printChat(Ui.indentation + "Number Format error: "
+                    + "Please enter the number of the task that you want to mark\n"));
         }
         return result;
     }
@@ -97,8 +97,8 @@ public class Task {
 
         if (inputArr.length != 2) {
             throw new MissingParameterException(Ui.indentation + "Missing parameters error: Missing parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: " +
-                    "unmark <Task Number>\n");
+                    + Ui.indentation + "Please ensure the correct format is used: "
+                    + "unmark <Task Number>\n");
         }
 
         String result = "";
@@ -136,18 +136,18 @@ public class Task {
             System.out.println(Ui.printChat(e.getMessage()));
         } catch (IndexOutOfBoundsException e) {
             if (Task.getNoOfActivity() == 0) {
-                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, no task in the list, " +
-                        "please add and mark task first\n"));
+                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, no task in the list, "
+                        + "please add and mark task first\n"));
             } else if (Task.getNoOfActivity() == 1) {
-                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, " +
-                        "only 1 task in the list\n"));
+                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
+                        + "only 1 task in the list\n"));
             } else {
-                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, " +
-                        "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.\n"));
+                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
+                        + "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.\n"));
             }
         } catch (NumberFormatException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "Number format error: " +
-                    "Please enter the number of the task that you want to unmark\n"));
+            System.out.println(Ui.printChat(Ui.indentation + "Number format error: "
+                    + "Please enter the number of the task that you want to unmark\n"));
         }
         return result;
     }
@@ -182,8 +182,8 @@ public class Task {
 //                    Ui.indentation + "  " + toRemove + "\n"
 //                    + Ui.indentation + "Now you have " + Task.getNoOfActivity()
 //                    + " tasks in the list.\n"));
-            result = Ui.printChat(Ui.indentation + "Noted. I've removed this task:\n" +
-                    Ui.indentation + "  " + toRemove + "\n"
+            result = Ui.printChat(Ui.indentation + "Noted. I've removed this task:\n"
+                    + Ui.indentation + "  " + toRemove + "\n"
                     + Ui.indentation + "Now you have " + Task.getNoOfActivity()
                     + " tasks in the list.\n");
             return result;

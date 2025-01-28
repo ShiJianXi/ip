@@ -17,7 +17,7 @@ public class Storage {
     private Path path;
     private File chatFile;
 
-    public Storage (Path path) {
+    public Storage(Path path) {
         this.path = path;
         this.chatFile = new File(String.valueOf(path));
     }
