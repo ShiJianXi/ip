@@ -16,12 +16,31 @@ public class Parser {
     private String[] inputArr;
     private Storage storage;
 
+    /**
+     * Constructs the parser to parse the user's input
+     * The user will input in a regular String and the string will be split into a String[]
+     * The data will be stored in a data folder under chatbot.txt within the application directory.
+     *
+     * @param inputArr A String[] split from user's input.
+     * @param storage The location that the chatbot.txt will be stored.
+     */
     public Parser(String[] inputArr, Storage storage) {
         this.storage = storage;
         this.inputArr = inputArr;
         this.action = null;
     }
 
+    /**
+     * This method prints to the user's screen the chat ui based on the user's input.
+     *
+     * @throws IllegalArgumentException if the user input an invalid command.
+     * @see Action
+     * @see Storage
+     * @see Deadline
+     * @see Event
+     * @see Task
+     * @see Todo
+     */
     public void parseCommand() {
         try {
             this.action = Action.valueOf(this.inputArr[0]);
