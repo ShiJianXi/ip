@@ -3,6 +3,7 @@ package chitchatbot.task;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -18,35 +19,39 @@ public class DeadlineTest {
     Path path = Paths.get("data", "chat.txt");
     Storage storage = new Storage(path);
 
+    @BeforeEach
+    public void initStorage() {
+        storage.initStorage();
+    }
+
     @Test
     public void createDeadline_success() throws MissingParameterException {
         String[] inputArr = new String[] {"deadline", "test", "/by", "27/01/2025", "1800"};
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
-        Deadline newTask = new Deadline("test ", LocalDate.parse("27/01/2025",
-                dateFormatter), LocalTime.parse("1800", timeFormatter));
 
+        String actual = Deadline.createDeadline(inputArr, storage);
         String expected = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                + Ui.indentation + "  " + newTask
+                + Ui.indentation + "  " + "[D][ ] test (by: Jan 27 2025 18:00)"
                 + "\n" + Ui.indentation + "Now you have "
-                + (Task.getNoOfActivity() + 1) + " tasks in the list.\n");
+                + Task.getNoOfActivity() + " tasks in the list.\n");
 
-        assertEquals(expected, Deadline.createDeadline(inputArr, storage));
+        assertEquals(expected, actual);
+        String[] deleteInput = new String[] {"delete", String.valueOf(Task.getNoOfActivity())};
+        Task.deleteTask(path, deleteInput);
     }
 
     @Test
     public void createDeadline_withoutTime_success() throws MissingParameterException {
         String[] inputArr = new String[] {"deadline", "test without time", "/by", "27/01/2025"};
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
 
-        Deadline newTask = new Deadline("test without time ", LocalDate.parse("27/01/2025", dateFormatter));
-
+        String actual = Deadline.createDeadline(inputArr, storage);
         String expected = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                + Ui.indentation + "  " + newTask
+                + Ui.indentation + "  " + "[D][ ] test without time (by: Jan 27 2025)"
                 + "\n" + Ui.indentation + "Now you have "
-                + (Task.getNoOfActivity() + 1) + " tasks in the list.\n");
+                + Task.getNoOfActivity() + " tasks in the list.\n");
 
-        assertEquals(expected, Deadline.createDeadline(inputArr, storage));
+        assertEquals(expected, actual);
+        String[] deleteInput = new String[] {"delete", String.valueOf(Task.getNoOfActivity())};
+        Task.deleteTask(path, deleteInput);
     }
 
     @Test
@@ -56,7 +61,7 @@ public class DeadlineTest {
             Deadline.createDeadline(inputArr, storage);
             fail();
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: There is missing parameters, " +
+            String expected = "    Missing parameter error: There is missing parameters, " +
                     "please ensure the correct format is used:\n" +
                     "    deadline <Description> /by dd/mm/yyyy\n" +
                     "    OR deadline <Description /by dd/mm/yyyy HHmm\n";
@@ -71,7 +76,7 @@ public class DeadlineTest {
             Deadline.createDeadline(inputArr, storage);
             fail();
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: There is missing parameters, " +
+            String expected = "    Missing parameter error: There is missing parameters, " +
                     "please ensure the correct format is used:\n" +
                     "    deadline <Description> /by dd/mm/yyyy\n" +
                     "    OR deadline <Description /by dd/mm/yyyy HHmm\n";
@@ -86,7 +91,7 @@ public class DeadlineTest {
             Deadline.createDeadline(inputArr, storage);
             fail();
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: There is missing parameters, " +
+            String expected = "    Missing parameter error: There is missing parameters, " +
                     "please ensure the correct format is used:\n" +
                     "    deadline <Description> /by dd/mm/yyyy\n" +
                     "    OR deadline <Description /by dd/mm/yyyy HHmm\n";

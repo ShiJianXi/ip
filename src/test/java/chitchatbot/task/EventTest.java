@@ -3,6 +3,7 @@ package chitchatbot.task;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,23 +19,25 @@ public class EventTest {
     Path path = Paths.get("data", "chat.txt");
     Storage storage = new Storage(path);
 
+    @BeforeEach
+    public void initStorage() {
+        storage.initStorage();
+    }
+
     @Test
     public void createEvent_success() throws MissingParameterException {
         String[] inputArr = new String[] {"event", "eventTest",
                 "/from", "28/01/2025", "1800",
                 "/to", "29/01/2025", "1900"};
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
-        LocalDate fromDate = LocalDate.parse("28/01/2025", dateFormatter);
-        LocalTime fromTime = LocalTime.parse("1800", timeFormatter);
-        LocalDate toDate = LocalDate.parse("29/01/2025", dateFormatter);
-        LocalTime toTime = LocalTime.parse("1900", timeFormatter);
-        Event newTask = new Event("eventTest ", fromDate, fromTime, toDate, toTime);
+        String actual = Event.createEvent(inputArr, storage);
         String expected = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                + Ui.indentation + "  " + newTask + "\n"
+                + Ui.indentation + "  " + "[E][ ] eventTest (from: Jan 28 2025 18:00 to: Jan 29 2025 19:00)" + "\n"
                 + Ui.indentation + "Now you have "
-                + (Task.getNoOfActivity() + 1) + " tasks in the list.\n");
-        assertEquals(expected, Event.createEvent(inputArr, storage));
+                + Task.getNoOfActivity() + " tasks in the list.\n");
+        assertEquals(expected, actual);
+
+        String[] deleteInput = new String[] {"delete", String.valueOf(Task.getNoOfActivity())};
+        Task.deleteTask(path, deleteInput);
     }
 
     @Test
@@ -42,8 +45,9 @@ public class EventTest {
         String[] inputArr = new String[] {"event"};
         try {
             String result = Event.createEvent(inputArr, storage);
+            fail();
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: Missing parameters\n" +
+            String expected = "    Missing parameters error: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
             assertEquals(expected, e.getMessage());
@@ -56,7 +60,7 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: Missing parameters\n" +
+            String expected = "    Missing parameters error: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
             assertEquals(expected, e.getMessage());
@@ -69,7 +73,7 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: Missing parameters\n" +
+            String expected = "    Missing parameters error: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
             assertEquals(expected, e.getMessage());
@@ -82,7 +86,7 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: Missing parameters\n" +
+            String expected = "    Missing parameters error: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
             assertEquals(expected, e.getMessage());
@@ -95,7 +99,7 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: Missing parameters\n" +
+            String expected = "    Missing parameters error: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
             assertEquals(expected, e.getMessage());
@@ -108,7 +112,7 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: Missing parameters\n" +
+            String expected = "    Missing parameters error: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
             assertEquals(expected, e.getMessage());
@@ -121,7 +125,7 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    ERROR: Missing parameters\n" +
+            String expected = "    Missing parameters error: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
             assertEquals(expected, e.getMessage());
