@@ -14,11 +14,27 @@ import chitchatbot.ui.Ui;
 public class Find {
     private Storage storage;
     private File chatFile;
+
+    /**
+     * Constructs the Find object with the given storage.
+     * This storage will then be used to access the txt file to get the data.
+     *
+     * @param storage
+     * @see Storage
+     */
     public Find(Storage storage) {
         this.storage = storage;
         this.chatFile = storage.getFile();
     }
 
+    /**
+     * Returns an ArrayList<String> that contains all the similar task as of the given words.
+     * The given keywords will be in the form of ArrayList<String>.
+     * <p>
+     * An empty ArrayList<String> will be returned if no similar task within the txt file.
+     * @param description The descriptions in the form of ArrayList<String>.
+     * @return ArrayList<String> of all the similar task.
+     */
     public ArrayList<String> findSimilarTask(ArrayList<String> description) {
         ArrayList<String> originalDescription = new ArrayList<>(List.copyOf(description));
         ArrayList<String> result = new ArrayList<>();
@@ -48,6 +64,17 @@ public class Find {
         return result;
     }
 
+    /**
+     * Returns the String of all the similar task in the chat UI format
+     * which will be printed to the user's screen.
+     * <p>
+     * A String in the chat UI format indicating no similar task found will be printed if no similar task
+     * is found within the txt file.
+     * @param inputArr The user's input in the form of String[]
+     * @return A String showing all the similar task based on the keywords in the chat UI format.
+     * @throws MissingParameterException If the user's input has mising parameters
+     * @see Ui
+     */
     public String executeFindCommand(String[] inputArr) throws MissingParameterException {
         if (inputArr.length < 2) {
             throw new MissingParameterException(Ui.printChat(Ui.indentation
