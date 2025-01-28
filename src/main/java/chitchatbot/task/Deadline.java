@@ -17,7 +17,7 @@ public class Deadline extends Task {
     private boolean containTime = false;
 
     /**
-     * Construct a new Deadline task with the given name and date.
+     * Constructs a new Deadline task with the given name and date.
      *
      * @param name the description of the Deadline, in String
      * @param by the deadline of the task, in LocalDate, in the dd/MM/yyyy format.
@@ -29,7 +29,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Construct a new Deadline task with the given name, date and time.
+     * Constructs a new Deadline task with the given name, date and time.
      *
      * @param name the description of the Deadline, in String
      * @param by the deadline of the task, in LocalDate, in the dd/MM/yyyy format.
@@ -44,7 +44,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return the String to be printed to the user's screen using chat UI.
+     * Returns the String to be printed to the user's screen using chat UI.
      * If an exception is catch during execution, an empty string will be returned.
      *
      * @param inputArr The user's input that was split from a String into a String[]

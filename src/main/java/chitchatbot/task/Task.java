@@ -189,7 +189,7 @@ public class Task {
     }
 
     /**
-     * Return a String that will be printed to the user's screen
+     * Returns a String that will be printed to the user's screen
      * when the user inputs a delete command.
      * <p>
      * An empty String will be returned if an exception is catch during execution.

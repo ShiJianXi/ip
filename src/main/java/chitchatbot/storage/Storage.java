@@ -29,7 +29,7 @@ public class Storage {
     }
 
     /**
-     * Initialise the chatbot.txt to read through all the text in the txt file
+     * Initialises the chatbot.txt to read through all the text in the txt file
      * and reinitialise the number of task based on the number of activities in the txt file.
      *
      * @see Task

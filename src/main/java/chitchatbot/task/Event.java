@@ -18,7 +18,7 @@ public class Event extends Task {
     private LocalTime toTime;
 
     /**
-     * Construct an Event task with the given name, date and time.
+     * Constructs an Event task with the given name, date and time.
      *
      * @param name The description of the event, in String.
      * @param fromDate The starting date of the event, in LocalDate, in the dd/MM/yyyy format.
@@ -38,7 +38,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return the String to be printed to the user's screen using chat UI.
+     * Returns the String to be printed to the user's screen using chat UI.
      * When an exception is catch during execution, an empty String will be returned.
      *
      * @param inputArr The user's input that will be split into a String[]

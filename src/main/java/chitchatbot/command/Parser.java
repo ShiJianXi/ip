@@ -32,7 +32,7 @@ public class Parser {
     }
 
     /**
-     * This method prints to the user's screen the chat ui based on the user's input.
+     * Prints to the user's screen the chat ui based on the user's input.
      *
      * @throws IllegalArgumentException if the user input an invalid command.
      * @see Action
