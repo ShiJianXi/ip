@@ -6,13 +6,31 @@ import chitchatbot.ui.Ui;
 
 public class Todo extends Task {
 
+    /**
+     * Constructs a Todo test with the given name.
+     *
+     * @param name The description of the Task
+     * @see Task
+     */
     public Todo(String name) {
         super(name);
     }
 
     String status = "T";
 
-    //A method to create a todo task
+    /**
+     * Returns the String to be printed to the user's screen
+     * when the user inputs a Todo command.
+     * <p>
+     * An empty String will be returned if an exception is catch during execution.
+     *
+     * @param inputArr The user's input that will be split into a String[].
+     * @param storage The storage that handles the txt file that stores the user's activities.
+     * @return A String to be printed to the user's screen using chat UI.
+     * @throws MissingParameterException If the user's input has missing parameters.
+     * @see Ui
+     * @see Storage
+     */
     public static String createToDo(String[] inputArr, Storage storage) throws MissingParameterException {
         //Check if the user missed out the description of the test
         //Throw exception when required

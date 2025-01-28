@@ -16,11 +16,26 @@ public class Deadline extends Task {
     protected LocalTime time;
     private boolean containTime = false;
 
+    /**
+     * Construct a new Deadline task with the given name and date.
+     *
+     * @param name the description of the Deadline, in String
+     * @param by the deadline of the task, in LocalDate, in the dd/MM/yyyy format.
+     * @see Task
+     */
     public Deadline(String name, LocalDate by) {
         super(name);
         this.by = by;
     }
 
+    /**
+     * Construct a new Deadline task with the given name, date and time.
+     *
+     * @param name the description of the Deadline, in String
+     * @param by the deadline of the task, in LocalDate, in the dd/MM/yyyy format.
+     * @param time the time the task is due, in LocalTime, in the hhMM format.
+     * @see Task
+     */
     public Deadline(String name, LocalDate by, LocalTime time) {
         super(name);
         this.by = by;
@@ -28,7 +43,17 @@ public class Deadline extends Task {
         this.containTime = true;
     }
 
-    //A method to create a new deadline task
+    /**
+     * Return the String to be printed to the user's screen using chat UI.
+     * If an exception is catch during execution, an empty string will be returned.
+     *
+     * @param inputArr The user's input that was split from a String into a String[]
+     * @param storage The storage where the text will be stored at.
+     * @return The String to be printed to the user's screen using chat UI.
+     * @throws MissingParameterException If the user's input has missing parameters
+     * @see Ui
+     * @see Storage
+     */
     public static String createDeadline(String[] inputArr, Storage storage) throws MissingParameterException {
         //Check for the various exception due to incorrect format for deadline queries
         //Throw exceptions when necessary

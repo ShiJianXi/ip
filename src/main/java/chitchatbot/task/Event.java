@@ -17,6 +17,16 @@ public class Event extends Task {
     private LocalDate toDate;
     private LocalTime toTime;
 
+    /**
+     * Construct an Event task with the given name, date and time.
+     *
+     * @param name The description of the event, in String.
+     * @param fromDate The starting date of the event, in LocalDate, in the dd/MM/yyyy format.
+     * @param fromTime The starting date of the event, in LocalTime, in the hhMM format.
+     * @param toDate The ending date of the event, in LocalDate, in the dd/MM/yyyy format.
+     * @param toTime The ending time of the event, in LocalTime, in the dd/MM/yyyy format.
+     * @see Task
+     */
     public Event(String name, LocalDate fromDate, LocalTime fromTime, LocalDate toDate, LocalTime toTime) {
         super(name);
 
@@ -27,7 +37,17 @@ public class Event extends Task {
 
     }
 
-    //A method to create an event task
+    /**
+     * Return the String to be printed to the user's screen using chat UI.
+     * When an exception is catch during execution, an empty String will be returned.
+     *
+     * @param inputArr The user's input that will be split into a String[]
+     * @param storage The storage where the data will be stored at.
+     * @return The String to be printed to the user's screen using chat UI.
+     * @throws MissingParameterException If the user's input has missing parameters.
+     * @see Ui
+     * @see Storage
+     */
     public static String createEvent(String[] inputArr, Storage storage) throws MissingParameterException {
         //Check for the various exceptions and  throw an exception when required
         if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/from")

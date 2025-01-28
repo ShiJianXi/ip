@@ -16,7 +16,11 @@ public class Task {
     private int index;
     private static int noOfActivity = 0;
 
-
+    /**
+     * Constructs a Task with the given name.
+     *
+     * @param name The description of the task.
+     */
     public Task(String name) {
 
         this.name = name;
@@ -34,7 +38,18 @@ public class Task {
         noOfActivity = value;
     }
 
-
+    /**
+     * Returns a String that will be printed to the user's screen
+     * using Chat UI to show the user's the task that is marked as done.
+     * <p>
+     * Will return an empty String if an exception is catch during execution.
+     *
+     * @param path The relative path of the txt file where the data is stored at.
+     * @param inputArr The user's input that is split into a String[].
+     * @return The String to be printed to the user's screen using chat UI.
+     * @throws MissingParameterException If the user's input has missing parameters.
+     * @see Ui
+     */
     public static String markAsDone(Path path, String[] inputArr) throws MissingParameterException {
 
         String result = "";
@@ -93,6 +108,18 @@ public class Task {
         return result;
     }
 
+    /**
+     * Returns a String that will be printed to the user's screen
+     * using Chat UI to show the user's the task that is marked as not done.
+     * <p>
+     * Will return an empty String if an exception is catch during execution.
+     *
+     * @param path The relative path of the txt file where the data is stored at.
+     * @param inputArr The user's input that is split into a String[].
+     * @return The String to be printed to the user's screen using chat UI.
+     * @throws MissingParameterException If the user's input has missing parameters.
+     * @see Ui
+     */
     public static String markAsNotDone(Path path, String[] inputArr) throws MissingParameterException {
 
         if (inputArr.length != 2) {
@@ -161,7 +188,18 @@ public class Task {
         return this.index;
     }
 
-    //A method to delete a task from the file
+    /**
+     * Return a String that will be printed to the user's screen
+     * when the user inputs a delete command.
+     * <p>
+     * An empty String will be returned if an exception is catch during execution.
+     *
+     * @param path The relative path for the text file will the data will be stored at.
+     * @param inputArr The user's input that is split into a String[].
+     * @return A String that will be printed to the user's screen using chat UI.
+     * @throws MissingParameterException If the user's input has missing parameters.
+     * @see Ui
+     */
     public static String deleteTask(Path path, String[] inputArr) throws MissingParameterException {
         if (inputArr.length != 2) {
             throw new MissingParameterException(Ui.printChat(Ui.indentation
