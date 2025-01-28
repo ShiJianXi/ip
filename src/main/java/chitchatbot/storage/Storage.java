@@ -17,12 +17,13 @@ public class Storage {
     private Path path;
     private File chatFile;
 
+
     /**
      * Constructs a storage class with the given relative path.
      *
      * @param path relative path where the chatbot.txt will be stored.
      */
-    public Storage (Path path) {
+    public Storage(Path path) {
         this.path = path;
         this.chatFile = new File(String.valueOf(path));
     }
