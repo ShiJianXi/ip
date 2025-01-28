@@ -105,7 +105,7 @@ public class TaskTest {
             Task.markAsDone(path, testInput);
             fail();
         } catch (MissingParameterException e){
-            String expected = Ui.indentation + "ERROR: Missing parameters\n"
+            String expected = Ui.indentation + "Missing parameters error: Missing parameters\n"
                     + Ui.indentation + "Please ensure the correct format is used: mark <Task Number>\n";
 
             assertEquals(expected, e.getMessage());
@@ -164,7 +164,7 @@ public class TaskTest {
     @Test
     public void markAsNotDone_missingParameters_exceptionThrown() {
         String[] testInput = new String[] {"unmark"};
-        String expected = Ui.indentation + "ERROR: Missing parameters\n"
+        String expected = Ui.indentation + "Missing parameters error: Missing parameters\n"
                 + Ui.indentation + "Please ensure the correct format is used: " +
                 "unmark <Task Number>\n";
         try {
