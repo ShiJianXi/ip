@@ -64,7 +64,7 @@ public class Storage {
 
             System.out.println(Ui.printChat(toPrint + "\n"));
         } catch (FileNotFoundException e) {
-            System.out.println("ERROR: File not found");
+            System.out.println("File error: File not found");
         }
     }
 

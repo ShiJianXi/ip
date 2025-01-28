@@ -1,12 +1,15 @@
 package chitchatbot.command;
 
 import chitchatbot.Action;
+import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.task.Deadline;
 import chitchatbot.task.Event;
 import chitchatbot.task.Task;
 import chitchatbot.task.Todo;
 import chitchatbot.ui.Ui;
+
+import java.util.Arrays;
 
 public class Parser {
     private Action action;
@@ -32,11 +35,10 @@ public class Parser {
         }
 
         if (action == Action.bye) {
-
             System.out.println(Ui.printChat(Ui.indentation
                     + "Bye. Hope to see you again soon!\n"));
             //break;
-            System.exit(0);
+            //System.exit(0);
 
         } else if (this.action == Action.list) {
 
@@ -44,27 +46,71 @@ public class Parser {
 
         } else if (this.action == Action.mark) {
 
-            Task.markAsDone(this.storage.getPath(), this.inputArr);
+            String result = "";
+            try {
+                result = Task.markAsDone(this.storage.getPath(), this.inputArr);
+                System.out.println(result);
+            } catch (MissingParameterException e) {
+                System.out.println(Ui.printChat(e.getMessage()));
+            }
+
 
         } else if (this.action == Action.unmark) {
 
-            Task.markAsNotDone(this.storage.getPath(), this.inputArr);
+            String result = "";
+            try {
+                result = Task.markAsNotDone(this.storage.getPath(), this.inputArr);
+                System.out.println(result);
+            } catch (MissingParameterException e) {
+                System.out.println(Ui.printChat(e.getMessage()));
+            }
+
 
         } else if (this.action == Action.todo) {
 
-            Todo.createToDo(this.inputArr, this.storage);
+            String result = "";
+            try {
+                result = Todo.createToDo(this.inputArr, this.storage);
+                System.out.println(result);
+            } catch (MissingParameterException e) {
+                //System.out.println("test");
+                //System.out.println(e.getMessage());
+                System.out.println(Ui.printChat(Ui.indentation + e.getMessage()));
+            }
 
         } else if (this.action == Action.deadline) {
 
-            Deadline.createDeadline(this.inputArr, this.storage);
+            String result = "";
+
+            try {
+                result = Deadline.createDeadline(this.inputArr, this.storage);
+            } catch (MissingParameterException e) {
+                System.out.println(Ui.printChat(e.getMessage()));
+            }
+
+            System.out.println(result);
 
         } else if (this.action == Action.event) {
 
-            Event.createEvent(this.inputArr, this.storage);
+            String result = "";
+            try {
+                result = Event.createEvent(this.inputArr, this.storage);
+                System.out.println(result);
+            } catch (MissingParameterException e) {
+                System.out.println(Ui.printChat(e.getMessage()));
+            }
+
 
         } else if (this.action == Action.delete) {
 
-            Task.deleteTask(this.storage.getPath(), this.inputArr);
+            String result = "";
+            try {
+                result = Task.deleteTask(this.storage.getPath(), this.inputArr);
+                System.out.println(result);
+            } catch (MissingParameterException e) {
+                System.out.println(e.getMessage());
+            }
+
 
         }
     }
