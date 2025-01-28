@@ -38,7 +38,7 @@ public class Parser {
             System.out.println(Ui.printChat(Ui.indentation
                     + "Bye. Hope to see you again soon!\n"));
             //break;
-            //System.exit(0);
+            System.exit(0);
 
         } else if (this.action == Action.list) {
 
