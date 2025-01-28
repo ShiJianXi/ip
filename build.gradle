@@ -28,11 +28,13 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    //mainClass.set("seedu.duke.Duke")
+    mainClass.set("chitchatbot.ChitChatBot")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    //archiveBaseName = "duke"
+    archiveBaseName = "chitchatbot"
     archiveClassifier = null
 }
 
