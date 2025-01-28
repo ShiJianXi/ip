@@ -48,7 +48,7 @@ public class Find {
         return result;
     }
 
-    public void executeFindCommand(String[] inputArr) throws MissingParameterException {
+    public String executeFindCommand(String[] inputArr) throws MissingParameterException {
         if (inputArr.length < 2) {
             throw new MissingParameterException(Ui.printChat(Ui.indentation
                     + "Missing parameters error: Please ensure the correct parameters is used:\n"
@@ -62,7 +62,8 @@ public class Find {
         ArrayList<String> similarTask = this.findSimilarTask(lookingFor);
 
         if (similarTask.isEmpty()) {
-            System.out.println(Ui.printChat(Ui.indentation + "No similar task found!\n"));
+            result.add(Ui.indentation + "No similar task found!\n");
+            return result.toString();
         } else {
             for (int i = 0; i < similarTask.size(); i++) {
                 if (i == similarTask.size() - 1) {
@@ -71,7 +72,7 @@ public class Find {
                     result.add(Ui.indentation + (i + 1) + "." + similarTask.get(i));
                 }
             }
-            System.out.println(Ui.printChat(result.toString()));
+            return result.toString();
         }
     }
 

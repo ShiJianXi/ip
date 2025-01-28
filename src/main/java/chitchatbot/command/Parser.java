@@ -134,7 +134,8 @@ public class Parser {
 
             Find find = new Find(storage);
             try {
-                find.executeFindCommand(inputArr);
+                String result = find.executeFindCommand(inputArr);
+                System.out.println(Ui.printChat(result));
             } catch (MissingParameterException e) {
                 System.out.println(e.getMessage());
             }
