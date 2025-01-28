@@ -9,7 +9,8 @@ import chitchatbot.task.Task;
 import chitchatbot.task.Todo;
 import chitchatbot.ui.Ui;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class Parser {
     private Action action;
@@ -110,7 +111,14 @@ public class Parser {
             } catch (MissingParameterException e) {
                 System.out.println(e.getMessage());
             }
+        } else if (this.action == Action.find) {
 
+            Find find = new Find(storage);
+            try {
+                find.executeFindCommand(inputArr);
+            } catch (MissingParameterException e) {
+                System.out.println(e.getMessage());
+            }
 
         }
     }
