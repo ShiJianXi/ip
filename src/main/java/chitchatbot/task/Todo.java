@@ -18,7 +18,7 @@ public class Todo extends Task {
         //Throw exception when required
         String result = "";
         if (inputArr.length < 2) {
-            throw new MissingParameterException("ERROR: The description of todo cannot be empty\n" +
+            throw new MissingParameterException("Missing parameters error: The description of todo cannot be empty\n" +
                     "    Please ensure the correct format is used: todo <Description>\n");
         }
 

@@ -34,7 +34,7 @@ public class Event extends Task {
                 || !Arrays.asList(inputArr).contains("/to")
                 || inputArr[1].equals("/from") || inputArr[1].equals("/to")
                 || Arrays.asList(inputArr).indexOf("/from") > Arrays.asList(inputArr).indexOf("/to")) {
-            throw new MissingParameterException("    ERROR: Missing parameters\n" +
+            throw new MissingParameterException("    Missing parameters error: Missing parameters\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n");
         }
@@ -73,7 +73,7 @@ public class Event extends Task {
             return result;
 
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
-            System.out.println(Ui.printChat("    ERROR: Incorrect format\n" +
+            System.out.println(Ui.printChat("    Wrong format error: Incorrect format\n" +
                     "    Please ensure the correct format is used: " +
                     "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n"));
         }
