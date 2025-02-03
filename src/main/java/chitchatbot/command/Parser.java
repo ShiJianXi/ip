@@ -9,9 +9,6 @@ import chitchatbot.task.Task;
 import chitchatbot.task.Todo;
 import chitchatbot.ui.Ui;
 
-import java.util.ArrayList;
-import java.util.StringJoiner;
-
 public class Parser {
     private Action action;
     private String[] inputArr;
@@ -93,8 +90,6 @@ public class Parser {
                 result = Todo.createToDo(this.inputArr, this.storage);
                 System.out.println(result);
             } catch (MissingParameterException e) {
-                //System.out.println("test");
-                //System.out.println(e.getMessage());
                 System.out.println(Ui.printChat(Ui.indentation + e.getMessage()));
             }
 

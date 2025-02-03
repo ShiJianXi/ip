@@ -77,8 +77,6 @@ public class Task {
 
             Files.write(path, lines);
 
-//            System.out.println(Ui.printChat(Ui.indentation + "Nice! I've marked this task as done:\n"
-//                    + Ui.indentation + "  " + newString + "\n"));
             result = Ui.printChat(Ui.indentation + "Nice! I've marked this task as done:\n"
                     + Ui.indentation + "  " + newString + "\n");
             return result;
@@ -149,8 +147,6 @@ public class Task {
 
             Files.write(path, lines);
 
-//            System.out.println(Ui.printChat(Ui.indentation + "OK, I've marked this task as not done yet:\n"
-//                    + Ui.indentation + "  " + newString + "\n"));
             result = Ui.printChat(Ui.indentation + "OK, I've marked this task as not done yet:\n"
                     + Ui.indentation + "  " + newString + "\n");
             return result;
@@ -216,10 +212,6 @@ public class Task {
             lines.remove(index);
             Files.write(path, lines);
             noOfActivity--;
-//            System.out.println(Ui.printChat(Ui.indentation + "Noted. I've removed this task:\n" +
-//                    Ui.indentation + "  " + toRemove + "\n"
-//                    + Ui.indentation + "Now you have " + Task.getNoOfActivity()
-//                    + " tasks in the list.\n"));
             result = Ui.printChat(Ui.indentation + "Noted. I've removed this task:\n"
                     + Ui.indentation + "  " + toRemove + "\n"
                     + Ui.indentation + "Now you have " + Task.getNoOfActivity()

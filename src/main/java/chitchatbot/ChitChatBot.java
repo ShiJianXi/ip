@@ -3,7 +3,6 @@ package chitchatbot;
 import chitchatbot.command.Parser;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
-import chitchatbot.task.Task;
 import chitchatbot.ui.Ui;
 
 import java.nio.file.Path;

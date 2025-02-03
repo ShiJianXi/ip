@@ -32,8 +32,6 @@ public class Todo extends Task {
      * @see Storage
      */
     public static String createToDo(String[] inputArr, Storage storage) throws MissingParameterException {
-        //Check if the user missed out the description of the test
-        //Throw exception when required
         String result = "";
         if (inputArr.length < 2) {
             throw new MissingParameterException("Missing parameters error: The description of todo cannot be empty\n"

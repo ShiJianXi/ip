@@ -49,7 +49,6 @@ public class Event extends Task {
      * @see Storage
      */
     public static String createEvent(String[] inputArr, Storage storage) throws MissingParameterException {
-        //Check for the various exceptions and  throw an exception when required
         if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/from")
                 || !Arrays.asList(inputArr).contains("/to")
                 || inputArr[1].equals("/from") || inputArr[1].equals("/to")

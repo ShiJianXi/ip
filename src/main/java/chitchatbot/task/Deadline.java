@@ -55,8 +55,6 @@ public class Deadline extends Task {
      * @see Storage
      */
     public static String createDeadline(String[] inputArr, Storage storage) throws MissingParameterException {
-        //Check for the various exception due to incorrect format for deadline queries
-        //Throw exceptions when necessary
         String result = "";
         if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/by") || inputArr[1].equals("/by")
                 || Arrays.asList(inputArr).indexOf("/by") == inputArr.length - 1) {
