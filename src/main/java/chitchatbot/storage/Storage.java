@@ -12,7 +12,9 @@ import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
-
+/**
+ * A class that deals with the storage for that chat.txt
+ */
 public class Storage {
     private Path path;
     private File chatFile;

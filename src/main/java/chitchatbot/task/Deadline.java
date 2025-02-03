@@ -10,6 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.time.LocalDate;
 
+/**
+ * The deadline class that handles deadline commands
+ */
 public class Deadline extends Task {
 
     protected LocalDate by;

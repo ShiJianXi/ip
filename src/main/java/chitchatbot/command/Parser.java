@@ -9,6 +9,9 @@ import chitchatbot.task.Task;
 import chitchatbot.task.Todo;
 import chitchatbot.ui.Ui;
 
+/**
+ * A class to parse all the commands entered by the user
+ */
 public class Parser {
     private Action action;
     private String[] inputArr;

@@ -11,6 +11,9 @@ import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
 
+/**
+ * A class to deal with the Find command
+ */
 public class Find {
     private Storage storage;
     private File chatFile;

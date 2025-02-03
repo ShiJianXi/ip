@@ -4,6 +4,9 @@ import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
 
+/**
+ * The class that deals with the todo command
+ */
 public class Todo extends Task {
 
     /**

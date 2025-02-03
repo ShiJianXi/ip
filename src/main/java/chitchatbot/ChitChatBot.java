@@ -9,7 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-
+/**
+ * Main program that runs the chitchatbot
+ */
 public class ChitChatBot {
     private Path path;
     private Storage storage;

@@ -10,7 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
-
+/**
+ * The event class that handles the event command
+ */
 public class Event extends Task {
     private LocalDate fromDate;
     private LocalTime fromTime;

@@ -10,6 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * The general class for task that contains the general methods for all task
+ */
 public class Task {
     private String name;
     private boolean isDone;
