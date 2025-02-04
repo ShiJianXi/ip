@@ -94,15 +94,10 @@ public class Event extends Task {
             return result;
 
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
-//            System.out.println(Ui.printChat("    Wrong format error: Incorrect format\n"
-//                    + "    Please ensure the correct format is used: "
-//                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n"));
-
             return Ui.printChat("    Wrong format error: Incorrect format\n"
                     + "    Please ensure the correct format is used: "
                     + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n");
         }
-        //return result;
     }
 
     @Override

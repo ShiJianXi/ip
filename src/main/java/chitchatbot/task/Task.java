@@ -85,30 +85,19 @@ public class Task {
             return result;
 
         } catch (FileNotFoundException e) {
-            //return
-            //System.out.println("File error: File not found");
             return "File error: File not found";
         } catch (IOException e) {
-            //System.out.println("Input error: Unable to read file");
             return "Input error: Unable to read file";
         } catch (AlreadyMarkedException e) {
-            //System.out.println(Ui.printChat(e.getMessage()));
             return Ui.printChat(e.getMessage());
         } catch (IndexOutOfBoundsException e) {
             if (noOfActivity == 0) {
-//                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, no task in the list, "
-//                        + "please add task first\n"));
                 return Ui.printChat(Ui.indentation + "Unable to mark, no task in the list, "
                         + "please add task first\n");
             } else if (noOfActivity == 1) {
-//                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
-//                        + "only 1 task in the list\n"));
                 return Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
                         + "only 1 task in the list\n");
             } else {
-//                System.out.println(Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
-//                        + "please pick a task from 1 to "
-//                        + Task.getNoOfActivity() + " to mark.\n"));
                 return Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
                         + "please pick a task from 1 to "
                         + Task.getNoOfActivity() + " to mark.\n");
@@ -116,10 +105,7 @@ public class Task {
         } catch (NumberFormatException e) {
             return Ui.printChat(Ui.indentation + "Number Format error: "
                     + "Please enter the number of the task that you want to mark\n");
-//            System.out.println(Ui.printChat(Ui.indentation + "Number Format error: "
-//                    + "Please enter the number of the task that you want to mark\n"));
         }
-        //return result;
     }
 
     /**
@@ -168,18 +154,13 @@ public class Task {
             return result;
 
         } catch (FileNotFoundException e) {
-            //System.out.println("File error: File not found");
             return "File error: File not found";
         } catch (IOException e) {
-            //System.out.println("Input error: Unable to read file");
             return "Input error: Unable to read file";
         } catch (AlreadyMarkedException e) {
-            //System.out.println(Ui.printChat(e.getMessage()));
             return Ui.printChat(e.getMessage());
         } catch (IndexOutOfBoundsException e) {
             if (Task.getNoOfActivity() == 0) {
-//                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, no task in the list, "
-//                        + "please add and mark task first\n"));
                 return Ui.printChat(Ui.indentation + "Unable to unmark, no task in the list, "
                         + "please add and mark task first\n");
             } else if (Task.getNoOfActivity() == 1) {
@@ -188,18 +169,13 @@ public class Task {
                 return Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
                         + "only 1 task in the list\n");
             } else {
-//                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
-//                        + "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.\n"));
                 return Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
                         + "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.\n");
             }
         } catch (NumberFormatException e) {
-//            System.out.println(Ui.printChat(Ui.indentation + "Number format error: "
-//                    + "Please enter the number of the task that you want to unmark\n"));
             return Ui.printChat(Ui.indentation + "Number format error: "
                     + "Please enter the number of the task that you want to unmark\n");
         }
-        //return result;
     }
 
 
@@ -246,20 +222,22 @@ public class Task {
             return result;
 
         } catch (FileNotFoundException e) {
-            System.out.println("File error: File not found");
+            return "File error: File not found";
         } catch (IOException e) {
-            System.out.println("Input error: Unable to read file");
+            return "Input error: Unable to read file";
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "Missing parameters error: Missing parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+
+            return Ui.printChat(Ui.indentation + "Missing parameters error: Missing parameters\n"
+                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "Missing parameters error: This task doesn't exist\n"
-                    + Ui.indentation + "You can only delete an existing task\n"));
+
+            return Ui.printChat(Ui.indentation + "Missing parameters error: This task doesn't exist\n"
+                    + Ui.indentation + "You can only delete an existing task\n");
         } catch (NumberFormatException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "Missing parameters error: Wrong parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+
+            return Ui.printChat(Ui.indentation + "Missing parameters error: Wrong parameters\n"
+                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n");
         }
-        return result;
     }
 
     @Override

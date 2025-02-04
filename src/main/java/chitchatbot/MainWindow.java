@@ -22,6 +22,7 @@ public class MainWindow extends AnchorPane {
     @FXML
     private VBox dialogContainer;
 
+
     @FXML
     private TextField userInput;
 
@@ -36,7 +37,9 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        dialogContainer.getChildren().add(DialogBox.getBotDialog(Ui.greetUser(), botImage));
     }
+
 
     public void setBot(ChitChatBot bot) {
         this.bot = bot;
@@ -50,7 +53,7 @@ public class MainWindow extends AnchorPane {
         Storage storage = new Storage(path);
         Parser parser = new Parser(userText.split(" "), storage);
 
-        String botText = chitChatBot.getResponse(parser);
+        String botText = chitChatBot.getBotResponse(parser);
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),

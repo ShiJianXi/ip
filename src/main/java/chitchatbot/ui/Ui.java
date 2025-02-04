@@ -12,9 +12,6 @@ public class Ui {
     public static String indentation = "    ";
 
     public static String greetUser() {
-//        System.out.println(Ui.printChat(Ui.indentation + "Hello! I'm "
-//                + "ChitChatBot" + "\n"
-//                + Ui.indentation + "What can i do for you?" + "\n"));
         return Ui.printChat(Ui.indentation + "Hello! I'm "
                 + "ChitChatBot" + "\n"
                 + Ui.indentation + "What can i do for you?" + "\n");
