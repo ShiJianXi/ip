@@ -108,12 +108,16 @@ public class Deadline extends Task {
             }
 
         } catch (DateTimeException e1) {
-            System.out.println(Ui.printChat("    Date Time format error: Incorrect format, "
+//            System.out.println(Ui.printChat("    Date Time format error: Incorrect format, "
+//                    + "please ensure the correct format is used:\n"
+//                    + "    deadline <Description> /by dd/mm/yyyy\n"
+//                    + "    OR deadline <Description /by dd/mm/yyyy HHmm\n"));
+            return Ui.printChat("    Date Time format error: Incorrect format, "
                     + "please ensure the correct format is used:\n"
                     + "    deadline <Description> /by dd/mm/yyyy\n"
-                    + "    OR deadline <Description /by dd/mm/yyyy HHmm\n"));
+                    + "    OR deadline <Description /by dd/mm/yyyy HHmm\n");
         }
-        return result;
+        //return result;
     }
 
     @Override

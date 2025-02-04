@@ -70,12 +70,12 @@ public class Storage {
     }
 
     /**
-     * List all the activities within the chatbot.txt
+     * Returns a String that list all the activities within the chatbot.txt
      * and print to the user's screen in the form a chat UI.
      *
      * @see Ui
      */
-    public void listTask() {
+    public String listTask() {
         try {
             Scanner scanner = new Scanner(chatFile);
             StringJoiner toPrint = new StringJoiner("\n");
@@ -87,9 +87,11 @@ public class Storage {
                 toPrint.add(text);
             }
 
-            System.out.println(Ui.printChat(toPrint + "\n"));
+            //System.out.println(Ui.printChat(toPrint + "\n"));
+            return Ui.printChat(toPrint + "\n");
         } catch (FileNotFoundException e) {
-            System.out.println("File error: File not found");
+            //System.out.println("File error: File not found");
+            return "File error: File not found";
         }
     }
 

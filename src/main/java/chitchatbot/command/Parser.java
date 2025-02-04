@@ -42,36 +42,48 @@ public class Parser {
      * @see Task
      * @see Todo
      */
-    public void parseCommand() {
+    public String parseCommand() {
         try {
             this.action = Action.valueOf(this.inputArr[0]);
         } catch (IllegalArgumentException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+//            System.out.println(Ui.printChat(Ui.indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+//                    + Ui.indentation + "Please use the correct queries:\n"
+//                    + Ui.indentation + "todo <description>\n"
+//                    + Ui.indentation + "deadline <description> /by <Date/Time>\n"
+//                    + Ui.indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
+//                    + Ui.indentation + "or list to show all the task\n"));
+            return Ui.printChat(Ui.indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
                     + Ui.indentation + "Please use the correct queries:\n"
                     + Ui.indentation + "todo <description>\n"
                     + Ui.indentation + "deadline <description> /by <Date/Time>\n"
                     + Ui.indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
-                    + Ui.indentation + "or list to show all the task\n"));
+                    + Ui.indentation + "or list to show all the task\n");
         }
 
         if (action == Action.bye) {
-            System.out.println(Ui.printChat(Ui.indentation
-                    + "Bye. Hope to see you again soon!\n"));
+//            System.out.println(Ui.printChat(Ui.indentation
+//                    + "Bye. Hope to see you again soon!\n"));
+            //System.exit(0);
+            return Ui.printChat(Ui.indentation
+                    + "Bye. Hope to see you again soon!\n");
             //break;
-            System.exit(0);
+            //System.exit(0);
 
         } else if (this.action == Action.list) {
 
-            this.storage.listTask();
+            return this.storage.listTask();
 
         } else if (this.action == Action.mark) {
 
             String result = "";
             try {
                 result = Task.markAsDone(this.storage.getPath(), this.inputArr);
-                System.out.println(result);
+
+                //System.out.println(result);
+                return result;
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(e.getMessage()));
+                //System.out.println(Ui.printChat(e.getMessage()));
+                return Ui.printChat(e.getMessage());
             }
 
 
@@ -80,9 +92,11 @@ public class Parser {
             String result = "";
             try {
                 result = Task.markAsNotDone(this.storage.getPath(), this.inputArr);
-                System.out.println(result);
+                //System.out.println(result);
+                return result;
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(e.getMessage()));
+                //System.out.println(Ui.printChat(e.getMessage()));
+                return Ui.printChat(e.getMessage());
             }
 
 
@@ -91,9 +105,11 @@ public class Parser {
             String result = "";
             try {
                 result = Todo.createToDo(this.inputArr, this.storage);
-                System.out.println(result);
+                //System.out.println(result);
+                return result;
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(Ui.indentation + e.getMessage()));
+                //System.out.println(Ui.printChat(Ui.indentation + e.getMessage()));
+                return Ui.printChat(Ui.indentation + e.getMessage());
             }
 
         } else if (this.action == Action.deadline) {
@@ -103,19 +119,23 @@ public class Parser {
             try {
                 result = Deadline.createDeadline(this.inputArr, this.storage);
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(e.getMessage()));
+                //System.out.println(Ui.printChat(e.getMessage()));
+                return Ui.printChat(e.getMessage());
             }
 
-            System.out.println(result);
+            //System.out.println(result);
+            return result;
 
         } else if (this.action == Action.event) {
 
             String result = "";
             try {
                 result = Event.createEvent(this.inputArr, this.storage);
-                System.out.println(result);
+                //System.out.println(result);
+                return result;
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(e.getMessage()));
+                //System.out.println(Ui.printChat(e.getMessage()));
+                return Ui.printChat(e.getMessage());
             }
 
 
@@ -124,21 +144,27 @@ public class Parser {
             String result = "";
             try {
                 result = Task.deleteTask(this.storage.getPath(), this.inputArr);
-                System.out.println(result);
+                //System.out.println(result);
+                return result;
             } catch (MissingParameterException e) {
-                System.out.println(e.getMessage());
+                //System.out.println(e.getMessage());
+                return e.getMessage();
             }
         } else if (this.action == Action.find) {
 
             Find find = new Find(storage);
             try {
                 String result = find.executeFindCommand(inputArr);
-                System.out.println(Ui.printChat(result));
+                //System.out.println(Ui.printChat(result));
+                return Ui.printChat(result);
             } catch (MissingParameterException e) {
-                System.out.println(e.getMessage());
+                //System.out.println(e.getMessage());
+                return e.getMessage();
             }
 
         }
+
+        return "";
     }
 }
 
