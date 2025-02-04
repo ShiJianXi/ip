@@ -52,7 +52,7 @@ public class Parser {
                     + Ui.indentation + "todo <description>\n"
                     + Ui.indentation + "deadline <description> /by <Date/Time>\n"
                     + Ui.indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
-                    + Ui.indentation + "or list to show all the task");
+                    + Ui.indentation + "or list to show all the task\n");
         }
 
         if (action == Action.bye) {
