@@ -37,35 +37,24 @@ public class Todo extends Task {
      * @see Storage
      */
     public static String createToDo(String[] inputArr, Storage storage) throws MissingParameterException {
-        //String result = "";
         if (inputArr.length < 2) {
-//            throw new MissingParameterException("Missing parameters error: The description of todo cannot be empty\n"
-//                    + "    Please ensure the correct format is used: todo <Description>\n");
             throw new MissingParameterException("Incorrect format:\n"
                     + "Please ensure the correct format is used: todo <Description>");
         }
 
-        //String task = "";
         StringJoiner task = new StringJoiner(" ");
         for (int i = 1; i < inputArr.length; i++) {
             if (inputArr[i].equals("/by")) {
                 break;
             }
             task.add(inputArr[i]);
-//            task += inputArr[i];
-//            task += " ";
         }
 
         Todo newTask = new Todo(task.toString());
 
-//        result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-//                + Ui.indentation + "  " + newTask + "\n"
-//                + Ui.indentation + "Now you have "
-//                + Task.getNoOfActivity() + " tasks in the list.\n");
 
         storage.appendToFile(newTask.toString());
 
-        //return result;
         return "Got it. I've added this task:\n"
                 + "  " + newTask + "\n"
                 + "Now you have "

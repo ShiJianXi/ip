@@ -59,14 +59,9 @@ public class Deadline extends Task {
      * @see Storage
      */
     public static String createDeadline(String[] inputArr, Storage storage) throws MissingParameterException {
-        //String result = "";
         if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/by") || inputArr[1].equals("/by")
                 || Arrays.asList(inputArr).indexOf("/by") == inputArr.length - 1) {
 
-//            throw new MissingParameterException("    Missing parameter error: There is missing parameters, "
-//                    + "please ensure the correct format is used:\n"
-//                    + "    deadline <Description> /by dd/mm/yyyy\n"
-//                    + "    OR deadline <Description /by dd/mm/yyyy HHmm\n");
             throw new MissingParameterException("Missing parameter: \n"
                     + "please ensure that the correct format is used:\n"
                     + "    deadline <Description> /by dd/mm/yyyy\n"
@@ -75,15 +70,12 @@ public class Deadline extends Task {
 
         try {
             StringJoiner task = new StringJoiner(" ");
-            //String task = "";
             int byIndex = 0;
             for (int i = 1; i < inputArr.length; i++) {
                 if (inputArr[i].equals("/by")) {
                     byIndex = i;
                     break;
                 }
-//                task += inputArr[i];
-//                task += " ";
                 task.add(inputArr[i]);
             }
 
@@ -94,13 +86,7 @@ public class Deadline extends Task {
                 LocalTime time = LocalTime.parse(inputArr[byIndex + 2], timeFormatter);
                 Deadline newTask = new Deadline(task.toString(), date, time);
 
-//                result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-//                        + Ui.indentation + "  " + newTask
-//                        + "\n" + Ui.indentation + "Now you have "
-//                        + Task.getNoOfActivity() + " tasks in the list.\n");
-
                 storage.appendToFile(newTask.toString());
-                //return result;
                 return "Got it. I've added this task:\n"
                         + "  " + newTask + "\n"
                         + "Now you have "
@@ -111,11 +97,6 @@ public class Deadline extends Task {
 
                 Deadline newTask = new Deadline(task.toString(), by);
                 storage.appendToFile(newTask.toString());
-//                result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-//                        + Ui.indentation + "  " + newTask
-//                        + "\n" + Ui.indentation + "Now you have "
-//                        + Task.getNoOfActivity() + " tasks in the list.\n");
-//                return result;
                 return "Got it. I've added this task:\n"
                         + "  " + newTask + "\n"
                         + "Now you have "
@@ -123,10 +104,6 @@ public class Deadline extends Task {
             }
 
         } catch (DateTimeException e1) {
-//            return Ui.printChat("    Date Time format error: Incorrect format, "
-//                    + "please ensure the correct format is used:\n"
-//                    + "    deadline <Description> /by dd/mm/yyyy\n"
-//                    + "    OR deadline <Description /by dd/mm/yyyy HHmm\n");
             return "Incorrect date time format: \n"
                     + "please ensure the correct format is used:\n"
                     + "    deadline <Description> /by dd/mm/yyyy\n"
