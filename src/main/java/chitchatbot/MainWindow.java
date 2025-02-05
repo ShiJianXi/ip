@@ -2,6 +2,7 @@ package chitchatbot;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.concurrent.TimeUnit;
 
 import chitchatbot.command.Parser;
 import chitchatbot.storage.Storage;
@@ -46,7 +47,7 @@ public class MainWindow extends AnchorPane {
     }
 
     @FXML
-    private void handleUserInput() {
+    private void handleUserInput() throws InterruptedException {
         String userText = userInput.getText();
         Path path = Paths.get("data", "chat.txt");
         ChitChatBot chitChatBot = new ChitChatBot(path);
@@ -55,10 +56,18 @@ public class MainWindow extends AnchorPane {
 
         String botText = chitChatBot.getBotResponse(parser);
 
+        if (userText.split(" ")[0].equals("bye")) {
+            javafx.animation.PauseTransition delayBeforeExit = new javafx.animation.PauseTransition(
+                    javafx.util.Duration.seconds(1));
+            delayBeforeExit.setOnFinished(event -> System.exit(0));
+            delayBeforeExit.play();
+        }
+
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(userText, userImage),
                 DialogBox.getBotDialog(botText, botImage)
         );
+
         userInput.clear();
     }
 
