@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.StringJoiner;
 
 /**
  * The event class that handles the event command
@@ -55,14 +56,12 @@ public class Event extends Task {
                 || !Arrays.asList(inputArr).contains("/to")
                 || inputArr[1].equals("/from") || inputArr[1].equals("/to")
                 || Arrays.asList(inputArr).indexOf("/from") > Arrays.asList(inputArr).indexOf("/to")) {
-            throw new MissingParameterException("    Missing parameters error: Missing parameters\n"
-                    + "    Please ensure the correct format is used: "
-                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n");
+            throw new MissingParameterException("Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm");
         }
-        String result = "";
         try {
-
-            String task = "";
+            StringJoiner task = new StringJoiner(" ");
             int fromIndex = Arrays.asList(inputArr).indexOf("/from");
             int toIndex = Arrays.asList(inputArr).indexOf("/to");
 
@@ -71,9 +70,7 @@ public class Event extends Task {
                 if (inputArr[i].equals("/from")) {
                     break;
                 }
-
-                task += inputArr[i];
-                task += " ";
+                task.add(inputArr[i]);
             }
 
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
@@ -84,21 +81,19 @@ public class Event extends Task {
             LocalTime toTime = LocalTime.parse(inputArr[toIndex + 2], timeFormatter);
 
 
-            Event newTask = new Event(task, fromDate, fromTime, toDate, toTime);
+            Event newTask = new Event(task.toString(), fromDate, fromTime, toDate, toTime);
 
             storage.appendToFile(newTask.toString());
-            result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                    + Ui.indentation + "  " + newTask + "\n"
-                    + Ui.indentation + "Now you have "
-                    + Task.getNoOfActivity() + " tasks in the list.\n");
-            return result;
+            return "Got it. I've added this task:\n"
+                    + "  " + newTask + "\n"
+                    + "Now you have "
+                    + Task.getNoOfActivity() + " tasks in the list.";
 
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
-            System.out.println(Ui.printChat("    Wrong format error: Incorrect format\n"
-                    + "    Please ensure the correct format is used: "
-                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n"));
+            return "Incorrect format:\n"
+                    + "Please ensure the correct format is used:\n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         }
-        return result;
     }
 
     @Override

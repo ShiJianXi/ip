@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.time.LocalDate;
+import java.util.StringJoiner;
 
 /**
  * The deadline class that handles deadline commands
@@ -58,27 +59,24 @@ public class Deadline extends Task {
      * @see Storage
      */
     public static String createDeadline(String[] inputArr, Storage storage) throws MissingParameterException {
-        String result = "";
         if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/by") || inputArr[1].equals("/by")
                 || Arrays.asList(inputArr).indexOf("/by") == inputArr.length - 1) {
 
-            throw new MissingParameterException("    Missing parameter error: There is missing parameters, "
-                    + "please ensure the correct format is used:\n"
+            throw new MissingParameterException("Missing parameter: \n"
+                    + "please ensure that the correct format is used:\n"
                     + "    deadline <Description> /by dd/mm/yyyy\n"
-                    + "    OR deadline <Description /by dd/mm/yyyy HHmm\n");
+                    + "    OR deadline <Description /by dd/mm/yyyy HHmm");
         }
 
         try {
-
-            String task = "";
+            StringJoiner task = new StringJoiner(" ");
             int byIndex = 0;
             for (int i = 1; i < inputArr.length; i++) {
                 if (inputArr[i].equals("/by")) {
                     byIndex = i;
                     break;
                 }
-                task += inputArr[i];
-                task += " ";
+                task.add(inputArr[i]);
             }
 
             if (inputArr.length > byIndex + 2) { //Contains time
@@ -86,34 +84,31 @@ public class Deadline extends Task {
                 DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
                 LocalDate date = LocalDate.parse(inputArr[byIndex + 1], formatter);
                 LocalTime time = LocalTime.parse(inputArr[byIndex + 2], timeFormatter);
-                Deadline newTask = new Deadline(task, date, time);
+                Deadline newTask = new Deadline(task.toString(), date, time);
 
-                result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                        + Ui.indentation + "  " + newTask
-                        + "\n" + Ui.indentation + "Now you have "
-                        + Task.getNoOfActivity() + " tasks in the list.\n");
                 storage.appendToFile(newTask.toString());
-                return result;
+                return "Got it. I've added this task:\n"
+                        + "  " + newTask + "\n"
+                        + "Now you have "
+                        + Task.getNoOfActivity() + " tasks in the list.";
             } else {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
                 LocalDate by = LocalDate.parse(inputArr[byIndex + 1], formatter);
 
-                Deadline newTask = new Deadline(task, by);
+                Deadline newTask = new Deadline(task.toString(), by);
                 storage.appendToFile(newTask.toString());
-                result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                        + Ui.indentation + "  " + newTask
-                        + "\n" + Ui.indentation + "Now you have "
-                        + Task.getNoOfActivity() + " tasks in the list.\n");
-                return result;
+                return "Got it. I've added this task:\n"
+                        + "  " + newTask + "\n"
+                        + "Now you have "
+                        + Task.getNoOfActivity() + " tasks in the list.";
             }
 
         } catch (DateTimeException e1) {
-            System.out.println(Ui.printChat("    Date Time format error: Incorrect format, "
+            return "Incorrect date time format: \n"
                     + "please ensure the correct format is used:\n"
                     + "    deadline <Description> /by dd/mm/yyyy\n"
-                    + "    OR deadline <Description /by dd/mm/yyyy HHmm\n"));
+                    + "    OR deadline <Description /by dd/mm/yyyy HHmm";
         }
-        return result;
     }
 
     @Override

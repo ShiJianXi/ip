@@ -2,7 +2,6 @@ package chitchatbot.task;
 
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
-import chitchatbot.ui.Ui;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,10 +26,10 @@ public class DeadlineTest {
         String[] inputArr = new String[] {"deadline", "test", "/by", "27/01/2025", "1800"};
 
         String actual = Deadline.createDeadline(inputArr, storage);
-        String expected = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                + Ui.indentation + "  " + "[D][ ] test (by: Jan 27 2025 18:00)"
-                + "\n" + Ui.indentation + "Now you have "
-                + Task.getNoOfActivity() + " tasks in the list.\n");
+        String expected = "Got it. I've added this task:\n"
+                + "  " + "[D][ ] test(by: Jan 27 2025 18:00)"
+                + "\n" + "Now you have "
+                + Task.getNoOfActivity() + " tasks in the list.";
 
         assertEquals(expected, actual);
         String[] deleteInput = new String[] {"delete", String.valueOf(Task.getNoOfActivity())};
@@ -42,10 +41,10 @@ public class DeadlineTest {
         String[] inputArr = new String[] {"deadline", "test without time", "/by", "27/01/2025"};
 
         String actual = Deadline.createDeadline(inputArr, storage);
-        String expected = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                + Ui.indentation + "  " + "[D][ ] test without time (by: Jan 27 2025)"
-                + "\n" + Ui.indentation + "Now you have "
-                + Task.getNoOfActivity() + " tasks in the list.\n");
+        String expected = "Got it. I've added this task:\n"
+                + "  " + "[D][ ] test without time(by: Jan 27 2025)"
+                + "\n" + "Now you have "
+                + Task.getNoOfActivity() + " tasks in the list.";
 
         assertEquals(expected, actual);
         String[] deleteInput = new String[] {"delete", String.valueOf(Task.getNoOfActivity())};
@@ -59,10 +58,10 @@ public class DeadlineTest {
             Deadline.createDeadline(inputArr, storage);
             fail();
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameter error: There is missing parameters, " +
-                    "please ensure the correct format is used:\n" +
-                    "    deadline <Description> /by dd/mm/yyyy\n" +
-                    "    OR deadline <Description /by dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameter: \n"
+                    + "please ensure that the correct format is used:\n"
+                    + "    deadline <Description> /by dd/mm/yyyy\n"
+                    + "    OR deadline <Description /by dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -74,10 +73,10 @@ public class DeadlineTest {
             Deadline.createDeadline(inputArr, storage);
             fail();
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameter error: There is missing parameters, " +
-                    "please ensure the correct format is used:\n" +
-                    "    deadline <Description> /by dd/mm/yyyy\n" +
-                    "    OR deadline <Description /by dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameter: \n"
+                    + "please ensure that the correct format is used:\n"
+                    + "    deadline <Description> /by dd/mm/yyyy\n"
+                    + "    OR deadline <Description /by dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -89,10 +88,10 @@ public class DeadlineTest {
             Deadline.createDeadline(inputArr, storage);
             fail();
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameter error: There is missing parameters, " +
-                    "please ensure the correct format is used:\n" +
-                    "    deadline <Description> /by dd/mm/yyyy\n" +
-                    "    OR deadline <Description /by dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameter: \n"
+                    + "please ensure that the correct format is used:\n"
+                    + "    deadline <Description> /by dd/mm/yyyy\n"
+                    + "    OR deadline <Description /by dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -101,48 +100,66 @@ public class DeadlineTest {
     public void createDeadline_wrongDateFormat() throws MissingParameterException {
         String[] inputArr = new String[]{"deadline", "test" + "deadline", "/by", "27-01-2025"};
         String result = Deadline.createDeadline(inputArr, storage);
-        //Since the exception is catch internally, the resulting string will be an empty string
-        assertEquals("", result);
+        String expected = "Incorrect date time format: \n"
+                + "please ensure the correct format is used:\n"
+                + "    deadline <Description> /by dd/mm/yyyy\n"
+                + "    OR deadline <Description /by dd/mm/yyyy HHmm";
+        assertEquals(expected, result);
     }
 
     @Test
-    public void createDeadline_wrongDateFormat2() throws MissingParameterException {
+    public void createDeadline_anotherWrongDateFormat() throws MissingParameterException {
         String[] inputArr = new String[]{"deadline", "test" + "deadline", "/by", "27 Jan 2025"};
         String result = Deadline.createDeadline(inputArr, storage);
-        //Since the exception is catch internally, the resulting string will be an empty string
-        assertEquals("", result);
+        String expected = "Incorrect date time format: \n"
+                + "please ensure the correct format is used:\n"
+                + "    deadline <Description> /by dd/mm/yyyy\n"
+                + "    OR deadline <Description /by dd/mm/yyyy HHmm";
+        assertEquals(expected, result);
     }
 
     @Test
-    public void createDeadline_wrongDateFormat3() throws MissingParameterException {
+    public void createDeadline_alsoWrongDateFormat3() throws MissingParameterException {
         String[] inputArr = new String[]{"deadline", "test" + "deadline", "/by", "Today"};
         String result = Deadline.createDeadline(inputArr, storage);
-        //Since the exception is catch internally, the resulting string will be an empty string
-        assertEquals("", result);
+        String expected = "Incorrect date time format: \n"
+                + "please ensure the correct format is used:\n"
+                + "    deadline <Description> /by dd/mm/yyyy\n"
+                + "    OR deadline <Description /by dd/mm/yyyy HHmm";
+        assertEquals(expected, result);
     }
 
     @Test
     public void createDeadline_wrongTimeFormat() throws MissingParameterException {
         String[] inputArr = new String[]{"deadline", "test" + "deadline", "/by", "27-01-2025", "2900"};
         String result = Deadline.createDeadline(inputArr, storage);
-        //Since the exception is catch internally, the resulting string will be an empty string
-        assertEquals("", result);
+        String expected = "Incorrect date time format: \n"
+                + "please ensure the correct format is used:\n"
+                + "    deadline <Description> /by dd/mm/yyyy\n"
+                + "    OR deadline <Description /by dd/mm/yyyy HHmm";
+        assertEquals(expected, result);
     }
 
     @Test
-    public void createDeadline_wrongTimeFormat2() throws MissingParameterException {
+    public void createDeadline_anotherWrongTimeFormat() throws MissingParameterException {
         String[] inputArr = new String[]{"deadline", "test" + "deadline", "/by", "27-01-2025", "18:00"};
         String result = Deadline.createDeadline(inputArr, storage);
-        //Since the exception is catch internally, the resulting string will be an empty string
-        assertEquals("", result);
+        String expected = "Incorrect date time format: \n"
+                + "please ensure the correct format is used:\n"
+                + "    deadline <Description> /by dd/mm/yyyy\n"
+                + "    OR deadline <Description /by dd/mm/yyyy HHmm";
+        assertEquals(expected, result);
     }
 
     @Test
-    public void createDeadline_wrongTimeFormat3() throws MissingParameterException {
+    public void createDeadline_alsoWrongTimeFormat3() throws MissingParameterException {
         String[] inputArr = new String[]{"deadline", "test" + "deadline", "/by", "27-01-2025", "09:00am"};
         String result = Deadline.createDeadline(inputArr, storage);
-        //Since the exception is catch internally, the resulting string will be an empty string
-        assertEquals("", result);
+        String expected = "Incorrect date time format: \n"
+                + "please ensure the correct format is used:\n"
+                + "    deadline <Description> /by dd/mm/yyyy\n"
+                + "    OR deadline <Description /by dd/mm/yyyy HHmm";
+        assertEquals(expected, result);
     }
 
 

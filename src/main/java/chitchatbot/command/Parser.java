@@ -42,103 +42,88 @@ public class Parser {
      * @see Task
      * @see Todo
      */
-    public void parseCommand() {
+    public String parseCommand() {
         try {
             this.action = Action.valueOf(this.inputArr[0]);
         } catch (IllegalArgumentException e) {
-            System.out.println(Ui.printChat(Ui.indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + Ui.indentation + "Please use the correct queries:\n"
-                    + Ui.indentation + "todo <description>\n"
-                    + Ui.indentation + "deadline <description> /by <Date/Time>\n"
-                    + Ui.indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
-                    + Ui.indentation + "or list to show all the task\n"));
+            return "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+                    + "Please use the correct queries:\n"
+                    + "todo <description>\n"
+                    + "deadline <description> /by <Date/Time>\n"
+                    + "event <description> /from <Date&Time> /to <Date&Time>\n"
+                    + "or list to show all the task";
         }
 
         if (action == Action.bye) {
-            System.out.println(Ui.printChat(Ui.indentation
-                    + "Bye. Hope to see you again soon!\n"));
-            //break;
-            System.exit(0);
+            return "Bye. Hope to see you again soon!";
 
         } else if (this.action == Action.list) {
 
-            this.storage.listTask();
+            return this.storage.listTask();
 
         } else if (this.action == Action.mark) {
 
-            String result = "";
             try {
-                result = Task.markAsDone(this.storage.getPath(), this.inputArr);
-                System.out.println(result);
+                return Task.markAsDone(this.storage.getPath(), this.inputArr);
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(e.getMessage()));
+                return e.getMessage();
             }
 
 
         } else if (this.action == Action.unmark) {
 
-            String result = "";
             try {
-                result = Task.markAsNotDone(this.storage.getPath(), this.inputArr);
-                System.out.println(result);
+                return Task.markAsNotDone(this.storage.getPath(), this.inputArr);
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(e.getMessage()));
+                return e.getMessage();
             }
 
 
         } else if (this.action == Action.todo) {
 
-            String result = "";
             try {
-                result = Todo.createToDo(this.inputArr, this.storage);
-                System.out.println(result);
+                return Todo.createToDo(this.inputArr, this.storage);
+
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(Ui.indentation + e.getMessage()));
+
+                return e.getMessage();
             }
 
         } else if (this.action == Action.deadline) {
 
-            String result = "";
-
             try {
-                result = Deadline.createDeadline(this.inputArr, this.storage);
+                return Deadline.createDeadline(this.inputArr, this.storage);
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(e.getMessage()));
+                return e.getMessage();
             }
 
-            System.out.println(result);
-
         } else if (this.action == Action.event) {
-
-            String result = "";
             try {
-                result = Event.createEvent(this.inputArr, this.storage);
-                System.out.println(result);
+                return Event.createEvent(this.inputArr, this.storage);
             } catch (MissingParameterException e) {
-                System.out.println(Ui.printChat(e.getMessage()));
+                return e.getMessage();
             }
 
 
         } else if (this.action == Action.delete) {
-
-            String result = "";
             try {
-                result = Task.deleteTask(this.storage.getPath(), this.inputArr);
-                System.out.println(result);
+                return Task.deleteTask(this.storage.getPath(), this.inputArr);
             } catch (MissingParameterException e) {
-                System.out.println(e.getMessage());
+                return e.getMessage();
             }
         } else if (this.action == Action.find) {
 
             Find find = new Find(storage);
             try {
                 String result = find.executeFindCommand(inputArr);
-                System.out.println(Ui.printChat(result));
+                return "List of similar task: \n" + result;
             } catch (MissingParameterException e) {
-                System.out.println(e.getMessage());
+                return e.getMessage();
             }
 
         }
+
+        return "";
     }
 }
 

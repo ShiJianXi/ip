@@ -33,8 +33,8 @@ public class FindTest {
         taskInput = new String[] {"todo", "find test"};
         Todo.createToDo(taskInput, storage);
         ArrayList<String> expected = new ArrayList<>();
-        expected.add("[T][ ] find ");
-        expected.add("[T][ ] find test ");
+        expected.add("[T][ ] find");
+        expected.add("[T][ ] find test");
         Find find = new Find(storage);
         ArrayList<String> similarTaskAL = new ArrayList<>();
         similarTaskAL.add("find");
@@ -65,8 +65,8 @@ public class FindTest {
         int startingIndex = Task.getNoOfActivity();
         taskInput = new String[] {"todo", "find test"};
         Todo.createToDo(taskInput, storage);
-        String expected = Ui.indentation + "1.[T][ ] find \n"
-                + Ui.indentation + "2.[T][ ] find test \n";
+        String expected ="1.[T][ ] find\n"
+                + "2.[T][ ] find test";
         Find find = new Find(storage);
         String[] inputArr = new String[] {"find", "find"};
         assertEquals(expected, find.executeFindCommand(inputArr));
@@ -83,9 +83,8 @@ public class FindTest {
             find.executeFindCommand(inputArr);
             fail();
         } catch (MissingParameterException e) {
-            String expected = Ui.printChat(Ui.indentation
-                    + "Missing parameters error: Please ensure the correct parameters is used:\n"
-                    + Ui.indentation + "find <keyword>\n");
+            String expected = "Missing parameters error: Please ensure the correct parameters is used:\n"
+                    + "find <keyword>";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -95,7 +94,7 @@ public class FindTest {
         String[] taskInput = new String[] {"todo", "find test"};
         Todo.createToDo(taskInput, storage);
         int startingIndex = Task.getNoOfActivity();
-        String expected = Ui.indentation + "No similar task found!\n";
+        String expected = "No similar task found!";
         Find find = new Find(storage);
         String[] inputArr = new String[] {"todo", "cannotbefound"};
         assertEquals(expected, find.executeFindCommand(inputArr));
