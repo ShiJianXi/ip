@@ -27,10 +27,10 @@ public class EventTest {
                 "/from", "28/01/2025", "1800",
                 "/to", "29/01/2025", "1900"};
         String actual = Event.createEvent(inputArr, storage);
-        String expected = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                + Ui.indentation + "  " + "[E][ ] eventTest (from: Jan 28 2025 18:00 to: Jan 29 2025 19:00)" + "\n"
-                + Ui.indentation + "Now you have "
-                + Task.getNoOfActivity() + " tasks in the list.\n");
+        String expected = "Got it. I've added this task:\n"
+                + "  " + "[E][ ] eventTest(from: Jan 28 2025 18:00 to: Jan 29 2025 19:00)" + "\n"
+                + "Now you have "
+                + Task.getNoOfActivity() + " tasks in the list.";
         assertEquals(expected, actual);
 
         String[] deleteInput = new String[] {"delete", String.valueOf(Task.getNoOfActivity())};
@@ -44,9 +44,9 @@ public class EventTest {
             String result = Event.createEvent(inputArr, storage);
             fail();
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameters error: Missing parameters\n" +
-                    "    Please ensure the correct format is used: " +
-                    "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -57,9 +57,9 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameters error: Missing parameters\n" +
-                    "    Please ensure the correct format is used: " +
-                    "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -70,9 +70,9 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameters error: Missing parameters\n" +
-                    "    Please ensure the correct format is used: " +
-                    "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -83,9 +83,9 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameters error: Missing parameters\n" +
-                    "    Please ensure the correct format is used: " +
-                    "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -96,9 +96,9 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameters error: Missing parameters\n" +
-                    "    Please ensure the correct format is used: " +
-                    "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -109,9 +109,9 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameters error: Missing parameters\n" +
-                    "    Please ensure the correct format is used: " +
-                    "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -122,9 +122,9 @@ public class EventTest {
         try {
             String result = Event.createEvent(inputArr, storage);
         } catch (MissingParameterException e) {
-            String expected = "    Missing parameters error: Missing parameters\n" +
-                    "    Please ensure the correct format is used: " +
-                    "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm\n";
+            String expected = "Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
             assertEquals(expected, e.getMessage());
         }
     }
@@ -133,7 +133,9 @@ public class EventTest {
     public void createEvent_wrongDateFormat() throws MissingParameterException {
         String[] inputArr = new String[] {"event", "event exception test", "/from", "28 Jan 2025", "1800", "/to", "29 Jan 2025", "1900"};
         String result = Event.createEvent(inputArr, storage);
-        String expected = "";
+        String expected = "Incorrect format:\n"
+                + "Please ensure the correct format is used:\n"
+                + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         assertEquals(expected, result);
     }
 
@@ -141,7 +143,9 @@ public class EventTest {
     public void createEvent_wrongTimeFormat() throws MissingParameterException {
         String[] inputArr = new String[] {"event", "event exception test", "/from", "28 Jan 2025", "06:00pm", "/to", "29 Jan 2025", "07:00pm"};
         String result = Event.createEvent(inputArr, storage);
-        String expected = "";
+        String expected = "Incorrect format:\n"
+                + "Please ensure the correct format is used:\n"
+                + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         assertEquals(expected, result);
     }
 
@@ -149,7 +153,9 @@ public class EventTest {
     public void createEvent_fromDateFormat() throws MissingParameterException {
         String[] inputArr = new String[] {"event", "event exception test", "/from", "28 Jan 2025", "1800", "/to", "29/01/2025", "1900"};
         String result = Event.createEvent(inputArr, storage);
-        String expected = "";
+        String expected = "Incorrect format:\n"
+                + "Please ensure the correct format is used:\n"
+                + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         assertEquals(expected, result);
     }
 
@@ -157,7 +163,9 @@ public class EventTest {
     public void createEvent_toDateFormat() throws MissingParameterException {
         String[] inputArr = new String[] {"event", "event exception test", "/from", "28/01/2025", "1800", "/to", "29 Jan 2025", "1900"};
         String result = Event.createEvent(inputArr, storage);
-        String expected = "";
+        String expected = "Incorrect format:\n"
+                + "Please ensure the correct format is used:\n"
+                + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         assertEquals(expected, result);
     }
 
@@ -165,7 +173,9 @@ public class EventTest {
     public void createEvent_fromTimeFormat() throws MissingParameterException {
         String[] inputArr = new String[] {"event", "event exception test", "/from", "28/01/2025", "18:00", "/to", "29/01/2025", "1900"};
         String result = Event.createEvent(inputArr, storage);
-        String expected = "";
+        String expected = "Incorrect format:\n"
+                + "Please ensure the correct format is used:\n"
+                + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         assertEquals(expected, result);
     }
 
@@ -173,7 +183,9 @@ public class EventTest {
     public void createEvent_toTimeFormat() throws MissingParameterException {
         String[] inputArr = new String[] {"event", "event exception test", "/from", "28/01/2025", "1800", "/to", "29/01/2025", "26:00"};
         String result = Event.createEvent(inputArr, storage);
-        String expected = "";
+        String expected = "Incorrect format:\n"
+                + "Please ensure the correct format is used:\n"
+                + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         assertEquals(expected, result);
     }
 }

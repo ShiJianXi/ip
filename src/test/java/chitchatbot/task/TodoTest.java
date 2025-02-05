@@ -25,10 +25,10 @@ public class TodoTest {
     public void createToDo_success() throws MissingParameterException {
         String[] inputArr = new String[] {"todo", "ToDoTest"};
         String actual = Todo.createToDo(inputArr, storage);
-        String expected = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                + Ui.indentation + "  " + "[T][ ] ToDoTest " + "\n"
-                + Ui.indentation + "Now you have "
-                + Task.getNoOfActivity() + " tasks in the list.\n");
+        String expected = "Got it. I've added this task:\n"
+                + "  " + "[T][ ] ToDoTest" + "\n"
+                + "Now you have "
+                + Task.getNoOfActivity() + " tasks in the list.";
 
         assertEquals(expected, actual);
         String[] deleteInput = new String[] {"delete", String.valueOf(Task.getNoOfActivity())};
@@ -42,8 +42,8 @@ public class TodoTest {
             String result = Todo.createToDo(inputArr, storage);
             fail();
         } catch (MissingParameterException e) {
-            String expected = "Missing parameters error: The description of todo cannot be empty\n" +
-                    "    Please ensure the correct format is used: todo <Description>\n";
+            String expected = "Incorrect format:\n"
+                    + "Please ensure the correct format is used: todo <Description>";
             assertEquals(expected, e.getMessage());
         }
     }
