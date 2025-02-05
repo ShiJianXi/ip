@@ -80,27 +80,35 @@ public class Find {
      */
     public String executeFindCommand(String[] inputArr) throws MissingParameterException {
         if (inputArr.length < 2) {
-            throw new MissingParameterException(Ui.printChat(Ui.indentation
-                    + "Missing parameters error: Please ensure the correct parameters is used:\n"
-                    + Ui.indentation + "find <keyword>\n"));
+//            throw new MissingParameterException(Ui.printChat(Ui.indentation
+//                    + "Missing parameters error: Please ensure the correct parameters is used:\n"
+//                    + Ui.indentation + "find <keyword>\n"));
+            throw new MissingParameterException("Missing parameters error: Please ensure the correct parameters is used:\n"
+                    + "find <keyword>");
         }
+
         StringJoiner result = new StringJoiner("\n");
         ArrayList<String> lookingFor = new ArrayList<>();
+
         for (int i = 1; i < inputArr.length; i++) {
             lookingFor.add(inputArr[i]);
         }
+
         ArrayList<String> similarTask = this.findSimilarTask(lookingFor);
 
         if (similarTask.isEmpty()) {
-            result.add(Ui.indentation + "No similar task found!\n");
-            return result.toString();
+//            result.add(Ui.indentation + "No similar task found!\n");
+//            return result.toString();
+            return "No similar task found!";
         } else {
             for (int i = 0; i < similarTask.size(); i++) {
-                if (i == similarTask.size() - 1) {
-                    result.add(Ui.indentation + (i + 1) + "." + similarTask.get(i) + "\n");
-                } else {
-                    result.add(Ui.indentation + (i + 1) + "." + similarTask.get(i));
-                }
+//                if (i == similarTask.size() - 1) {
+//                    //result.add(Ui.indentation + (i + 1) + "." + similarTask.get(i) + "\n");
+//                    result.add((i + 1) + "." + similarTask.get(i));
+//                } else {
+//                    result.add(Ui.indentation + (i + 1) + "." + similarTask.get(i));
+//                }
+                result.add((i + 1) + "." + similarTask.get(i));
             }
             return result.toString();
         }

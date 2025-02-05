@@ -1,5 +1,7 @@
 package chitchatbot.task;
 
+import java.util.StringJoiner;
+
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
@@ -35,31 +37,39 @@ public class Todo extends Task {
      * @see Storage
      */
     public static String createToDo(String[] inputArr, Storage storage) throws MissingParameterException {
-        String result = "";
+        //String result = "";
         if (inputArr.length < 2) {
-            throw new MissingParameterException("Missing parameters error: The description of todo cannot be empty\n"
-                    + "    Please ensure the correct format is used: todo <Description>\n");
+//            throw new MissingParameterException("Missing parameters error: The description of todo cannot be empty\n"
+//                    + "    Please ensure the correct format is used: todo <Description>\n");
+            throw new MissingParameterException("Incorrect format:\n"
+                    + "Please ensure the correct format is used: todo <Description>");
         }
 
-        String task = "";
+        //String task = "";
+        StringJoiner task = new StringJoiner(" ");
         for (int i = 1; i < inputArr.length; i++) {
             if (inputArr[i].equals("/by")) {
                 break;
             }
-            task += inputArr[i];
-            task += " ";
+            task.add(inputArr[i]);
+//            task += inputArr[i];
+//            task += " ";
         }
 
-        Todo newTask = new Todo(task);
+        Todo newTask = new Todo(task.toString());
 
-        result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
-                + Ui.indentation + "  " + newTask + "\n"
-                + Ui.indentation + "Now you have "
-                + Task.getNoOfActivity() + " tasks in the list.\n");
+//        result = Ui.printChat(Ui.indentation + "Got it. I've added this task:\n"
+//                + Ui.indentation + "  " + newTask + "\n"
+//                + Ui.indentation + "Now you have "
+//                + Task.getNoOfActivity() + " tasks in the list.\n");
 
         storage.appendToFile(newTask.toString());
 
-        return result;
+        //return result;
+        return "Got it. I've added this task:\n"
+                + "  " + newTask + "\n"
+                + "Now you have "
+                + Task.getNoOfActivity() + " tasks in the list.";
 
     }
 

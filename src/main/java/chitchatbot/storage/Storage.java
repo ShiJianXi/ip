@@ -83,11 +83,15 @@ public class Storage {
             while (scanner.hasNext()) {
                 index++;
                 String text = scanner.nextLine();
-                text = "    " + index + "." + text;
+                //text = "    " + index + "." + text;
+                text = index + "." + text;
                 toPrint.add(text);
             }
-
-            return Ui.printChat(toPrint + "\n");
+            if (index == 0) {
+                return "No task currently!";
+            }
+            //return Ui.printChat(toPrint + "\n");
+            return toPrint.toString();
         } catch (FileNotFoundException e) {
             return "File error: File not found";
         }

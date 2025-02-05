@@ -46,19 +46,26 @@ public class Parser {
         try {
             this.action = Action.valueOf(this.inputArr[0]);
         } catch (IllegalArgumentException e) {
-
-            return Ui.printChat(Ui.indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
-                    + Ui.indentation + "Please use the correct queries:\n"
-                    + Ui.indentation + "todo <description>\n"
-                    + Ui.indentation + "deadline <description> /by <Date/Time>\n"
-                    + Ui.indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
-                    + Ui.indentation + "or list to show all the task\n");
+//
+//            return Ui.printChat(Ui.indentation + "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+//                    + Ui.indentation + "Please use the correct queries:\n"
+//                    + Ui.indentation + "todo <description>\n"
+//                    + Ui.indentation + "deadline <description> /by <Date/Time>\n"
+//                    + Ui.indentation + "event <description> /from <Date/Time> /to <Date/Time>\n"
+//                    + Ui.indentation + "or list to show all the task\n");
+            return "OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+                    + "Please use the correct queries:\n"
+                    + "todo <description>\n"
+                    + "deadline <description> /by <Date/Time>\n"
+                    + "event <description> /from <Date&Time> /to <Date&Time>\n"
+                    + "or list to show all the task";
         }
 
         if (action == Action.bye) {
 
-            return Ui.printChat(Ui.indentation
-                    + "Bye. Hope to see you again soon!\n");
+//            return Ui.printChat(Ui.indentation
+//                    + "Bye. Hope to see you again soon!\n");
+            return "Bye. Hope to see you again soon!";
 
         } else if (this.action == Action.list) {
 
@@ -66,71 +73,77 @@ public class Parser {
 
         } else if (this.action == Action.mark) {
 
-            String result = "";
+            //String result = "";
             try {
-                result = Task.markAsDone(this.storage.getPath(), this.inputArr);
-                return result;
+                return Task.markAsDone(this.storage.getPath(), this.inputArr);
+                //return result;
             } catch (MissingParameterException e) {
 
-                return Ui.printChat(e.getMessage());
+                //return Ui.printChat(e.getMessage());
+                return e.getMessage();
             }
 
 
         } else if (this.action == Action.unmark) {
 
-            String result = "";
+            //String result = "";
             try {
-                result = Task.markAsNotDone(this.storage.getPath(), this.inputArr);
+                return Task.markAsNotDone(this.storage.getPath(), this.inputArr);
 
-                return result;
+                //return result;
             } catch (MissingParameterException e) {
 
-                return Ui.printChat(e.getMessage());
+                //return Ui.printChat(e.getMessage());
+                return e.getMessage();
             }
 
 
         } else if (this.action == Action.todo) {
 
-            String result = "";
+            //String result = "";
             try {
-                result = Todo.createToDo(this.inputArr, this.storage);
+                return Todo.createToDo(this.inputArr, this.storage);
 
-                return result;
+                //return result;
             } catch (MissingParameterException e) {
 
-                return Ui.printChat(Ui.indentation + e.getMessage());
+                //return Ui.printChat(Ui.indentation + e.getMessage());
+                return e.getMessage();
             }
 
         } else if (this.action == Action.deadline) {
 
-            String result = "";
+            //String result = "";
 
             try {
-                result = Deadline.createDeadline(this.inputArr, this.storage);
+                return Deadline.createDeadline(this.inputArr, this.storage);
             } catch (MissingParameterException e) {
 
-                return Ui.printChat(e.getMessage());
+                //return Ui.printChat(e.getMessage());
+                return e.getMessage();
             }
 
-            return result;
+            //return result;
 
         } else if (this.action == Action.event) {
 
-            String result = "";
+            //String result = "";
             try {
-                result = Event.createEvent(this.inputArr, this.storage);
-                return result;
+                return Event.createEvent(this.inputArr, this.storage);
+                //return result;
             } catch (MissingParameterException e) {
-                return Ui.printChat(e.getMessage());
+                //return Ui.printChat(e.getMessage());
+                return e.getMessage();
             }
 
 
         } else if (this.action == Action.delete) {
 
-            String result = "";
+            //String result = "";
             try {
-                result = Task.deleteTask(this.storage.getPath(), this.inputArr);
-                return result;
+                return Task.deleteTask(this.storage.getPath(), this.inputArr);
+
+                //return result;
             } catch (MissingParameterException e) {
                 return e.getMessage();
             }
@@ -139,7 +152,8 @@ public class Parser {
             Find find = new Find(storage);
             try {
                 String result = find.executeFindCommand(inputArr);
-                return Ui.printChat(result);
+                //return Ui.printChat(result);
+                return "List of similar task: \n" + result;
             } catch (MissingParameterException e) {
                 return e.getMessage();
             }

@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-
     Path path = Paths.get("data", "chat.txt");
     ChitChatBot chitChatBot = new ChitChatBot(path);
 

@@ -55,10 +55,12 @@ public class Task {
      */
     public static String markAsDone(Path path, String[] inputArr) throws MissingParameterException {
 
-        String result = "";
+        //String result = "";
         if (inputArr.length < 2) {
-            throw new MissingParameterException(Ui.indentation + "Missing parameters error: Missing parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: mark <Task Number>\n");
+//            throw new MissingParameterException(Ui.indentation + "Missing parameters error: Missing parameters\n"
+//                    + Ui.indentation + "Please ensure the correct format is used: mark <Task Number>\n");
+            throw new MissingParameterException("Missing parameters:\n"
+                    + "Please ensure the correct format is used: mark <Task Number>");
         }
 
         try {
@@ -68,7 +70,7 @@ public class Task {
 
             char[] charArr = text.toCharArray();
             if (charArr[4] == 'X') {
-                throw new AlreadyMarkedException("    Already marked error: This task is already marked as done\n");
+                throw new AlreadyMarkedException("This task is already marked as done!");
             } else {
                 charArr[4] = 'X';
             }
@@ -80,31 +82,42 @@ public class Task {
 
             Files.write(path, lines);
 
-            result = Ui.printChat(Ui.indentation + "Nice! I've marked this task as done:\n"
-                    + Ui.indentation + "  " + newString + "\n");
-            return result;
+//            result = Ui.printChat(Ui.indentation + "Nice! I've marked this task as done:\n"
+//                    + Ui.indentation + "  " + newString + "\n");
+//            return result;
+            return "Nice! I've marked this task as done:\n"
+                    + "  " + newString;
 
         } catch (FileNotFoundException e) {
-            return "File error: File not found";
+            return "File not found";
         } catch (IOException e) {
-            return "Input error: Unable to read file";
+            return "Unable to read file";
         } catch (AlreadyMarkedException e) {
-            return Ui.printChat(e.getMessage());
+            //return Ui.printChat(e.getMessage());
+            return e.getMessage();
         } catch (IndexOutOfBoundsException e) {
             if (noOfActivity == 0) {
-                return Ui.printChat(Ui.indentation + "Unable to mark, no task in the list, "
-                        + "please add task first\n");
+//                return Ui.printChat(Ui.indentation + "Unable to mark, no task in the list, "
+//                        + "please add task first\n");
+                return "Unable to mark, no task in the list, "
+                        + "please add task first";
             } else if (noOfActivity == 1) {
-                return Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
-                        + "only 1 task in the list\n");
+//                return Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
+//                        + "only 1 task in the list\n");
+                return "Unable to mark, this task doesn't exist, "
+                        + "only 1 task in the list";
             } else {
-                return Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
+//                return Ui.printChat(Ui.indentation + "Unable to mark, this task doesn't exist, "
+//                        + "please pick a task from 1 to "
+//                        + Task.getNoOfActivity() + " to mark.\n");
+                return "Unable to mark, this task doesn't exist, "
                         + "please pick a task from 1 to "
-                        + Task.getNoOfActivity() + " to mark.\n");
+                        + Task.getNoOfActivity() + " to mark.";
             }
         } catch (NumberFormatException e) {
-            return Ui.printChat(Ui.indentation + "Number Format error: "
-                    + "Please enter the number of the task that you want to mark\n");
+//            return Ui.printChat(Ui.indentation + "Number Format error: "
+//                    + "Please enter the number of the task that you want to mark\n");
+            return "Please enter the ID number of the task that you want to mark.";
         }
     }
 
@@ -123,12 +136,15 @@ public class Task {
     public static String markAsNotDone(Path path, String[] inputArr) throws MissingParameterException {
 
         if (inputArr.length != 2) {
-            throw new MissingParameterException(Ui.indentation + "Missing parameters error: Missing parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: "
-                    + "unmark <Task Number>\n");
+//            throw new MissingParameterException(Ui.indentation + "Missing parameters error: Missing parameters\n"
+//                    + Ui.indentation + "Please ensure the correct format is used: "
+//                    + "unmark <Task Number>\n");
+            throw new MissingParameterException("Missing parameters:\n"
+                    + "Please ensure the correct format is used: "
+                    + "unmark <Task Number>");
         }
 
-        String result = "";
+        //String result = "";
         try {
 
             int index = Integer.parseInt(inputArr[1]) - 1;
@@ -137,7 +153,8 @@ public class Task {
 
             char[] charArr = text.toCharArray();
             if (charArr[4] == ' ') {
-                throw new AlreadyMarkedException("    Not yet marked error: This task is not yet marked as done\n");
+                //throw new AlreadyMarkedException("    Not yet marked error: This task is not yet marked as done\n");
+                throw new AlreadyMarkedException("This task is not yet marked as done!");
             } else {
                 charArr[4] = ' ';
             }
@@ -149,32 +166,42 @@ public class Task {
 
             Files.write(path, lines);
 
-            result = Ui.printChat(Ui.indentation + "OK, I've marked this task as not done yet:\n"
-                    + Ui.indentation + "  " + newString + "\n");
-            return result;
+//            result = Ui.printChat(Ui.indentation + "OK, I've marked this task as not done yet:\n"
+//                    + Ui.indentation + "  " + newString + "\n");
+//            return result;
+            return "OK, I've marked this task as not done yet:\n"
+                    + "  " + newString;
 
         } catch (FileNotFoundException e) {
-            return "File error: File not found";
+            return "File not found";
         } catch (IOException e) {
-            return "Input error: Unable to read file";
+            return "Unable to read file";
         } catch (AlreadyMarkedException e) {
-            return Ui.printChat(e.getMessage());
+            //return Ui.printChat(e.getMessage());
+            return e.getMessage();
         } catch (IndexOutOfBoundsException e) {
             if (Task.getNoOfActivity() == 0) {
-                return Ui.printChat(Ui.indentation + "Unable to unmark, no task in the list, "
-                        + "please add and mark task first\n");
+//                return Ui.printChat(Ui.indentation + "Unable to unmark, no task in the list, "
+//                        + "please add and mark task first\n");
+                return "Unable to unmark, no task in the list, "
+                        + "please add and mark task first";
             } else if (Task.getNoOfActivity() == 1) {
-                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
-                        + "only 1 task in the list\n"));
-                return Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
-                        + "only 1 task in the list\n");
+//                System.out.println(Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
+//                        + "only 1 task in the list\n"));
+//                return Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
+//                        + "only 1 task in the list\n");
+                return "Unable to unmark, this task doesn't exist, "
+                        + "only 1 task in the list";
             } else {
-                return Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
-                        + "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.\n");
+//                return Ui.printChat(Ui.indentation + "Unable to unmark, This task doesn't exist, "
+//                        + "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.\n");
+                return "Unable to unmark, this task doesn't exist, "
+                        + "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.";
             }
         } catch (NumberFormatException e) {
-            return Ui.printChat(Ui.indentation + "Number format error: "
-                    + "Please enter the number of the task that you want to unmark\n");
+//            return Ui.printChat(Ui.indentation + "Number format error: "
+//                    + "Please enter the number of the task that you want to unmark\n");
+            return "Please enter the ID number of the task that you want to unmark.";
         }
     }
 
@@ -201,11 +228,13 @@ public class Task {
      */
     public static String deleteTask(Path path, String[] inputArr) throws MissingParameterException {
         if (inputArr.length != 2) {
-            throw new MissingParameterException(Ui.printChat(Ui.indentation
-                    + "Missing parameters error: Incorrect format for delete queries:\n"
-                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+//            throw new MissingParameterException(Ui.printChat(Ui.indentation
+//                    + "Missing parameters error: Incorrect format for delete queries:\n"
+//                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n"));
+            throw new MissingParameterException("Incorrect format:\n"
+                    + "Please ensure the correct format is used: delete <Task number>");
         }
-        String result = "";
+        //String result = "";
         try {
 
             int index = Integer.parseInt(inputArr[1]) - 1;
@@ -215,28 +244,39 @@ public class Task {
             lines.remove(index);
             Files.write(path, lines);
             noOfActivity--;
-            result = Ui.printChat(Ui.indentation + "Noted. I've removed this task:\n"
-                    + Ui.indentation + "  " + toRemove + "\n"
-                    + Ui.indentation + "Now you have " + Task.getNoOfActivity()
-                    + " tasks in the list.\n");
-            return result;
+//            result = Ui.printChat(Ui.indentation + "Noted. I've removed this task:\n"
+//                    + Ui.indentation + "  " + toRemove + "\n"
+//                    + Ui.indentation + "Now you have " + Task.getNoOfActivity()
+//                    + " tasks in the list.\n");
+//            return result;
+
+            return "Noted. I've removed this task:\n"
+                    + "  " + toRemove + "\n"
+                    + "Now you have " + Task.getNoOfActivity()
+                    + " tasks in the list.";
 
         } catch (FileNotFoundException e) {
-            return "File error: File not found";
+            return "File not found";
         } catch (IOException e) {
-            return "Input error: Unable to read file";
+            return "Unable to read file";
         } catch (ArrayIndexOutOfBoundsException e) {
 
-            return Ui.printChat(Ui.indentation + "Missing parameters error: Missing parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n");
+//            return Ui.printChat(Ui.indentation + "Missing parameters error: Missing parameters\n"
+//                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n");
+            return "Incorrect format: \n"
+                    + "Please ensure the correct format is used: delete <Task ID number>";
         } catch (IndexOutOfBoundsException e) {
 
-            return Ui.printChat(Ui.indentation + "Missing parameters error: This task doesn't exist\n"
-                    + Ui.indentation + "You can only delete an existing task\n");
+//            return Ui.printChat(Ui.indentation + "Missing parameters error: This task doesn't exist\n"
+//                    + Ui.indentation + "You can only delete an existing task\n");
+            return "This task doesn't exist:\n"
+                    + "You can only delete an existing task";
         } catch (NumberFormatException e) {
 
-            return Ui.printChat(Ui.indentation + "Missing parameters error: Wrong parameters\n"
-                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n");
+//            return Ui.printChat(Ui.indentation + "Missing parameters error: Wrong parameters\n"
+//                    + Ui.indentation + "Please ensure the correct format is used: delete <Task number>\n");
+            return "Incorrect format:\n"
+                    + "Please ensure the ID number of the task is provided";
         }
     }
 
