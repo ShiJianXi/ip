@@ -32,39 +32,64 @@ public class Find {
 
     /**
      * Returns an ArrayList<String> that contains all the similar task as of the given words.
+     * A task is considered similar as long as it contains all the key-words
      * The given keywords will be in the form of ArrayList<String>.
      * <p>
      * An empty ArrayList<String> will be returned if no similar task within the txt file.
-     * @param description The descriptions in the form of ArrayList<String>.
+     * @param descriptions The descriptions in the form of ArrayList<String>.
      * @return ArrayList<String> of all the similar task.
      */
-    public ArrayList<String> findSimilarTask(ArrayList<String> description) {
-        ArrayList<String> originalDescription = new ArrayList<>(List.copyOf(description));
+    public ArrayList<String> findSimilarTask(ArrayList<String> descriptions) {
+        ArrayList<String> originalDescription = new ArrayList<>(List.copyOf(descriptions));
         ArrayList<String> result = new ArrayList<>();
+        return getListOfTaskWithKeyWord(descriptions, result, originalDescription);
+    }
+
+    private ArrayList<String> getListOfTaskWithKeyWord(ArrayList<String> descriptions,
+                                                       ArrayList<String> result,
+                                                       ArrayList<String> originalDescription) {
         try {
-            Scanner sc = new Scanner(chatFile);
-            while (sc.hasNext()) {
-                String task = sc.nextLine();
-                String[] taskArr = task.split(" ");
-                for (int i = 1; i < taskArr.length; i++) {
-                    if (description.contains(taskArr[i])) {
-                        String text = taskArr[i];
-
-                        description.remove(text);
-                        if (description.isEmpty()) {
-                            result.add(task);
-                            break;
-                        }
-                    }
-                }
-                description = new ArrayList<>(originalDescription);
-            }
-
+            scanChatFile(descriptions, result, originalDescription);
             return result;
         } catch (FileNotFoundException e) {
             System.out.println("File not found error");
         }
         return result;
+    }
+
+    private void scanChatFile(ArrayList<String> descriptions,
+                              ArrayList<String> result,
+                              ArrayList<String> originalDescription) throws FileNotFoundException {
+        Scanner sc = new Scanner(chatFile);
+        while (sc.hasNext()) {
+            String task = sc.nextLine();
+            String[] taskArr = task.split(" ");
+            findKeyWordInTaskArr(descriptions, taskArr, result, task);
+            descriptions = new ArrayList<>(originalDescription);
+        }
+    }
+
+    private static void findKeyWordInTaskArr(ArrayList<String> descriptions,
+                                             String[] taskArr,
+                                             ArrayList<String> result,
+                                             String task) {
+        for (int i = 1; i < taskArr.length; i++) {
+            if (containAllKeyWords(descriptions, taskArr, result, task, i)) break;
+        }
+    }
+
+    private static boolean containAllKeyWords(ArrayList<String> descriptions, String[] taskArr,
+                                              ArrayList<String> result, String task, int i) {
+        if (descriptions.contains(taskArr[i])) {
+            String text = taskArr[i];
+
+            descriptions.remove(text);
+            if (descriptions.isEmpty()) {
+                result.add(task);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -79,20 +104,14 @@ public class Find {
      * @see Ui
      */
     public String executeFindCommand(String[] inputArr) throws MissingParameterException {
-        if (inputArr.length < 2) {
-            throw new MissingParameterException("Missing parameters error: Please ensure the correct parameters is used:\n"
-                    + "find <keyword>");
-        }
-
-        StringJoiner result = new StringJoiner("\n");
-        ArrayList<String> lookingFor = new ArrayList<>();
-
-        for (int i = 1; i < inputArr.length; i++) {
-            lookingFor.add(inputArr[i]);
-        }
-
+        checkInputArrLength(inputArr);
+        ArrayList<String> lookingFor = addKeyWordsIntoList(inputArr);
         ArrayList<String> similarTask = this.findSimilarTask(lookingFor);
+        return parseSimilarTaskIntoString(similarTask);
+    }
 
+    private static String parseSimilarTaskIntoString(ArrayList<String> similarTask) {
+        StringJoiner result = new StringJoiner("\n");
         if (similarTask.isEmpty()) {
             return "No similar task found!";
         } else {
@@ -100,6 +119,22 @@ public class Find {
                 result.add((i + 1) + "." + similarTask.get(i));
             }
             return result.toString();
+        }
+    }
+
+    private static ArrayList<String> addKeyWordsIntoList(String[] inputArr) {
+        ArrayList<String> lookingFor = new ArrayList<>();
+
+        for (int i = 1; i < inputArr.length; i++) {
+            lookingFor.add(inputArr[i]);
+        }
+        return lookingFor;
+    }
+
+    private static void checkInputArrLength(String[] inputArr) throws MissingParameterException {
+        if (inputArr.length < 2) {
+            throw new MissingParameterException("Missing parameters error: Please ensure the correct parameters is used:\n"
+                    + "find <keyword>");
         }
     }
 
