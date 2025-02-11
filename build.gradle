@@ -50,7 +50,7 @@ test {
 application {
     //mainClass.set("seedu.duke.Duke")
     //mainClass.set("chitchatbot.ChitChatBot")
-    mainClass.set("Launcher")
+    mainClass.set("chitchatbot.Launcher")
 }
 
 shadowJar {
