@@ -61,22 +61,11 @@ public class Task {
 
         try {
             int index = Integer.parseInt(inputArr[1]) - 1;
-
             String text = Files.readAllLines(path).get(index);
-
             char[] charArr = text.toCharArray();
-            if (charArr[4] == 'X') {
-                throw new AlreadyMarkedException("This task is already marked as done!");
-            } else {
-                charArr[4] = 'X';
-            }
+            markAsX(charArr);
             String newString = String.valueOf(charArr);
-
-            List<String> lines = Files.readAllLines(path);
-
-            lines.set(index, newString);
-
-            Files.write(path, lines);
+            writeBackToChatFile(path, newString, index);
 
             return "Nice! I've marked this task as done:\n"
                     + "  " + newString;
@@ -88,20 +77,40 @@ public class Task {
         } catch (AlreadyMarkedException e) {
             return e.getMessage();
         } catch (IndexOutOfBoundsException e) {
-            if (noOfActivity == 0) {
-                return "Unable to mark, no task in the list, "
-                        + "please add task first";
-            } else if (noOfActivity == 1) {
-                return "Unable to mark, this task doesn't exist, "
-                        + "only 1 task in the list";
-            } else {
-                return "Unable to mark, this task doesn't exist, "
-                        + "please pick a task from 1 to "
-                        + Task.getNoOfActivity() + " to mark.";
-            }
+            return printMarkErrorMsgBasedOnNumOfTask();
         } catch (NumberFormatException e) {
             return "Please enter the ID number of the task that you want to mark.";
         }
+    }
+
+    private static String printMarkErrorMsgBasedOnNumOfTask() {
+        if (noOfActivity == 0) {
+            return "Unable to mark, no task in the list, "
+                    + "please add task first";
+        } else if (noOfActivity == 1) {
+            return "Unable to mark, this task doesn't exist, "
+                    + "only 1 task in the list";
+        } else {
+            return "Unable to mark, this task doesn't exist, "
+                    + "please pick a task from 1 to "
+                    + Task.getNoOfActivity() + " to mark.";
+        }
+    }
+
+    private static void markAsX(char[] charArr) throws AlreadyMarkedException {
+        if (charArr[4] == 'X') {
+            throw new AlreadyMarkedException("This task is already marked as done!");
+        } else {
+            charArr[4] = 'X';
+        }
+    }
+
+    private static void writeBackToChatFile(Path path, String newString, int index) throws IOException {
+        List<String> lines = Files.readAllLines(path);
+
+        lines.set(index, newString);
+
+        Files.write(path, lines);
     }
 
     /**
@@ -125,24 +134,12 @@ public class Task {
         }
 
         try {
-
             int index = Integer.parseInt(inputArr[1]) - 1;
-
             String text = Files.readAllLines(path).get(index);
-
             char[] charArr = text.toCharArray();
-            if (charArr[4] == ' ') {
-                throw new AlreadyMarkedException("This task is not yet marked as done!");
-            } else {
-                charArr[4] = ' ';
-            }
+            unmarkX(charArr);
             String newString = String.valueOf(charArr);
-
-            List<String> lines = Files.readAllLines(path);
-
-            lines.set(index, newString);
-
-            Files.write(path, lines);
+            writeBackToChatFile(path, newString, index);
 
             return "OK, I've marked this task as not done yet:\n"
                     + "  " + newString;
@@ -154,29 +151,34 @@ public class Task {
         } catch (AlreadyMarkedException e) {
             return e.getMessage();
         } catch (IndexOutOfBoundsException e) {
-            if (Task.getNoOfActivity() == 0) {
-                return "Unable to unmark, no task in the list, "
-                        + "please add and mark task first";
-            } else if (Task.getNoOfActivity() == 1) {
-                return "Unable to unmark, this task doesn't exist, "
-                        + "only 1 task in the list";
-            } else {
-                return "Unable to unmark, this task doesn't exist, "
-                        + "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.";
-            }
+            return printUnmarkErrorMsgBasedOnNumOfTask();
         } catch (NumberFormatException e) {
             return "Please enter the ID number of the task that you want to unmark.";
         }
     }
 
-
-    public void toggleIsDone() {
-        this.isDone = !isDone;
+    private static String printUnmarkErrorMsgBasedOnNumOfTask() {
+        if (Task.getNoOfActivity() == 0) {
+            return "Unable to unmark, no task in the list, "
+                    + "please add and mark task first";
+        } else if (Task.getNoOfActivity() == 1) {
+            return "Unable to unmark, this task doesn't exist, "
+                    + "only 1 task in the list";
+        } else {
+            return "Unable to unmark, this task doesn't exist, "
+                    + "please pick a task from 1 to " + Task.getNoOfActivity() + " to unmark.";
+        }
     }
 
-    public int getIndex() {
-        return this.index;
+    private static void unmarkX(char[] charArr) throws AlreadyMarkedException {
+        if (charArr[4] == ' ') {
+            throw new AlreadyMarkedException("This task is not yet marked as done!");
+        } else {
+            charArr[4] = ' ';
+        }
     }
+
+
 
     /**
      * Returns a String that will be printed to the user's screen
@@ -196,13 +198,10 @@ public class Task {
                     + "Please ensure the correct format is used: delete <Task number>");
         }
         try {
-
             int index = Integer.parseInt(inputArr[1]) - 1;
-
             List<String> lines = Files.readAllLines(path);
             String toRemove = lines.get(index);
-            lines.remove(index);
-            Files.write(path, lines);
+            removeTaskFromChatFile(path, lines, index);
             noOfActivity--;
             return "Noted. I've removed this task:\n"
                     + "  " + toRemove + "\n"
@@ -224,6 +223,12 @@ public class Task {
                     + "Please ensure the ID number of the task is provided";
         }
     }
+
+    private static void removeTaskFromChatFile(Path path, List<String> lines, int index) throws IOException {
+        lines.remove(index);
+        Files.write(path, lines);
+    }
+    
 
     @Override
     public String toString() {
