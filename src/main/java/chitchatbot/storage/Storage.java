@@ -28,6 +28,8 @@ public class Storage {
     public Storage(Path path) {
         this.path = path;
         this.chatFile = new File(String.valueOf(path));
+        boolean fileExist = this.chatFile.exists();
+        assert fileExist == true : "File should exist";
     }
 
     /**
