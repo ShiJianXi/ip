@@ -228,7 +228,7 @@ public class Task {
         lines.remove(index);
         Files.write(path, lines);
     }
-    
+
 
     @Override
     public String toString() {

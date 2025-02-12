@@ -42,17 +42,8 @@ public class Todo extends Task {
                     + "Please ensure the correct format is used: todo <Description>");
         }
 
-        StringJoiner task = new StringJoiner(" ");
-        for (int i = 1; i < inputArr.length; i++) {
-            if (inputArr[i].equals("/by")) {
-                break;
-            }
-            task.add(inputArr[i]);
-        }
-
-        Todo newTask = new Todo(task.toString());
-
-
+        String taskDescription = getDescription(inputArr);
+        Todo newTask = new Todo(taskDescription);
         storage.appendToFile(newTask.toString());
 
         return "Got it. I've added this task:\n"
@@ -60,6 +51,17 @@ public class Todo extends Task {
                 + "Now you have "
                 + Task.getNoOfActivity() + " tasks in the list.";
 
+    }
+
+    private static String getDescription(String[] inputArr) {
+        StringJoiner task = new StringJoiner(" ");
+        for (int i = 1; i < inputArr.length; i++) {
+            if (inputArr[i].equals("/by")) {
+                break;
+            }
+            task.add(inputArr[i]);
+        }
+        return task.toString();
     }
 
     @Override
