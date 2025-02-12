@@ -59,6 +59,61 @@ public class Deadline extends Task {
      * @see Storage
      */
     public static String createDeadline(String[] inputArr, Storage storage) throws MissingParameterException {
+        checkDeadlineInputFormat(inputArr);
+        return tryGetStringOfNewDeadline(inputArr, storage);
+    }
+
+    private static String tryGetStringOfNewDeadline(String[] inputArr, Storage storage) {
+        try {
+            int byIndex = getByIndex(inputArr);
+            String taskDescription = addDescriptionUpToBy(byIndex, inputArr);
+            return getStringOfNewDeadline(inputArr, storage, byIndex, taskDescription);
+        } catch (DateTimeException e1) {
+            return "Incorrect date time format: \n"
+                    + "please ensure the correct format is used:\n"
+                    + "    deadline <Description> /by dd/mm/yyyy\n"
+                    + "    OR deadline <Description /by dd/mm/yyyy HHmm";
+        }
+    }
+
+    private static String getStringOfNewDeadline(String[] inputArr, Storage storage, int byIndex, String taskDescription) {
+        boolean containsTime = inputArr.length > byIndex + 2;
+
+        if (containsTime) {
+            return getStringOfDeadlineTaskWithTime(inputArr, storage, byIndex, taskDescription);
+        } else {
+            return getStringOfDeadlineTaskWithoutTime(inputArr, storage, byIndex, taskDescription);
+        }
+    }
+
+    private static String getStringOfDeadlineTaskWithoutTime(String[] inputArr, Storage storage, int byIndex, String taskDescription) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate by = LocalDate.parse(inputArr[byIndex + 1], formatter);
+
+        Deadline newTask = new Deadline(taskDescription, by);
+        storage.appendToFile(newTask.toString());
+        return "Got it. I've added this task:\n"
+                + "  " + newTask + "\n"
+                + "Now you have "
+                + Task.getNoOfActivity() + " tasks in the list.";
+    }
+
+    private static String getStringOfDeadlineTaskWithTime(String[] inputArr, Storage storage, int byIndex, String taskDescription) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
+        LocalDate date = LocalDate.parse(inputArr[byIndex + 1], formatter);
+        LocalTime time = LocalTime.parse(inputArr[byIndex + 2], timeFormatter);
+        Deadline newTask = new Deadline(taskDescription, date, time);
+
+        storage.appendToFile(newTask.toString());
+        return "Got it. I've added this task:\n"
+                + "  " + newTask + "\n"
+                + "Now you have "
+                + Task.getNoOfActivity() + " tasks in the list.";
+    }
+
+
+    private static void checkDeadlineInputFormat(String[] inputArr) throws MissingParameterException {
         if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/by") || inputArr[1].equals("/by")
                 || Arrays.asList(inputArr).indexOf("/by") == inputArr.length - 1) {
 
@@ -67,48 +122,26 @@ public class Deadline extends Task {
                     + "    deadline <Description> /by dd/mm/yyyy\n"
                     + "    OR deadline <Description /by dd/mm/yyyy HHmm");
         }
+    }
 
-        try {
-            StringJoiner task = new StringJoiner(" ");
-            int byIndex = 0;
-            for (int i = 1; i < inputArr.length; i++) {
-                if (inputArr[i].equals("/by")) {
-                    byIndex = i;
-                    break;
-                }
-                task.add(inputArr[i]);
+    private static int getByIndex(String[] inputArr) {
+        int index = 0;
+        for (int i = 1; i < inputArr.length; i++) {
+            if (inputArr[i].equals("/by")) {
+                index = i;
+                break;
             }
-
-            if (inputArr.length > byIndex + 2) { //Contains time
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-                DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
-                LocalDate date = LocalDate.parse(inputArr[byIndex + 1], formatter);
-                LocalTime time = LocalTime.parse(inputArr[byIndex + 2], timeFormatter);
-                Deadline newTask = new Deadline(task.toString(), date, time);
-
-                storage.appendToFile(newTask.toString());
-                return "Got it. I've added this task:\n"
-                        + "  " + newTask + "\n"
-                        + "Now you have "
-                        + Task.getNoOfActivity() + " tasks in the list.";
-            } else {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-                LocalDate by = LocalDate.parse(inputArr[byIndex + 1], formatter);
-
-                Deadline newTask = new Deadline(task.toString(), by);
-                storage.appendToFile(newTask.toString());
-                return "Got it. I've added this task:\n"
-                        + "  " + newTask + "\n"
-                        + "Now you have "
-                        + Task.getNoOfActivity() + " tasks in the list.";
-            }
-
-        } catch (DateTimeException e1) {
-            return "Incorrect date time format: \n"
-                    + "please ensure the correct format is used:\n"
-                    + "    deadline <Description> /by dd/mm/yyyy\n"
-                    + "    OR deadline <Description /by dd/mm/yyyy HHmm";
         }
+        return index;
+    }
+
+    private static String addDescriptionUpToBy(int byIndex, String[] inputArr) {
+        StringJoiner taskDescription = new StringJoiner(" ");
+        for (int i = 1; i < byIndex; i++) {
+            taskDescription.add(inputArr[i]);
+        }
+
+        return taskDescription.toString();
     }
 
     @Override

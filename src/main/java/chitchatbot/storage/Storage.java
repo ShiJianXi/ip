@@ -40,19 +40,27 @@ public class Storage {
      */
     public void initStorage() {
         if (!chatFile.exists()) {
-            try {
-                Files.createDirectories(path.getParent());
-                chatFile.createNewFile();
-            } catch (IOException e) {
-                System.out.println("An error occurred, unable to create file");
-            }
+            tryCreateFile();
         } else {
-            try {
-                int noOfActivity = Files.readAllLines(path).size();
-                Task.setNoOfActivity(noOfActivity);
-            } catch (IOException e) {
-                System.out.println("An error occurred, unable to read file");
-            }
+            tryInitializeNumberOfActivities();
+        }
+    }
+
+    private void tryInitializeNumberOfActivities() {
+        try {
+            int noOfActivity = Files.readAllLines(path).size();
+            Task.setNoOfActivity(noOfActivity);
+        } catch (IOException e) {
+            System.out.println("An error occurred, unable to read file");
+        }
+    }
+
+    private void tryCreateFile() {
+        try {
+            Files.createDirectories(path.getParent());
+            chatFile.createNewFile();
+        } catch (IOException e) {
+            System.out.println("An error occurred, unable to create file");
         }
     }
 
@@ -62,6 +70,10 @@ public class Storage {
      * @param message A String message to be appended into the file
      */
     public void appendToFile(String message) {
+        writeMessageToFile(message);
+    }
+
+    private void writeMessageToFile(String message) {
         try {
             FileWriter fw = new FileWriter(chatFile, true);
             fw.write(message + "\n");
@@ -79,22 +91,26 @@ public class Storage {
      */
     public String listTask() {
         try {
-            Scanner scanner = new Scanner(chatFile);
-            StringJoiner toPrint = new StringJoiner("\n");
-            int index = 0;
-            while (scanner.hasNext()) {
-                index++;
-                String text = scanner.nextLine();
-                text = index + "." + text;
-                toPrint.add(text);
-            }
-            if (index == 0) {
-                return "No task currently!";
-            }
-            return toPrint.toString();
+            return stringOfListOfTaskFromFile();
         } catch (FileNotFoundException e) {
             return "File error: File not found";
         }
+    }
+
+    private String stringOfListOfTaskFromFile() throws FileNotFoundException {
+        Scanner scanner = new Scanner(chatFile);
+        StringJoiner toPrint = new StringJoiner("\n");
+        int index = 0;
+        while (scanner.hasNext()) {
+            index++;
+            String text = scanner.nextLine();
+            text = index + "." + text;
+            toPrint.add(text);
+        }
+        if (index == 0) {
+            return "No task currently!";
+        }
+        return toPrint.toString();
     }
 
     /**
