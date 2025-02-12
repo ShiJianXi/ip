@@ -2,7 +2,6 @@ package chitchatbot;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.TimeUnit;
 
 import chitchatbot.command.Parser;
 import chitchatbot.storage.Storage;
@@ -15,6 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * MainWindow node that represents the main window of the GUI
+ */
 public class MainWindow extends AnchorPane {
 
     @FXML
@@ -35,6 +37,9 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/userDP.jpg"));
     private Image botImage = new Image(this.getClass().getResourceAsStream("/images/botDP.jpg"));
 
+    /**
+     * Initialises the GUI to greet the User at the start
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

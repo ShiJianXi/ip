@@ -7,7 +7,6 @@ import chitchatbot.task.Deadline;
 import chitchatbot.task.Event;
 import chitchatbot.task.Task;
 import chitchatbot.task.Todo;
-import chitchatbot.ui.Ui;
 
 /**
  * A class to parse all the commands entered by the user
@@ -23,7 +22,7 @@ public class Parser {
      * The data will be stored in a data folder under chatbot.txt within the application directory.
      *
      * @param inputArr A String[] split from user's input.
-     * @param storage The location that the chatbot.txt will be stored.
+     * @param storage  The location that the chatbot.txt will be stored.
      */
     public Parser(String[] inputArr, Storage storage) {
         this.storage = storage;

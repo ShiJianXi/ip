@@ -10,7 +10,7 @@ import chitchatbot.ui.Ui;
  * The class that deals with the todo command
  */
 public class Todo extends Task {
-
+    private String status = "T";
     /**
      * Constructs a Todo test with the given name.
      *
@@ -21,7 +21,7 @@ public class Todo extends Task {
         super(name);
     }
 
-    String status = "T";
+
 
     /**
      * Returns the String to be printed to the user's screen
@@ -30,7 +30,7 @@ public class Todo extends Task {
      * An empty String will be returned if an exception is catch during execution.
      *
      * @param inputArr The user's input that will be split into a String[].
-     * @param storage The storage that handles the txt file that stores the user's activities.
+     * @param storage  The storage that handles the txt file that stores the user's activities.
      * @return A String to be printed to the user's screen using chat UI.
      * @throws MissingParameterException If the user's input has missing parameters.
      * @see Ui

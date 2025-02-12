@@ -31,13 +31,14 @@ public class Find {
     }
 
     /**
-     * Returns an ArrayList<String> that contains all the similar task as of the given words.
+     * Returns an ArrayList of String that contains all the similar task as of the given words.
      * A task is considered similar as long as it contains all the key-words
-     * The given keywords will be in the form of ArrayList<String>.
+     * The given keywords will be in the form of ArrayList of String.
      * <p>
-     * An empty ArrayList<String> will be returned if no similar task within the txt file.
-     * @param descriptions The descriptions in the form of ArrayList<String>.
-     * @return ArrayList<String> of all the similar task.
+     * An empty ArrayList of String will be returned if no similar task within the txt file.
+     *
+     * @param descriptions The descriptions in the form of ArrayList of String.
+     * @return ArrayList of String of all the similar task.
      */
     public ArrayList<String> findSimilarTask(ArrayList<String> descriptions) {
         ArrayList<String> originalDescription = new ArrayList<>(List.copyOf(descriptions));
@@ -74,7 +75,9 @@ public class Find {
                                              ArrayList<String> result,
                                              String task) {
         for (int i = 1; i < taskArr.length; i++) {
-            if (containAllKeyWords(descriptions, taskArr, result, task, i)) break;
+            if (containAllKeyWords(descriptions, taskArr, result, task, i)) {
+                break;
+            }
         }
     }
 
@@ -98,6 +101,7 @@ public class Find {
      * <p>
      * A String in the chat UI format indicating no similar task found will be printed if no similar task
      * is found within the txt file.
+     *
      * @param inputArr The user's input in the form of String[]
      * @return A String showing all the similar task based on the keywords in the chat UI format.
      * @throws MissingParameterException If the user's input has mising parameters
@@ -133,7 +137,8 @@ public class Find {
 
     private static void checkInputArrLength(String[] inputArr) throws MissingParameterException {
         if (inputArr.length < 2) {
-            throw new MissingParameterException("Missing parameters error: Please ensure the correct parameters is used:\n"
+            throw new MissingParameterException("Missing parameters error: "
+                    + "Please ensure the correct parameters is used:\n"
                     + "find <keyword>");
         }
     }

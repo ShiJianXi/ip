@@ -1,5 +1,8 @@
 package chitchatbot.command;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -7,18 +10,14 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.task.Task;
 import chitchatbot.task.Todo;
-import chitchatbot.ui.Ui;
 
 public class FindTest {
-    Path path = Paths.get("data", "chat.txt");
-    Storage storage = new Storage(path);
+    private Path path = Paths.get("data", "chat.txt");
+    private Storage storage = new Storage(path);
 
     @BeforeEach
     public void initStorage() {
@@ -27,10 +26,10 @@ public class FindTest {
 
     @Test
     public void findSimilarTask_success() throws MissingParameterException {
-        String[] taskInput = new String[] {"todo", "find"};
+        String[] taskInput = new String[]{"todo", "find"};
         Todo.createToDo(taskInput, storage);
         int startingIndex = Task.getNoOfActivity();
-        taskInput = new String[] {"todo", "find test"};
+        taskInput = new String[]{"todo", "find test"};
         Todo.createToDo(taskInput, storage);
         ArrayList<String> expected = new ArrayList<>();
         expected.add("[T][ ] find");
@@ -39,14 +38,14 @@ public class FindTest {
         ArrayList<String> similarTaskAL = new ArrayList<>();
         similarTaskAL.add("find");
         assertEquals(expected, find.findSimilarTask(similarTaskAL));
-        String[] deleteInput = new String[] {"delete", String.valueOf(startingIndex)};
+        String[] deleteInput = new String[]{"delete", String.valueOf(startingIndex)};
         Task.deleteTask(path, deleteInput);
         Task.deleteTask(path, deleteInput);
     }
 
     @Test
     public void findSimilarTask_noSimilarTask() throws MissingParameterException {
-        String[] taskInput = new String[] {"todo", "find"};
+        String[] taskInput = new String[]{"todo", "find"};
         Todo.createToDo(taskInput, storage);
         int startingIndex = Task.getNoOfActivity();
         ArrayList<String> expected = new ArrayList<>();
@@ -54,23 +53,23 @@ public class FindTest {
         ArrayList<String> similarTaskAL = new ArrayList<>();
         similarTaskAL.add("finding");
         assertEquals(expected, find.findSimilarTask(similarTaskAL));
-        String[] deleteInput = new String[] {"delete", String.valueOf(startingIndex)};
-        Task.deleteTask(path,deleteInput);
+        String[] deleteInput = new String[]{"delete", String.valueOf(startingIndex)};
+        Task.deleteTask(path, deleteInput);
     }
 
     @Test
     public void executeFindCommand_success() throws MissingParameterException {
-        String[] taskInput = new String[] {"todo", "find"};
+        String[] taskInput = new String[]{"todo", "find"};
         Todo.createToDo(taskInput, storage);
         int startingIndex = Task.getNoOfActivity();
-        taskInput = new String[] {"todo", "find test"};
+        taskInput = new String[]{"todo", "find test"};
         Todo.createToDo(taskInput, storage);
-        String expected ="1.[T][ ] find\n"
+        String expected = "1.[T][ ] find\n"
                 + "2.[T][ ] find test";
         Find find = new Find(storage);
-        String[] inputArr = new String[] {"find", "find"};
+        String[] inputArr = new String[]{"find", "find"};
         assertEquals(expected, find.executeFindCommand(inputArr));
-        String[] deleteInput = new String[] {"delete", String.valueOf(startingIndex)};
+        String[] deleteInput = new String[]{"delete", String.valueOf(startingIndex)};
         Task.deleteTask(path, deleteInput);
         Task.deleteTask(path, deleteInput);
     }
@@ -78,7 +77,7 @@ public class FindTest {
     @Test
     public void executeFindCommand_missingParameters_exceptionThrown() {
         try {
-            String[] inputArr = new String[] {"find"};
+            String[] inputArr = new String[]{"find"};
             Find find = new Find(storage);
             find.executeFindCommand(inputArr);
             fail();
@@ -91,14 +90,14 @@ public class FindTest {
 
     @Test
     public void executeFindCommand_noSimilarTask() throws MissingParameterException {
-        String[] taskInput = new String[] {"todo", "find test"};
+        String[] taskInput = new String[]{"todo", "find test"};
         Todo.createToDo(taskInput, storage);
         int startingIndex = Task.getNoOfActivity();
         String expected = "No similar task found!";
         Find find = new Find(storage);
-        String[] inputArr = new String[] {"todo", "cannotbefound"};
+        String[] inputArr = new String[]{"todo", "cannotbefound"};
         assertEquals(expected, find.executeFindCommand(inputArr));
-        String[] deleteInput = new String[] {"delete", String.valueOf(startingIndex)};
+        String[] deleteInput = new String[]{"delete", String.valueOf(startingIndex)};
         Task.deleteTask(path, deleteInput);
     }
 

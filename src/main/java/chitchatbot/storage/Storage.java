@@ -1,8 +1,5 @@
 package chitchatbot.storage;
 
-import chitchatbot.task.Task;
-import chitchatbot.ui.Ui;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +8,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.StringJoiner;
+
+import chitchatbot.task.Task;
+import chitchatbot.ui.Ui;
 
 /**
  * A class that deals with the storage for that chat.txt

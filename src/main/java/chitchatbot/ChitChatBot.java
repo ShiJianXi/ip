@@ -1,9 +1,9 @@
 package chitchatbot;
 
+import java.nio.file.Path;
+
 import chitchatbot.command.Parser;
 import chitchatbot.storage.Storage;
-
-import java.nio.file.Path;
 
 /**
  * chitchatbot.Main program that runs the chitchatbot

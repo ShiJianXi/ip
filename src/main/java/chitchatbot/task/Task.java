@@ -1,23 +1,24 @@
 package chitchatbot.task;
 
-import chitchatbot.exception.AlreadyMarkedException;
-import chitchatbot.exception.MissingParameterException;
-import chitchatbot.ui.Ui;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import chitchatbot.exception.AlreadyMarkedException;
+import chitchatbot.exception.MissingParameterException;
+import chitchatbot.ui.Ui;
+
 /**
  * The general class for task that contains the general methods for all task
  */
 public class Task {
+    private static int noOfActivity = 0;
     private String name;
     private boolean isDone;
     private int index;
-    private static int noOfActivity = 0;
+
 
     /**
      * Constructs a Task with the given name.
@@ -47,7 +48,7 @@ public class Task {
      * <p>
      * Will return an empty String if an exception is catch during execution.
      *
-     * @param path The relative path of the txt file where the data is stored at.
+     * @param path     The relative path of the txt file where the data is stored at.
      * @param inputArr The user's input that is split into a String[].
      * @return The String to be printed to the user's screen using chat UI.
      * @throws MissingParameterException If the user's input has missing parameters.
@@ -119,7 +120,7 @@ public class Task {
      * <p>
      * Will return an empty String if an exception is catch during execution.
      *
-     * @param path The relative path of the txt file where the data is stored at.
+     * @param path     The relative path of the txt file where the data is stored at.
      * @param inputArr The user's input that is split into a String[].
      * @return The String to be printed to the user's screen using chat UI.
      * @throws MissingParameterException If the user's input has missing parameters.
@@ -179,14 +180,13 @@ public class Task {
     }
 
 
-
     /**
      * Returns a String that will be printed to the user's screen
      * when the user inputs a delete command.
      * <p>
      * An empty String will be returned if an exception is catch during execution.
      *
-     * @param path The relative path for the text file will the data will be stored at.
+     * @param path     The relative path for the text file will the data will be stored at.
      * @param inputArr The user's input that is split into a String[].
      * @return A String that will be printed to the user's screen using chat UI.
      * @throws MissingParameterException If the user's input has missing parameters.
