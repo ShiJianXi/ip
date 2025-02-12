@@ -52,38 +52,12 @@ public class Event extends Task {
      * @see Storage
      */
     public static String createEvent(String[] inputArr, Storage storage) throws MissingParameterException {
-        if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/from")
-                || !Arrays.asList(inputArr).contains("/to")
-                || inputArr[1].equals("/from") || inputArr[1].equals("/to")
-                || Arrays.asList(inputArr).indexOf("/from") > Arrays.asList(inputArr).indexOf("/to")) {
-            throw new MissingParameterException("Missing parameters: \n"
-                    + "Please ensure the correct format is used: \n"
-                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm");
-        }
+        checkConditionForEventParameters(inputArr);
+
         try {
-            StringJoiner task = new StringJoiner(" ");
-            int fromIndex = Arrays.asList(inputArr).indexOf("/from");
-            int toIndex = Arrays.asList(inputArr).indexOf("/to");
-
-
-            for (int i = 1; i < inputArr.length; i++) {
-                if (inputArr[i].equals("/from")) {
-                    break;
-                }
-                task.add(inputArr[i]);
-            }
-
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
-            LocalDate fromDate = LocalDate.parse(inputArr[fromIndex + 1], dateFormatter);
-            LocalTime fromTime = LocalTime.parse(inputArr[fromIndex + 2], timeFormatter);
-            LocalDate toDate = LocalDate.parse(inputArr[toIndex + 1], dateFormatter);
-            LocalTime toTime = LocalTime.parse(inputArr[toIndex + 2], timeFormatter);
-
-
-            Event newTask = new Event(task.toString(), fromDate, fromTime, toDate, toTime);
-
+            Event newTask = parseUserInputAndCreateNewEvent(inputArr);
             storage.appendToFile(newTask.toString());
+            
             return "Got it. I've added this task:\n"
                     + "  " + newTask + "\n"
                     + "Now you have "
@@ -94,6 +68,67 @@ public class Event extends Task {
                     + "Please ensure the correct format is used:\n"
                     + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         }
+    }
+
+    private static Event parseUserInputAndCreateNewEvent(String[] inputArr) {
+        int fromIndex = Arrays.asList(inputArr).indexOf("/from");
+        int toIndex = Arrays.asList(inputArr).indexOf("/to");
+
+        String taskDescription = getTaskDescription(inputArr);
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate fromDate = getFromDateFromUserInput(inputArr, fromIndex, dateFormatter);
+        LocalDate toDate = getToDateFromUserInput(inputArr, toIndex, dateFormatter);
+
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
+        LocalTime fromTime = getFromTimeFromUserInput(inputArr, fromIndex, timeFormatter);
+        LocalTime toTime = getToTimeFromUserInput(inputArr, toIndex, timeFormatter);
+
+
+        Event newTask = new Event(taskDescription, fromDate, fromTime, toDate, toTime);
+        return newTask;
+    }
+
+    private static void checkConditionForEventParameters(String[] inputArr) throws MissingParameterException {
+        if (inputArr.length < 2 || !Arrays.asList(inputArr).contains("/from")
+                || !Arrays.asList(inputArr).contains("/to")
+                || inputArr[1].equals("/from") || inputArr[1].equals("/to")
+                || Arrays.asList(inputArr).indexOf("/from") > Arrays.asList(inputArr).indexOf("/to")) {
+            throw new MissingParameterException("Missing parameters: \n"
+                    + "Please ensure the correct format is used: \n"
+                    + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm");
+        }
+    }
+
+    private static LocalDate getFromDateFromUserInput(String[] inputArr, int fromIndex, DateTimeFormatter dateFormatter) {
+        LocalDate fromDate = LocalDate.parse(inputArr[fromIndex + 1], dateFormatter);
+        return fromDate;
+    }
+
+    private static LocalDate getToDateFromUserInput(String[] inputArr, int toIndex, DateTimeFormatter dateFormatter) {
+        LocalDate toDate = LocalDate.parse(inputArr[toIndex + 1], dateFormatter);
+        return toDate;
+    }
+
+    private static LocalTime getFromTimeFromUserInput(String[] inputArr, int fromIndex, DateTimeFormatter timeFormatter) {
+        LocalTime fromTime = LocalTime.parse(inputArr[fromIndex + 2], timeFormatter);
+        return fromTime;
+    }
+
+    private static LocalTime getToTimeFromUserInput(String[] inputArr, int toIndex, DateTimeFormatter timeFormatter) {
+        LocalTime toTime = LocalTime.parse(inputArr[toIndex + 2], timeFormatter);
+        return toTime;
+    }
+
+    private static String getTaskDescription(String[] inputArr) {
+        StringJoiner task = new StringJoiner(" ");
+        for (int i = 1; i < inputArr.length; i++) {
+            if (inputArr[i].equals("/from")) {
+                break;
+            }
+            task.add(inputArr[i]);
+        }
+        return task.toString();
     }
 
     @Override
