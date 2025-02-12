@@ -1,15 +1,15 @@
 package chitchatbot.task;
 
-import chitchatbot.exception.MissingParameterException;
-import chitchatbot.storage.Storage;
-import chitchatbot.ui.Ui;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.StringJoiner;
+
+import chitchatbot.exception.MissingParameterException;
+import chitchatbot.storage.Storage;
+import chitchatbot.ui.Ui;
 
 /**
  * The event class that handles the event command
@@ -23,11 +23,11 @@ public class Event extends Task {
     /**
      * Constructs an Event task with the given name, date and time.
      *
-     * @param name The description of the event, in String.
+     * @param name     The description of the event, in String.
      * @param fromDate The starting date of the event, in LocalDate, in the dd/MM/yyyy format.
      * @param fromTime The starting date of the event, in LocalTime, in the hhMM format.
-     * @param toDate The ending date of the event, in LocalDate, in the dd/MM/yyyy format.
-     * @param toTime The ending time of the event, in LocalTime, in the dd/MM/yyyy format.
+     * @param toDate   The ending date of the event, in LocalDate, in the dd/MM/yyyy format.
+     * @param toTime   The ending time of the event, in LocalTime, in the dd/MM/yyyy format.
      * @see Task
      */
     public Event(String name, LocalDate fromDate, LocalTime fromTime, LocalDate toDate, LocalTime toTime) {
@@ -45,7 +45,7 @@ public class Event extends Task {
      * When an exception is catch during execution, an empty String will be returned.
      *
      * @param inputArr The user's input that will be split into a String[]
-     * @param storage The storage where the data will be stored at.
+     * @param storage  The storage where the data will be stored at.
      * @return The String to be printed to the user's screen using chat UI.
      * @throws MissingParameterException If the user's input has missing parameters.
      * @see Ui
@@ -57,7 +57,7 @@ public class Event extends Task {
         try {
             Event newTask = parseUserInputAndCreateNewEvent(inputArr);
             storage.appendToFile(newTask.toString());
-            
+
             return "Got it. I've added this task:\n"
                     + "  " + newTask + "\n"
                     + "Now you have "
@@ -100,22 +100,26 @@ public class Event extends Task {
         }
     }
 
-    private static LocalDate getFromDateFromUserInput(String[] inputArr, int fromIndex, DateTimeFormatter dateFormatter) {
+    private static LocalDate getFromDateFromUserInput(String[] inputArr, int fromIndex,
+                                                      DateTimeFormatter dateFormatter) {
         LocalDate fromDate = LocalDate.parse(inputArr[fromIndex + 1], dateFormatter);
         return fromDate;
     }
 
-    private static LocalDate getToDateFromUserInput(String[] inputArr, int toIndex, DateTimeFormatter dateFormatter) {
+    private static LocalDate getToDateFromUserInput(String[] inputArr, int toIndex,
+                                                    DateTimeFormatter dateFormatter) {
         LocalDate toDate = LocalDate.parse(inputArr[toIndex + 1], dateFormatter);
         return toDate;
     }
 
-    private static LocalTime getFromTimeFromUserInput(String[] inputArr, int fromIndex, DateTimeFormatter timeFormatter) {
+    private static LocalTime getFromTimeFromUserInput(String[] inputArr, int fromIndex,
+                                                      DateTimeFormatter timeFormatter) {
         LocalTime fromTime = LocalTime.parse(inputArr[fromIndex + 2], timeFormatter);
         return fromTime;
     }
 
-    private static LocalTime getToTimeFromUserInput(String[] inputArr, int toIndex, DateTimeFormatter timeFormatter) {
+    private static LocalTime getToTimeFromUserInput(String[] inputArr, int toIndex,
+                                                    DateTimeFormatter timeFormatter) {
         LocalTime toTime = LocalTime.parse(inputArr[toIndex + 2], timeFormatter);
         return toTime;
     }

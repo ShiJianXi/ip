@@ -4,18 +4,19 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-
+/**
+ * Main class that starts the stage for the GUI
+ */
 public class Main extends Application {
 
-    Path path = Paths.get("data", "chat.txt");
-    ChitChatBot chitChatBot = new ChitChatBot(path);
+    private Path path = Paths.get("data", "chat.txt");
+    private ChitChatBot chitChatBot = new ChitChatBot(path);
 
     private ChitChatBot bot = chitChatBot;
 
@@ -36,7 +37,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
 
 
 }
