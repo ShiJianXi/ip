@@ -1,0 +1,5 @@
+[T][ ] Sample Todo
+[D][ ] Sample Deadline With Date(by: Feb 12 2025)
+[D][ ] Sample Deadline With Date and Time(by: Feb 12 2025 18:00)
+[E][ ] Sample Event(from: Feb 12 2025 18:00 to: Feb 13 2025 18:00)
+[T][X] Sample Mark
