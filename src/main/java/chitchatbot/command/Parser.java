@@ -1,6 +1,9 @@
 package chitchatbot.command;
 
+import java.util.ArrayList;
+
 import chitchatbot.Action;
+import chitchatbot.exception.BotException;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.task.Deadline;
@@ -15,6 +18,7 @@ public class Parser {
     private Action action;
     private String[] inputArr;
     private Storage storage;
+    private static ArrayList<String[]> previousCommands = new ArrayList<>();
 
     /**
      * Constructs the parser to parse the user's input
@@ -57,22 +61,22 @@ public class Parser {
             return "Bye. Hope to see you again soon!";
 
         } else if (this.action == Action.list) {
-
             return this.storage.listTask();
 
         } else if (this.action == Action.mark) {
-
             try {
-                return Task.markAsDone(this.storage.getPath(), this.inputArr);
+
+                String result = Task.markAsDone(this.storage.getPath(), this.inputArr);
+                return result;
             } catch (MissingParameterException e) {
                 return e.getMessage();
             }
 
 
         } else if (this.action == Action.unmark) {
-
             try {
-                return Task.markAsNotDone(this.storage.getPath(), this.inputArr);
+                String result = Task.markAsNotDone(this.storage.getPath(), this.inputArr);
+                return result;
             } catch (MissingParameterException e) {
                 return e.getMessage();
             }
@@ -81,7 +85,8 @@ public class Parser {
         } else if (this.action == Action.todo) {
 
             try {
-                return Todo.createToDo(this.inputArr, this.storage);
+                String result = Todo.createToDo(this.inputArr, this.storage);
+                return result;
 
             } catch (MissingParameterException e) {
 
@@ -91,14 +96,16 @@ public class Parser {
         } else if (this.action == Action.deadline) {
 
             try {
-                return Deadline.createDeadline(this.inputArr, this.storage);
+                String result = Deadline.createDeadline(this.inputArr, this.storage);
+                return result;
             } catch (MissingParameterException e) {
                 return e.getMessage();
             }
 
         } else if (this.action == Action.event) {
             try {
-                return Event.createEvent(this.inputArr, this.storage);
+                String result = Event.createEvent(this.inputArr, this.storage);
+                return result;
             } catch (MissingParameterException e) {
                 return e.getMessage();
             }
@@ -106,7 +113,8 @@ public class Parser {
 
         } else if (this.action == Action.delete) {
             try {
-                return Task.deleteTask(this.storage.getPath(), this.inputArr);
+                String result = Task.deleteTask(this.storage.getPath(), this.inputArr);
+                return result;
             } catch (MissingParameterException e) {
                 return e.getMessage();
             }
@@ -120,9 +128,38 @@ public class Parser {
                 return e.getMessage();
             }
 
+        } else if (this.action == Action.undo) {
+            try {
+                Undo undo = new Undo(this.storage, this.inputArr);
+                String result = undo.executeUndo();
+                return result;
+            } catch (BotException e) {
+                return e.getMessage();
+            }
         }
 
         return "";
+    }
+
+    /**
+     * Adds to the previousCommands array list
+     * @param inputArr An array of string to be added to previousCommands
+     */
+    public static void addPreviousCommand(String[] inputArr) {
+        previousCommands.add(inputArr);
+    }
+
+    public static String[] getPreviousCommand() throws BotException {
+        int size = previousCommands.size();
+        if (previousCommands.isEmpty()) {
+            throw new BotException("Unable to undo, no previous command");
+        }
+
+        return previousCommands.get(size - 1);
+    }
+
+    public static int getNumberOfPreviousCommands() {
+        return previousCommands.size();
     }
 }
 

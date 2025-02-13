@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
@@ -83,6 +84,16 @@ public class Storage {
         }
     }
 
+    public void appendToAnyPlaceInFile(String message, int index) {
+        try {
+            List<String> allText = Files.readAllLines(this.path);
+            allText.add(index - 1, message);
+            Files.write(path, allText);
+        } catch (IOException e) {
+            System.out.println("An Error occurred, unable to read file");
+        }
+    }
+
     /**
      * Returns a String that list all the activities within the chatbot.txt
      * and print to the user's screen in the form a chat UI.
@@ -91,7 +102,8 @@ public class Storage {
      */
     public String listTask() {
         try {
-            return stringOfListOfTaskFromFile();
+            String result = "List of task currently: \n" + stringOfListOfTaskFromFile();
+            return result;
         } catch (FileNotFoundException e) {
             return "File error: File not found";
         }

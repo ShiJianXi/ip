@@ -12,5 +12,6 @@ public enum Action {
     deadline,
     event,
     delete,
-    find
+    find,
+    undo
 }

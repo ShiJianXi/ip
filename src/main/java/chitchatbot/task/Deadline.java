@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
+import chitchatbot.command.Parser;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
@@ -60,14 +61,18 @@ public class Deadline extends Task {
      */
     public static String createDeadline(String[] inputArr, Storage storage) throws MissingParameterException {
         checkDeadlineInputFormat(inputArr);
-        return tryGetStringOfNewDeadline(inputArr, storage);
+
+        String result = tryGetStringOfNewDeadline(inputArr, storage);
+        return result;
     }
 
     private static String tryGetStringOfNewDeadline(String[] inputArr, Storage storage) {
         try {
             int byIndex = getByIndex(inputArr);
             String taskDescription = addDescriptionUpToBy(byIndex, inputArr);
-            return getStringOfNewDeadline(inputArr, storage, byIndex, taskDescription);
+            String result = getStringOfNewDeadline(inputArr, storage, byIndex, taskDescription);
+            Parser.addPreviousCommand(inputArr);
+            return result;
         } catch (DateTimeException e1) {
             return "Incorrect date time format: \n"
                     + "please ensure the correct format is used:\n"
