@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import chitchatbot.command.Parser;
 import chitchatbot.exception.AlreadyMarkedException;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.ui.Ui;
@@ -14,10 +15,13 @@ import chitchatbot.ui.Ui;
  * The general class for task that contains the general methods for all task
  */
 public class Task {
+    private static String[] previousInput;
+    private static String previouslyDeletedTask = "";
     private static int noOfActivity = 0;
     private String name;
     private boolean isDone;
     private int index;
+
 
 
     /**
@@ -67,7 +71,7 @@ public class Task {
             markAsX(charArr);
             String newString = String.valueOf(charArr);
             writeBackToChatFile(path, newString, index);
-
+            Parser.addPreviousCommand(inputArr);
             return "Nice! I've marked this task as done:\n"
                     + "  " + newString;
 
@@ -95,6 +99,29 @@ public class Task {
             return "Unable to mark, this task doesn't exist, "
                     + "please pick a task from 1 to "
                     + Task.getNoOfActivity() + " to mark.";
+        }
+    }
+
+    /**
+     * Undos the mark or unmark command.
+     * @param path The path where chat.txt is stored.
+     * @param index The task number of the task that is marked or unmarked.
+     * @param type Type 1 to undo a mark command and type 2 to undo a unmark command.
+     */
+    public static void undoMarkUnmark(Path path, int index, int type) {
+        try {
+            String allText = Files.readAllLines(path).get(index);
+            char[] charArr = allText.toCharArray();
+            //Type 1 is to undo mark command, type 2 is to undo unmark command
+            if (type == 1) {
+                charArr[4] = ' ';
+            } else {
+                charArr[4] = 'X';
+            }
+            String newString = String.valueOf(charArr);
+            writeBackToChatFile(path, newString, index);
+        } catch (IOException e) {
+            System.out.println("Unable to read file");
         }
     }
 
@@ -141,7 +168,7 @@ public class Task {
             unmarkX(charArr);
             String newString = String.valueOf(charArr);
             writeBackToChatFile(path, newString, index);
-
+            Parser.addPreviousCommand(inputArr);
             return "OK, I've marked this task as not done yet:\n"
                     + "  " + newString;
 
@@ -202,7 +229,9 @@ public class Task {
             List<String> lines = Files.readAllLines(path);
             String toRemove = lines.get(index);
             removeTaskFromChatFile(path, lines, index);
+            previouslyDeletedTask = toRemove;
             noOfActivity--;
+            Parser.addPreviousCommand(inputArr);
             return "Noted. I've removed this task:\n"
                     + "  " + toRemove + "\n"
                     + "Now you have " + Task.getNoOfActivity()
@@ -224,7 +253,18 @@ public class Task {
         }
     }
 
-    private static void removeTaskFromChatFile(Path path, List<String> lines, int index) throws IOException {
+    public static String getPreviouslyDeletedTask() {
+        return previouslyDeletedTask;
+    }
+
+    /**
+     * Removes a task from the chat file.
+     * @param path The path the chat.txt is stored.
+     * @param lines The collection of all the text in the chat.txt as a List of String.
+     * @param index The line number to be removed.
+     * @throws IOException If unable to write to file.
+     */
+    public static void removeTaskFromChatFile(Path path, List<String> lines, int index) throws IOException {
         lines.remove(index);
         Files.write(path, lines);
     }

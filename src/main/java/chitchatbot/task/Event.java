@@ -7,6 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
+import chitchatbot.command.Parser;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
@@ -57,7 +58,7 @@ public class Event extends Task {
         try {
             Event newTask = parseUserInputAndCreateNewEvent(inputArr);
             storage.appendToFile(newTask.toString());
-
+            Parser.addPreviousCommand(inputArr);
             return "Got it. I've added this task:\n"
                     + "  " + newTask + "\n"
                     + "Now you have "

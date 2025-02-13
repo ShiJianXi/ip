@@ -2,6 +2,7 @@ package chitchatbot.task;
 
 import java.util.StringJoiner;
 
+import chitchatbot.command.Parser;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
@@ -45,7 +46,7 @@ public class Todo extends Task {
         String taskDescription = getDescription(inputArr);
         Todo newTask = new Todo(taskDescription);
         storage.appendToFile(newTask.toString());
-
+        Parser.addPreviousCommand(inputArr);
         return "Got it. I've added this task:\n"
                 + "  " + newTask + "\n"
                 + "Now you have "
