@@ -84,6 +84,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Appends a message to any place in the file.
+     * @param message The message to be appended.
+     * @param index The line number to be appended.
+     */
     public void appendToAnyPlaceInFile(String message, int index) {
         try {
             List<String> allText = Files.readAllLines(this.path);

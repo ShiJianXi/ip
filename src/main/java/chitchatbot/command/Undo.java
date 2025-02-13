@@ -3,8 +3,6 @@ package chitchatbot.command;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -13,19 +11,33 @@ import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.task.Task;
 
+/**
+ * Handle undo command that allows user to undo,
+ * the previous command that modified the data in the file.
+ */
 public class Undo {
-    //private Path path;
-    private Storage storage;
-    private String[] inputArr;
     private static int oldLen = 0;
     private static int newLen = 0;
+    private Storage storage;
+    private String[] inputArr;
 
+    /**
+     * Constructs a new Undo class.
+     * @param storage The storage that the chat.txt is stored.
+     * @param inputArr The user input.
+     */
     public Undo(Storage storage, String[] inputArr) {
         this.storage = storage;
         this.inputArr = inputArr;
         newLen = Parser.getNumberOfPreviousCommands();
     }
 
+    /**
+     * Executes the undo command which undo the previous command,
+     * that modified the chat.txt file.
+     * @return A String to be printed to the user.
+     * @throws BotException When the user input is incorrect or the user tries to undo multiple times.
+     */
     public String executeUndo() throws BotException {
         checkCondition();
         try {
@@ -103,7 +115,7 @@ public class Undo {
                     + "Please ensure the correct format is used Undo");
         }
 
-        if(!(newLen > oldLen)) {
+        if (!(newLen > oldLen)) {
             throw new BotException("Only can undo the latest command that changed the data");
         }
     }

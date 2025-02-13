@@ -15,12 +15,13 @@ import chitchatbot.ui.Ui;
  * The general class for task that contains the general methods for all task
  */
 public class Task {
+    private static String[] previousInput;
+    private static String previouslyDeletedTask = "";
     private static int noOfActivity = 0;
     private String name;
     private boolean isDone;
     private int index;
-    private static String[] previousInput;
-    private static String previouslyDeletedTask = "";
+
 
 
     /**
@@ -101,6 +102,12 @@ public class Task {
         }
     }
 
+    /**
+     * Undos the mark or unmark command.
+     * @param path The path where chat.txt is stored.
+     * @param index The task number of the task that is marked or unmarked.
+     * @param type Type 1 to undo a mark command and type 2 to undo a unmark command.
+     */
     public static void undoMarkUnmark(Path path, int index, int type) {
         try {
             String allText = Files.readAllLines(path).get(index);
@@ -250,6 +257,13 @@ public class Task {
         return previouslyDeletedTask;
     }
 
+    /**
+     * Removes a task from the chat file.
+     * @param path The path the chat.txt is stored.
+     * @param lines The collection of all the text in the chat.txt as a List of String.
+     * @param index The line number to be removed.
+     * @throws IOException If unable to write to file.
+     */
     public static void removeTaskFromChatFile(Path path, List<String> lines, int index) throws IOException {
         lines.remove(index);
         Files.write(path, lines);

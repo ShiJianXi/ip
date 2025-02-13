@@ -15,10 +15,11 @@ import chitchatbot.task.Todo;
  * A class to parse all the commands entered by the user
  */
 public class Parser {
+    private static ArrayList<String[]> previousCommands = new ArrayList<>();
     private Action action;
     private String[] inputArr;
     private Storage storage;
-    private static ArrayList<String[]> previousCommands = new ArrayList<>();
+
 
     /**
      * Constructs the parser to parse the user's input
