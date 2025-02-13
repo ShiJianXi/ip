@@ -34,23 +34,8 @@ public class UndoTest {
     public void initStorage() {
         storage.initStorage();
     }
-
-
     @Test
     @Order(1)
-    public void executeUndo_noCommand_success() {
-        Undo noCommandUndo = new Undo(storage, UNDO_INPUT);
-        String expected = REPEAT_UNDO_EXCEPTION;
-        try {
-            String actual = noCommandUndo.executeUndo();
-            fail();
-        } catch (BotException e) {
-            assertEquals(expected, e.getMessage());
-        }
-    }
-
-    @Test
-    @Order(2)
     public void executeUndo_todo_success() throws BotException {
         String[] input = new String[]{"todo", "undo test"};
         String expected = "Undo previous command: todo undo test";
@@ -69,7 +54,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     public void executeUndo_deadline_success() throws BotException {
         String[] input = new String[]{"deadline", "undo deadline test",
             "/by", "13/02/2025", "1800"};
@@ -90,7 +75,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     public void executeUndo_event_success() throws BotException {
         String[] input = new String[]{"event", "undo event test",
             "/from", "13/02/2025", "1200",
@@ -111,7 +96,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(5)
+    @Order(4)
     public void executeUndo_listCommand_success() {
         Undo noCommandUndo = new Undo(storage, UNDO_INPUT);
         String expected = REPEAT_UNDO_EXCEPTION;
@@ -125,7 +110,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(6)
+    @Order(5)
     public void executeUndo_findCommand_success() {
         Undo noCommandUndo = new Undo(storage, UNDO_INPUT);
         String expected = REPEAT_UNDO_EXCEPTION;
@@ -142,7 +127,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(7)
+    @Order(6)
     public void executeUndo_invalidInput() {
         try {
             Undo invalidInputUndo = new Undo(storage, new String[]{"undo", "test"});
@@ -156,7 +141,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(8)
+    @Order(7)
     public void executeUndo_markTask_success() throws IOException, BotException {
         String[] taskInput = new String[]{"todo", "undo mark test"};
         Todo.createToDo(taskInput, storage);
@@ -184,7 +169,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(9)
+    @Order(8)
     public void executeUndo_unmarkTask_success() throws IOException, BotException {
         String[] taskInput = new String[]{"todo", "undo unmark test"};
         Todo.createToDo(taskInput, storage);
@@ -213,7 +198,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(10)
+    @Order(9)
     public void executeUndo_undoDelete_success() throws BotException, IOException {
         String[] taskInput = new String[]{"todo", "undo delete test"};
         Todo.createToDo(taskInput, storage);
@@ -239,7 +224,7 @@ public class UndoTest {
     }
 
     @Test
-    @Order(11)
+    @Order(10)
     public void executeUndo_undoDeleteMiddleTask_success() throws BotException, IOException {
         String[] taskInput = new String[]{"todo", "undo delete test"};
         String[] anotherTaskInput = new String[]{"todo", "another test"};
