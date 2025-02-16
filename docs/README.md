@@ -45,7 +45,7 @@ Add a todo task to be tracked by ChitChatBot.
 Format: `todo <Description>`
 
 Example:<br/>
-* `add Do Homework`
+* `todo Do Homework`
 
 ### Adding an event task: `event`
 Add an event task to be tracked by the ChitChatBot.<br/>
@@ -140,7 +140,7 @@ Undo the most recent command that modified the data.
 Format: `undo`
 >⚠ **Note:**
 > Only can undo the most recent command that modified the data.<br/>
-> Command such as find and list unable to undo.
+> Commands such as list and find are unable to be undo.
 
 Examples:
 * `delete 1`: deletes the first task in the task list followed by `undo` will undo the `delete 1` command.
