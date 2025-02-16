@@ -166,7 +166,7 @@ ChitChatBot data are saved automatically as a TXT file under `[JAR file location
 | **Mark a task as not yet completed**                 | `unmark 1`                                                                                                                                                    |
 | **Find task based on descriptions**                  | `find <Keywords...>`<br/>e.g., `find Homework`                                                                                                                |
 | **Undo the previous command that modified the data** | `undo`                                                                                                                                                        |
-| **Exit the program**                                 | `bye`                                                                                                                                                          |
+| **Exit the program**                                 | `bye`                                                                                                                                                         |
 
 
 
