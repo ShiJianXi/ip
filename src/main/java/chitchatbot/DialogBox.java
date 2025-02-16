@@ -1,17 +1,24 @@
 package chitchatbot;
 
+
+
 import java.io.IOException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 /**
  * DialogBox node that shows the chat box for User and ChatBot
@@ -36,10 +43,9 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(s);
         displayPicture.setImage(i);
-
+        makeImageCircular(displayPicture);
     }
 
     private void flip() {
@@ -50,12 +56,24 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String s, Image i) {
-        return new DialogBox(s, i);
+        var db = new DialogBox(s, i);
+        db.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
+        return db;
     }
+
 
     public static DialogBox getBotDialog(String s, Image i) {
         var db = new DialogBox(s, i);
+        db.setBackground(new Background(new BackgroundFill(Color.AQUAMARINE, CornerRadii.EMPTY, Insets.EMPTY)));
         db.flip();
         return db;
+    }
+
+    private void makeImageCircular(ImageView imageView) {
+        double radius = Math.min(imageView.getFitWidth(), imageView.getFitHeight()) / 2;
+        javafx.scene.shape.Circle clip = new javafx.scene.shape.Circle(radius);
+        clip.setCenterX(imageView.getFitWidth() / 2);
+        clip.setCenterY(imageView.getFitHeight() / 2);
+        imageView.setClip(clip);
     }
 }
