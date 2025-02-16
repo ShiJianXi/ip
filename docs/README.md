@@ -47,7 +47,7 @@ Example:<br/>
 
 ### Adding an event task: `event`
 Add an event task to be tracked by the ChitChatBot.<br/>
-> [⚠ **Note**]
+> ⚠ **Note:**
 > Event task requires both date and time.
 > The from date should be earlier than the to date, similarly for time.<br/>
 
@@ -58,7 +58,7 @@ Example:
 
 ### Adding a deadline task: `deadline`
 Adding a task with deadline to be tracked by ChitChatBot.<br/>
-> [⚠ **Note**]
+> ⚠ **Note:**
 > For deadline task, time argument is optional
 
 Format:
@@ -73,7 +73,7 @@ Examples:
 Shows a list of all the task currently tracked by ChitChatBot
 
 Format: `list`
->[⚠ **Note**] 
+>⚠ **Note:** 
 > Any extra arguments after list will be ignored and the usual list command will be executed.<br/>
 
 Examples:
@@ -136,7 +136,7 @@ Examples:
 Undo the most recent command that modified the data.
 
 Format: `undo`
->[⚠ **Note**]
+>⚠ **Note:**
 > Only can undo the most recent command that modified the data.<br/>
 > Command such as find and list unable to undo.
 
@@ -147,7 +147,7 @@ Examples:
 ### Exiting the program: `bye`
 Exits the program
 Format: `bye`
->[⚠ **Note**]
+>⚠ **Note:**
 > Any extra arguments after bye will be ignored and the program will exit as normal.<br/>
 > Example: `exit abc`: the program will exit as normal.
 
@@ -155,6 +155,7 @@ Format: `bye`
 ChitChatBot data are saved automatically as a TXT file under `[JAR file location]/data/chat.txt`.
 
 ### Command summary
+
 | Action                                               | Format, Example                                                                                                                                               |
 |------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add todo task**                                    | `todo <Description>`<br/> e.g., `todo Homework`                                                                                                               |
