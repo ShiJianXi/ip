@@ -17,6 +17,8 @@ It is optimized for use via **Command Line Interface (CLI)** while still having 
 * - Finding tasks by description: [`find`](#finding-task-by-description-find)
 * - Undoing a command: [`undo`](#undoing-a-command-undo)
 * - Exiting the program: [`bye`](#exiting-the-program-bye)
+* [Saving the data file](#saving-the-data-file)
+* [Command summary](#command-summary)
 
 ## Quick start
 1. Ensure you have Java `17` installed in your Computer.<br/>
@@ -149,7 +151,7 @@ Exits the program
 Format: `bye`
 >⚠ **Note:**
 > Any extra arguments after bye will be ignored and the program will exit as normal.<br/>
-> Example: `exit abc`: the program will exit as normal.
+> Example: `bye abc`: the program will exit as normal.
 
 ### Saving the data file
 ChitChatBot data are saved automatically as a TXT file under `[JAR file location]/data/chat.txt`.
