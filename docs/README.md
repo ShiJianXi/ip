@@ -47,7 +47,7 @@ Example:<br/>
 
 ### Adding an event task: `event`
 Add an event task to be tracked by the ChitChatBot.<br/>
-> [!NOTE]
+> [⚠ **Note**]
 > Event task requires both date and time.
 > The from date should be earlier than the to date, similarly for time.<br/>
 
@@ -58,7 +58,7 @@ Example:
 
 ### Adding a deadline task: `deadline`
 Adding a task with deadline to be tracked by ChitChatBot.<br/>
-> [!NOTE]
+> [⚠ **Note**]
 > For deadline task, time argument is optional
 
 Format:
@@ -73,7 +73,7 @@ Examples:
 Shows a list of all the task currently tracked by ChitChatBot
 
 Format: `list`
->[!NOTE] 
+>[⚠ **Note**] 
 > Any extra arguments after list will be ignored and the usual list command will be executed.<br/>
 
 Examples:
@@ -136,7 +136,7 @@ Examples:
 Undo the most recent command that modified the data.
 
 Format: `undo`
->[!NOTE]
+>[⚠ **Note**]
 > Only can undo the most recent command that modified the data.<br/>
 > Command such as find and list unable to undo.
 
@@ -147,7 +147,7 @@ Examples:
 ### Exiting the program: `bye`
 Exits the program
 Format: `bye`
->[!NOTE]
+>[⚠ **Note**]
 > Any extra arguments after bye will be ignored and the program will exit as normal.<br/>
 > Example: `exit abc`: the program will exit as normal.
 
