@@ -71,6 +71,7 @@ public class Event extends Task {
             return e.getMessage();
         }
     }
+    //Test validate gradle wrapper
 
     private static Event parseUserInputAndCreateNewEvent(String[] inputArr) throws BotException {
         int fromIndex = Arrays.asList(inputArr).indexOf("/from");
