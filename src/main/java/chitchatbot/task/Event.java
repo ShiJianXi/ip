@@ -41,7 +41,6 @@ public class Event extends Task {
         this.toTime = toTime;
 
     }
-    
     /**
      * Returns the String to be printed to the user's screen using chat UI.
      * When an exception is catch during execution, an empty String will be returned.
