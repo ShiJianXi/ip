@@ -23,7 +23,7 @@ It is optimized for use via **Command Line Interface (CLI)** while still having 
 ## Quick start
 1. Ensure you have Java `17` installed in your Computer.<br/>
    **Mac User:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-2. Download the latest `.jar` file from here.
+2. Download the latest `.jar` file from [here](https://github.com/ShiJianXi/ip/releases/tag/A-Release).
 3. Open a command terminal, `cd` into the folder you put the jar in, and use the `java -jar chitchatbot.jar` 
 command to run the application.<br/>
 Or you can double-click the `.jar` file to launch it. <br/>
