@@ -196,4 +196,44 @@ public class EventTest {
                 + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
         assertEquals(expected, result);
     }
+    @Test
+    public void createEvent_toDateBeforeFromDate_exceptionThrown() {
+        String[] inputArr = new String[]{"event", "event date exception test", "/from", "16/02/2025",
+            "1800", "/to", "15/02/2025", "1800"};
+        try {
+            String result = Event.createEvent(inputArr, storage);
+        } catch (MissingParameterException e) {
+            String expected = "To date should be after from date!";
+            assertEquals(expected, e.getMessage());
+        }
+    }
+
+    @Test
+    public void createEvent_sameDateLaterToTime_success() throws MissingParameterException {
+        String[] inputArr = new String[] {"event", "eventTest",
+            "/from", "16/02/2025", "1800",
+            "/to", "16/02/2025", "1900"};
+        String actual = Event.createEvent(inputArr, storage);
+        String expected = "Got it. I've added this task:\n"
+                + "  " + "[E][ ] eventTest(from: Feb 16 2025 18:00 to: Feb 16 2025 19:00)" + "\n"
+                + "Now you have "
+                + Task.getNoOfActivity() + " tasks in the list.";
+        assertEquals(expected, actual);
+
+        String[] deleteInput = new String[]{"delete", String.valueOf(Task.getNoOfActivity())};
+        Task.deleteTask(path, deleteInput);
+    }
+
+    @Test
+    public void createEvent_sameDateEarlierToTime_exceptionThrown() throws MissingParameterException {
+        String[] inputArr = new String[] {"event", "eventTest",
+            "/from", "16/02/2025", "1800",
+            "/to", "16/02/2025", "1500"};
+        try {
+            String result = Event.createEvent(inputArr, storage);
+        } catch (MissingParameterException e) {
+            String expected = "To time should be after from time!";
+            assertEquals(expected, e.getMessage());
+        }
+    }
 }
