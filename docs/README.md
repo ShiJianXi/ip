@@ -29,14 +29,14 @@ command to run the application.<br/>
 Or you can double-click the `.jar` file to launch it. <br/>
 A GUI similar to the below should appear.<br/>
 ![](Initial.png)
-4. Type the command in the command box and press Enter or click the Send button to execute it.<br/>
-Some example commands you can try:
-5. - `todo Do Homework`: Add the task to do homework
-- - `deadline Assignment 1 /by 16/02/2025 1800`: Add a task with deadline
-- - `mark 1`: Mark the 1st task as completed.
-- - `unmark 1`: Unmark the 1st task as not yet completed.
-- - `delete 1`: Delete the first task.
-- - `bye`: Exits the app
+4. Type the command in the command box and press Enter or click the Send button to execute it.
+5. Some example commands you can try:<br/>
+- `todo Do Homework`: Add the task to do homework
+- `deadline Assignment 1 /by 16/02/2025 1800`: Add a task with deadline
+- `mark 1`: Mark the 1st task as completed.
+- `unmark 1`: Unmark the 1st task as not yet completed.
+- `delete 1`: Delete the first task.
+- `bye`: Exits the app
 6. Refer to the Features below for details of each command
 
 ## Features
