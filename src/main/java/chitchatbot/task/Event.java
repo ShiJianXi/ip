@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.StringJoiner;
 
 import chitchatbot.command.Parser;
+import chitchatbot.exception.BotException;
 import chitchatbot.exception.MissingParameterException;
 import chitchatbot.storage.Storage;
 import chitchatbot.ui.Ui;
@@ -40,7 +41,6 @@ public class Event extends Task {
         this.toTime = toTime;
 
     }
-
     /**
      * Returns the String to be printed to the user's screen using chat UI.
      * When an exception is catch during execution, an empty String will be returned.
@@ -54,7 +54,6 @@ public class Event extends Task {
      */
     public static String createEvent(String[] inputArr, Storage storage) throws MissingParameterException {
         checkConditionForEventParameters(inputArr);
-
         try {
             Event newTask = parseUserInputAndCreateNewEvent(inputArr);
             storage.appendToFile(newTask.toString());
@@ -68,10 +67,12 @@ public class Event extends Task {
             return "Incorrect format:\n"
                     + "Please ensure the correct format is used:\n"
                     + "event <Description> /from dd/mm/yyyy HHmm /to dd/mm/yyyy HHmm";
+        } catch (BotException e) {
+            return e.getMessage();
         }
     }
 
-    private static Event parseUserInputAndCreateNewEvent(String[] inputArr) {
+    private static Event parseUserInputAndCreateNewEvent(String[] inputArr) throws BotException {
         int fromIndex = Arrays.asList(inputArr).indexOf("/from");
         int toIndex = Arrays.asList(inputArr).indexOf("/to");
 
@@ -85,9 +86,29 @@ public class Event extends Task {
         LocalTime fromTime = getFromTimeFromUserInput(inputArr, fromIndex, timeFormatter);
         LocalTime toTime = getToTimeFromUserInput(inputArr, toIndex, timeFormatter);
 
+        if (isSameDate(fromDate, toDate)) {
+            if (!isToTimeAfterFromTime(fromTime, toTime)) {
+                throw new BotException("To time should be after from time!");
+            }
+        }
 
+        if (!isSameDate(fromDate, toDate) && !isToDateAfterFromDate(fromDate, toDate)) {
+            throw new BotException("To date should be after from date!");
+        }
         Event newTask = new Event(taskDescription, fromDate, fromTime, toDate, toTime);
         return newTask;
+    }
+
+    private static boolean isToDateAfterFromDate(LocalDate fromDate, LocalDate toDate) {
+        return toDate.isAfter(fromDate);
+    }
+
+    private static boolean isSameDate(LocalDate fromDate, LocalDate toDate) {
+        return fromDate.isEqual(toDate);
+    }
+
+    private static boolean isToTimeAfterFromTime(LocalTime fromTime, LocalTime toTime) {
+        return toTime.isAfter(fromTime);
     }
 
     private static void checkConditionForEventParameters(String[] inputArr) throws MissingParameterException {
