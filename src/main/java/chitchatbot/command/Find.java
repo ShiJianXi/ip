@@ -83,8 +83,8 @@ public class Find {
 
     private static boolean containAllKeyWords(ArrayList<String> descriptions, String[] taskArr,
                                               ArrayList<String> result, String task, int i) {
-        if (descriptions.contains(taskArr[i])) {
-            String text = taskArr[i];
+        if (descriptions.contains(taskArr[i].toLowerCase())) {
+            String text = taskArr[i].toLowerCase();
 
             descriptions.remove(text);
             if (descriptions.isEmpty()) {
@@ -130,7 +130,7 @@ public class Find {
         ArrayList<String> lookingFor = new ArrayList<>();
 
         for (int i = 1; i < inputArr.length; i++) {
-            lookingFor.add(inputArr[i]);
+            lookingFor.add(inputArr[i].toLowerCase());
         }
         return lookingFor;
     }

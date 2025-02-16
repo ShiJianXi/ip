@@ -68,7 +68,9 @@ public class FindTest {
                 + "2.[T][ ] find test";
         Find find = new Find(storage);
         String[] inputArr = new String[]{"find", "find"};
+        String[] caseInsensitiveInput = new String[]{"find", "FIND"};
         assertEquals(expected, find.executeFindCommand(inputArr));
+        assertEquals(expected, find.executeFindCommand(caseInsensitiveInput));
         String[] deleteInput = new String[]{"delete", String.valueOf(startingIndex)};
         Task.deleteTask(path, deleteInput);
         Task.deleteTask(path, deleteInput);
