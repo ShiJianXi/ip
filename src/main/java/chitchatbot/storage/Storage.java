@@ -66,7 +66,7 @@ public class Storage {
     }
 
     /**
-     * Append the given String message into the chatbot.txt file.
+     * Appends the given String message into the chatbot.txt file.
      *
      * @param message A String message to be appended into the file
      */
@@ -131,7 +131,7 @@ public class Storage {
     }
 
     /**
-     * Return the chatbot.txt file.
+     * Returns the chatbot.txt file.
      * This file contains the list of tasks that the user inputs previously.
      *
      * @return File where the text is stored at.
@@ -141,7 +141,7 @@ public class Storage {
     }
 
     /**
-     * Return the path where the chatbot.txt is stored at.
+     * Returns the path where the chatbot.txt is stored at.
      *
      * @return Path, the path of the chatbot.txt
      */

@@ -19,7 +19,7 @@ public class Deadline extends Task {
 
     protected LocalDate by;
     protected LocalTime time;
-    private boolean containTime = false;
+    private boolean containsTime = false;
 
     /**
      * Constructs a new Deadline task with the given name and date.
@@ -45,7 +45,7 @@ public class Deadline extends Task {
         super(name);
         this.by = by;
         this.time = time;
-        this.containTime = true;
+        this.containsTime = true;
     }
 
     /**
@@ -157,7 +157,7 @@ public class Deadline extends Task {
     public String toString() {
         LocalDate date = this.by;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
-        if (this.containTime) {
+        if (this.containsTime) {
             return String.format("[%s]" + super.toString()
                     + "(by: %s %s)", "D", date.format(formatter), this.time);
         } else {
