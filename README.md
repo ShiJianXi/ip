@@ -31,7 +31,7 @@ It is optimized for use via **Command Line Interface (CLI)** while still having 
    command to run the application.<br/>
    Or you can double-click the `.jar` file to launch it. <br/>
    A GUI similar to the below should appear.<br/>
-   ![](docs\Initial.png)
+   ![](docs/Initial.png)
 4. Type the command in the command box and press Enter or click the Send button to execute it.
 5. Some example commands you can try:<br/>
 - `todo Do Homework`: Add the task to do homework
@@ -135,7 +135,7 @@ Format: `find <KEYWORDS...>`
 Examples:
 * `find homework`: returns `Do Homework` and `Finish Homework`.
 * `find do homework`: returns `Do Homework`.<br/>
-  ![](docs\FindHomework.png) ![](docs\FindDoHomework.png)
+  ![](docs/FindHomework.png) ![](docs/FindDoHomework.png)
 
 ### Undoing a command: `undo`
 Undo the most recent command that modified the data.
