@@ -6,7 +6,7 @@ This is a project template for a greenfield Java project. It's named after the J
 ChitChatBot is a **Java-based personal assistant chatbot** that helps user to **track tasks efficiently**.
 It is optimized for use via **Command Line Interface (CLI)** while still having the benefits of a **Graphical User Interface**
 
-![](docs\Ui.png)
+![](docs/Ui.png)
 
 * [Quick start](#quick-start)
 * [Features](#features)
